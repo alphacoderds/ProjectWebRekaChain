@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:RekaChain/main.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -54,13 +53,23 @@ class _LoginPageState extends State<LoginPage> {
               alignment: Alignment.centerLeft,
             ),
           ),
-          Center(
-            child: Column(
+          Row(children: [
+            SizedBox(
+              width: screenWidth * 0.08,
+            ),
+            Image.asset(
+              'assets/images/logoreka.png',
+              width: screenWidth * 0.4,
+            ),
+            SizedBox(
+              width: screenWidth * 0.08,
+            ),
+            Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(height: screenHeight * 0.15),
                 Image.asset(
-                  'assets/images/logoREKA.png',
+                  'assets/images/logoreka.png',
                   width: screenWidth * 0.2,
                 ),
                 SizedBox(height: screenHeight * 0.02),
@@ -103,12 +112,12 @@ class _LoginPageState extends State<LoginPage> {
                 Expanded(child: Container())
               ],
             ),
-          ),
+          ]),
           Positioned(
             bottom: -screenHeight * 0.001,
             left: 0,
             child: Image(
-              image: AssetImage('assets/images/Bolder21.png'),
+              image: AssetImage('assets/images/icon.png'),
               width: screenWidth * 1.89,
               height: screenHeight * 0.17,
             ),
