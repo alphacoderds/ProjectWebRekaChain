@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_webrekachain/login.dart';
 import 'package:flutter_application_webrekachain/profile.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Profile(),
+      home: LoginPage(),
     );
   }
 }
