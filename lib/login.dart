@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
               width: screenWidth * 0.08,
             ),
             Image.asset(
-              'assets/images/logoreka.png',
+              'assets/images/gudang.png',
               width: screenWidth * 0.4,
             ),
             SizedBox(
