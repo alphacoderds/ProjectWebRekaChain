@@ -97,7 +97,7 @@ class _ProfileState extends State<Profile> {
               color: Color.fromRGBO(43, 56, 86, 1),
               padding: EdgeInsets.only(top: 5.0),
               child: Text(
-                '  PROFIL SAYA',
+                'PROFIL SAYA',
                 style: TextStyle(
                   color: Colors.white,
                   fontFamily: 'Donegal One',
@@ -131,8 +131,9 @@ class _ProfileState extends State<Profile> {
           ],
         ),
         Positioned(
+          top: 380,
           bottom: 0,
-          right: -140,
+          left: 800,
           child: Image.asset(
             'assets/images/icon.png',
             width: 500,

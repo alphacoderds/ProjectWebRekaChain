@@ -4,10 +4,10 @@ class dasboard extends StatefulWidget {
   const dasboard({Key? key}) : super(key: key);
 
   @override
-  State<dasboard> createState() => _PerencanaanState();
+  State<dasboard> createState() => _dasboardState();
 }
 
-class _PerencanaanState extends State<dasboard> {
+class _dasboardState extends State<dasboard> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
