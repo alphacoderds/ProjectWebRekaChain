@@ -1,22 +1,38 @@
 import 'package:flutter/material.dart';
 
-class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+class dasboard extends StatefulWidget {
+  const dasboard({Key? key}) : super(key: key);
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<dasboard> createState() => _PerencanaanState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _PerencanaanState extends State<dasboard> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _pages = [
+    Text('Dashboard Page'),
+    Text('Input Data Page'),
+    Text('Report STTPP Page'),
+    Text('Perencanaan Page'),
+    Text('Input Kebutuhan Material Page'),
+    Text('Input Dokumen Pendukung Page'),
+    Text('After Sales Page'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dashboard'),
+        title: Text(''),
         toolbarHeight: 100.0,
       ),
-      drawer: _buildDrawer(),
-      body: _buildMainContent(),
+      body: Stack(
+        children: <Widget>[
+          _pages[_selectedIndex],
+          if (_selectedIndex == 0) _buildDrawer(),
+        ],
+      ),
     );
   }
 
@@ -29,97 +45,40 @@ class _DashboardState extends State<Dashboard> {
               color: Colors.white,
             ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Image.asset(
-                    'assets/images/Logo-REKA.png',
-                    height: 100,
-                    width: 150,
-                  ),
+                SizedBox(height: 35), // Added SizedBox to adjust position
+                Image.asset(
+                  'assets/images/Logo-REKA.png',
+                  height: 100,
+                  width: 150,
                 ),
               ],
             ),
           ),
-          ListTile(
-            title: Text('Dashboard'),
-            leading: Icon(Icons.dashboard),
-            onTap: () {
-              Navigator.pop(context);
-              // Navigasi ke halaman Dashboard jika diperlukan
-            },
-          ),
-          ListTile(
-            title: Text('Input Data'),
-            leading: Icon(Icons.input),
-            onTap: () {
-              Navigator.pop(context);
-              // Navigasi ke halaman Input Data jika diperlukan
-            },
-          ),
-          ListTile(
-            title: Text('Report STTPP'),
-            leading: Icon(Icons.receipt),
-            onTap: () {
-              Navigator.pop(context);
-              // Navigasi ke halaman Report STTPP jika diperlukan
-            },
-          ),
-          ListTile(
-            title: Text('Perencanaan'),
-            leading: Icon(Icons.calendar_today),
-            onTap: () {
-              Navigator.pop(context);
-              // Navigasi ke halaman Perencanaan jika diperlukan
-            },
-          ),
-          ListTile(
-            title: Text('Input Kebutuhan Material'),
-            leading: Icon(Icons.assignment),
-            onTap: () {
-              Navigator.pop(context);
-              // Navigasi ke halaman Input Kebutuhan Material jika diperlukan
-            },
-          ),
-          ListTile(
-            title: Text('Input Dokumen Pendukung'),
-            leading: Icon(Icons.file_present),
-            onTap: () {
-              Navigator.pop(context);
-              // Navigasi ke halaman Input Dokumen Pendukung jika diperlukan
-            },
-          ),
-          ListTile(
-            title: Text('After Sales'),
-            leading: Icon(Icons.headset_mic),
-            onTap: () {
-              Navigator.pop(context);
-              // Navigasi ke halaman After Sales jika diperlukan
-            },
-          ),
-          ListTile(
-            title: Text('Logout'),
-            leading: Icon(Icons.logout),
-            onTap: () {
-              Navigator.pop(context);
-              // Lakukan logout jika diperlukan
-            },
-          ),
+          _buildListTile('Dashboard', Icons.dashboard, 0),
+          _buildListTile('Input Data', Icons.input, 1),
+          _buildListTile('Report STTPP', Icons.receipt, 2),
+          _buildListTile('Perencanaan', Icons.calendar_today, 3),
+          _buildListTile('Input Kebutuhan Material', Icons.assignment, 4),
+          _buildListTile('Input Dokumen Pendukung', Icons.file_present, 5),
+          _buildListTile('After Sales', Icons.headset_mic, 6),
+          _buildListTile('Logout', Icons.logout, 7),
         ],
       ),
     );
   }
 
-  Widget _buildMainContent() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Widget main content dihapus
-          ],
-        ),
-      ),
+  ListTile _buildListTile(String title, IconData icon, int index) {
+    return ListTile(
+      title: Text(title),
+      leading: Icon(icon),
+      onTap: () {
+        setState(() {
+          _selectedIndex = index;
+        });
+        Navigator.pop(context);
+      },
     );
   }
 }
