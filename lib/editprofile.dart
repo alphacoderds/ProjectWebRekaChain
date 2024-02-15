@@ -21,67 +21,87 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          children: [
-            Image.asset(
-              'assets/images/logoREKA.png',
-              width: 250,
-              height: 300,
-            ),
-            SizedBox(width: 10),
-          ],
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(
+              builder: (context) => EditProfile(),
+            );
+          case '/profile':
+            return MaterialPageRoute(
+              builder: (context) => const Profile(),
+            );
+          default:
+            return null;
+        }
+      },
+      home: Scaffold(
+        appBar: AppBar(
+          title: Row(
+            children: [
+              Image.asset(
+                'assets/images/logoREKA.png',
+                width: 250,
+                height: 300,
+              ),
+              SizedBox(width: 10),
+            ],
+          ),
+          toolbarHeight: 100.0,
         ),
-        toolbarHeight: 100.0,
-      ),
-      body: Row(
-        children: [
-          Container(
-            width: 270,
-            color: Colors.white,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildAvatar(),
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Profile(),
+        body: Row(
+          children: [
+            Container(
+              width: 270,
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildAvatar(),
+                  Center(
+                    child: Container(
+                      margin: EdgeInsets.only(top: 20),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Profile(),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 20,
+                          ),
                         ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      padding: EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 20,
+                        child: const Text('Simpan'),
                       ),
                     ),
-                    child: const Text('Simpan'),
                   ),
-                ),
-                Expanded(
-                  child: Container(),
-                ),
-              ],
+                  Expanded(
+                    child: Container(),
+                  ),
+                ],
+              ),
             ),
-          ),
-          // Main content
-          Expanded(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.all(16.0),
-              child: _buildRightSection(),
+            // Main content
+            Expanded(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.all(16.0),
+                child: _buildRightSection(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -94,9 +114,9 @@ class _EditProfileState extends State<EditProfile> {
           children: [
             Container(
               color: Color.fromRGBO(43, 56, 86, 1),
-              padding: EdgeInsets.only(top: 5.0),
+              padding: EdgeInsets.only(top: 3.5, left: 15.0),
               child: Text(
-                '  PROFIL SAYA',
+                ' PROFIL SAYA',
                 style: TextStyle(
                   color: Colors.white,
                   fontFamily: 'Donegal One',
@@ -135,15 +155,6 @@ class _EditProfileState extends State<EditProfile> {
                 label: ' Status', text: '', controller: statusController),
             SizedBox(height: 16.0),
           ],
-        ),
-        Positioned(
-          bottom: 0,
-          right: -140,
-          child: Image.asset(
-            'assets/images/icon.png',
-            width: 500,
-            height: 500,
-          ),
         ),
       ],
     );
