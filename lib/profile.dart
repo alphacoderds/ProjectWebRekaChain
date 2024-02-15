@@ -34,28 +34,9 @@ class _ProfileState extends State<Profile> {
               children: [
                 _buildAvatar(),
                 Center(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      padding: EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 20,
-                      ),
-                    ),
-                    child: const Text('Ubah Profile'),
-                  ),
-                ),
-                Expanded(
-                  child: Container(),
-                ),
-                Row(
-                  children: [
-                    ElevatedButton(
+                  child: Container(
+                    margin: EdgeInsets.only(top: 20),
+                    child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
@@ -68,14 +49,16 @@ class _ProfileState extends State<Profile> {
                           horizontal: 20,
                         ),
                       ),
-                      child: const Text('Kembali'),
+                      child: const Text('Ubah Profile'),
                     ),
-                  ],
+                  ),
+                ),
+                Expanded(
+                  child: Container(),
                 ),
               ],
             ),
           ),
-          // Main content
           Expanded(
             child: SingleChildScrollView(
               padding: EdgeInsets.all(16.0),
@@ -95,7 +78,7 @@ class _ProfileState extends State<Profile> {
           children: [
             Container(
               color: Color.fromRGBO(43, 56, 86, 1),
-              padding: EdgeInsets.only(top: 5.0),
+              padding: EdgeInsets.only(top: 3.5, left: 15.0),
               child: Text(
                 'PROFIL SAYA',
                 style: TextStyle(
@@ -108,37 +91,26 @@ class _ProfileState extends State<Profile> {
               ),
             ),
             SizedBox(height: 16.0),
-            // Letak widget content
+            _buildTextView(' Nama Lengkap :', text: ''),
             _buildDivider(),
-            _buildTextView(' Nama Lengkap', text: ''),
+            _buildTextView(' Jabatan :', text: ''),
             _buildDivider(),
-            _buildTextView(' Jabatan', text: ''),
+            _buildTextView(' Unit Kerja :', text: ''),
             _buildDivider(),
-            _buildTextView(' Unit Kerja', text: ''),
+            _buildTextView(' Departemen :', text: ''),
             _buildDivider(),
-            _buildTextView(' Departemen', text: ''),
+            _buildTextView(' Divisi :', text: ''),
             _buildDivider(),
-            _buildTextView(' Divisi', text: ''),
+            _buildTextView(' Nomor Telepon :', text: ''),
             _buildDivider(),
-            _buildTextView(' Nomor Telepon', text: ''),
+            _buildTextView(' NIP :', text: ''),
             _buildDivider(),
-            _buildTextView(' NIP', text: ''),
+            _buildTextView(' Password :', text: ''),
             _buildDivider(),
-            _buildTextView(' Password', text: ''),
+            _buildTextView(' Status :', text: ''),
             _buildDivider(),
-            _buildTextView(' Status', text: ''),
             SizedBox(height: 16.0),
           ],
-        ),
-        Positioned(
-          top: 380,
-          bottom: 0,
-          left: 800,
-          child: Image.asset(
-            'assets/images/icon.png',
-            width: 500,
-            height: 500,
-          ),
         ),
       ],
     );
