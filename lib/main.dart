@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:RekaChain/login.dart';
-import 'package:RekaChain/profile.dart';
 
 void main() {
   runApp(const MyApp());

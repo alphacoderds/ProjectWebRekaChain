@@ -1,3 +1,4 @@
+import 'package:RekaChain/profile.dart';
 import 'package:flutter/material.dart';
 
 class EditProfile extends StatefulWidget {
@@ -8,8 +9,199 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
+  TextEditingController namaLengkapController = TextEditingController();
+  TextEditingController jabatanController = TextEditingController();
+  TextEditingController unitKerjaController = TextEditingController();
+  TextEditingController departemenController = TextEditingController();
+  TextEditingController divisiController = TextEditingController();
+  TextEditingController nomorTeleponController = TextEditingController();
+  TextEditingController niController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController statusController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/logoREKA.png',
+              width: 250,
+              height: 300,
+            ),
+            SizedBox(width: 10),
+          ],
+        ),
+        toolbarHeight: 100.0,
+      ),
+      body: Row(
+        children: [
+          Container(
+            width: 270,
+            color: Colors.white,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildAvatar(),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Profile(),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 20,
+                      ),
+                    ),
+                    child: const Text('Simpan'),
+                  ),
+                ),
+                Expanded(
+                  child: Container(),
+                ),
+              ],
+            ),
+          ),
+          // Main content
+          Expanded(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.all(16.0),
+              child: _buildRightSection(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRightSection() {
+    return Stack(
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              color: Color.fromRGBO(43, 56, 86, 1),
+              padding: EdgeInsets.only(top: 5.0),
+              child: Text(
+                '  PROFIL SAYA',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Donegal One',
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.start,
+              ),
+            ),
+            SizedBox(height: 16.0),
+            // Letak widget content
+            _buildTextView(
+                label: ' Nama Lengkap',
+                text: '',
+                controller: namaLengkapController),
+            _buildTextView(
+                label: ' Jabatan', text: '', controller: jabatanController),
+            _buildTextView(
+                label: ' Unit Kerja',
+                text: '',
+                controller: unitKerjaController),
+            _buildTextView(
+                label: ' Departemen',
+                text: '',
+                controller: departemenController),
+            _buildTextView(
+                label: ' Divisi', text: '', controller: divisiController),
+            _buildTextView(
+                label: ' Nomor Telepon',
+                text: '',
+                controller: nomorTeleponController),
+            _buildTextView(label: ' NIP', text: '', controller: niController),
+            _buildTextView(
+                label: ' Password', text: '', controller: passwordController),
+            _buildTextView(
+                label: ' Status', text: '', controller: statusController),
+            SizedBox(height: 16.0),
+          ],
+        ),
+        Positioned(
+          bottom: 0,
+          right: -140,
+          child: Image.asset(
+            'assets/images/icon.png',
+            width: 500,
+            height: 500,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTextView(
+      {required String label,
+      required String text,
+      required TextEditingController controller}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 14.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 8.0),
+        TextFormField(
+          controller: controller,
+          decoration: InputDecoration(
+            hintText: text,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDivider() {
+    return Divider(
+      color: Colors.grey,
+      thickness: 1.0,
+      height: 16.0,
+    );
+  }
+
+  Widget _buildAvatar() {
+    return Container(
+      width: double.infinity,
+      height: 125.0,
+      decoration: BoxDecoration(
+        border: Border.all(width: 4, color: Colors.white),
+        boxShadow: [
+          BoxShadow(
+            spreadRadius: 2,
+            blurRadius: 10,
+            color: Colors.black.withOpacity(0.1),
+          ),
+        ],
+        shape: BoxShape.circle,
+        image: const DecorationImage(
+          fit: BoxFit.cover,
+          alignment: Alignment.center,
+          image: AssetImage('assets/images/profile-illustration.png'),
+        ),
+      ),
+    );
   }
 }
