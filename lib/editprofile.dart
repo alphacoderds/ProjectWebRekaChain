@@ -116,7 +116,7 @@ class _EditProfileState extends State<EditProfile> {
               color: Color.fromRGBO(43, 56, 86, 1),
               padding: EdgeInsets.only(top: 3.5, left: 15.0),
               child: Text(
-                ' PROFIL SAYA',
+                'PROFIL SAYA',
                 style: TextStyle(
                   color: Colors.white,
                   fontFamily: 'Donegal One',
