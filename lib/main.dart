@@ -1,3 +1,4 @@
+import 'package:RekaChain/logout.dart';
 import 'package:flutter/material.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/profile.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: logoutPage(),
     );
   }
 }
