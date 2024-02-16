@@ -1,7 +1,9 @@
 import 'package:RekaChain/logout.dart';
+import 'package:RekaChain/dasboard.dart';
 import 'package:flutter/material.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/profile.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: logoutPage(),
+      home: dasboard(),
     );
   }
 }

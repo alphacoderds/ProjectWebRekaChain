@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 SizedBox(height: screenHeight * 0.15),
                 Image.asset(
-                  'assets/images/logoreka.png',
+                  'assets/images/logoREKA.png',
                   width: screenWidth * 0.2,
                 ),
                 SizedBox(height: screenHeight * 0.02),
