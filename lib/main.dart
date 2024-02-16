@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 import 'package:RekaChain/logout.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:flutter/material.dart';
 import 'package:RekaChain/login.dart';
+=======
+>>>>>>> 50c0facbc9b138bc320c74ec9c0f5a03c984cae1
 import 'package:RekaChain/profile.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: dasboard(),
+      home: Profile(),
     );
   }
 }
