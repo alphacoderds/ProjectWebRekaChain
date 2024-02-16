@@ -1,3 +1,4 @@
+import 'package:RekaChain/editprofile.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -10,62 +11,86 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          children: [
-            Image.asset(
-              'assets/images/logoREKA.png',
-              width: 250,
-              height: 300,
-            ),
-            SizedBox(width: 10),
-          ],
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(
+              builder: (context) => Profile(),
+            );
+          case '/editprofile':
+            return MaterialPageRoute(
+              builder: (context) => const EditProfile(),
+            );
+          default:
+            return null;
+        }
+      },
+      home: Scaffold(
+        appBar: AppBar(
+          title: Row(
+            children: [
+              Image.asset(
+                'assets/images/logoREKA.png',
+                width: 250,
+                height: 300,
+              ),
+              SizedBox(width: 10),
+            ],
+          ),
+          toolbarHeight: 100.0,
         ),
-        toolbarHeight: 100.0,
-      ),
-      body: Row(
-        children: [
-          Container(
-            width: 270,
-            color: Colors.white,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildAvatar(),
-                Center(
-                  child: Container(
-                    margin: EdgeInsets.only(top: 20),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
+        body: Row(
+          children: [
+            Container(
+              width: 270,
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildAvatar(),
+                  Center(
+                    child: Container(
+                      margin: EdgeInsets.only(top: 20),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const EditProfile(),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 20,
+                          ),
                         ),
-                        padding: EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 20,
-                        ),
+                        child: const Text('Ubah Profile'),
                       ),
-                      child: const Text('Ubah Profile'),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Container(),
-                ),
-              ],
+                  Expanded(
+                    child: Container(),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.all(16.0),
-              child: _buildRightSection(),
+            Expanded(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.all(16.0),
+                child: _buildRightSection(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

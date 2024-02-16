@@ -1,28 +1,70 @@
 import 'package:flutter/material.dart';
 
-class Dasboard extends StatefulWidget {
-  const Dasboard({Key? key}) : super(key: key);
+class Dashboard extends StatefulWidget {
+  const Dashboard({Key? key}) : super(key: key);
 
   @override
-  State<Dasboard> createState() => _DasboardState();
+  State<Dashboard> createState() => _DashboardState();
 }
 
-class _DasboardState extends State<Dasboard> {
+class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    Text('Halaman Dasbor'),
-    Text('Halaman Input Data'),
-    Text('Halaman Laporan STTPP'),
-    Text('Halaman Perencanaan'),
-    Text('Halaman Input Kebutuhan Material'),
-    Text('Halaman Input Dokumen Pendukung'),
-    Text('Halaman After Sales'),
+    Text('Dashboard Page'),
+    _buildInputDataPage(),
+    Text('Report STTPP Page'),
+    Text('Perencanaan Page'),
+    Text('Input Kebutuhan Material Page'),
+    Text('Input Dokumen Pendukung Page'),
+    Text('After Sales Page'),
+    Text('Logout'),
   ];
+
+  static Widget _buildInputDataPage() {
+    return Column(
+      children: [
+        Text('Input Data Page'),
+        _buildSubMenu(),
+      ],
+    );
+  }
+
+  static Widget _buildSubMenu() {
+    return ExpansionTile(
+      title: Row(
+        children: [
+          Icon(Icons.input),
+          SizedBox(width: 12), // Add space between icon and text
+          Text('Input Data'),
+        ],
+      ),
+      children: [
+        _buildSubListTile('Report STTPP', Icons.receipt, 2),
+        _buildSubListTile('Perencanaan', Icons.calendar_today, 3),
+        _buildSubListTile('Input Kebutuhan Material', Icons.assignment, 4),
+        _buildSubListTile('Input Dokumen Pendukung', Icons.file_present, 5),
+      ],
+    );
+  }
+
+  static ListTile _buildSubListTile(String title, IconData icon, int index) {
+    return ListTile(
+      title: Text(title),
+      leading: Icon(icon),
+      onTap: () {
+        // Handle sub-menu item tap
+        // You may want to do something specific for sub-menu items
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 1.0,
+      ),
       body: Stack(
         children: [
           _pages[_selectedIndex],
@@ -43,22 +85,17 @@ class _DasboardState extends State<Dasboard> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: 35),
                 Image.asset(
-                  'assets/images/Logo-REKA--300x104 1.png',
-                  height: 130,
-                  width: 250,
+                  'assets/images/logoreka.png',
+                  height: 100,
+                  width: 150,
                 ),
               ],
             ),
           ),
-          _buildListTile('Dasbor', Icons.dashboard, 0),
-          _buildListTile('Input Data', Icons.input, 1),
-          _buildSubmenu('Submenu 1', Icons.arrow_forward, 8),
-          _buildSubmenu('Submenu 2', Icons.arrow_forward, 9),
-          _buildListTile('Perencanaan', Icons.calendar_today, 3),
-          _buildListTile('Input Kebutuhan Material', Icons.assignment, 4),
-          _buildListTile('Input Dokumen Pendukung', Icons.file_present, 5),
-          _buildListTile('Laporan STTPP', Icons.receipt, 2),
+          _buildListTile('Dashboard', Icons.dashboard, 0),
+          _buildSubMenu(),
           _buildListTile('After Sales', Icons.headset_mic, 6),
           _buildListTile('Keluar', Icons.logout, 7),
         ],
