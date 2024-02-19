@@ -1,5 +1,6 @@
-import 'package:RekaChain/AfterSales/AfterSales1.dart';
+import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/login.dart';
+import 'package:RekaChain/profile.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -183,7 +184,12 @@ class _DashboardState extends State<Dashboard> {
               Icons.account_circle_rounded,
               size: 38,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Profile()),
+              );
+            },
           ),
         ],
       ),
