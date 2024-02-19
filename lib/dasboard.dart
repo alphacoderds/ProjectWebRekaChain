@@ -11,31 +11,44 @@ class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    Text('Dashboard Page'),
+    const Text('Dashboard Page'),
     _buildInputDataPage(),
-    Text('Report STTPP Page'),
-    Text('Perencanaan Page'),
-    Text('Input Kebutuhan Material Page'),
-    Text('Input Dokumen Pendukung Page'),
-    Text('After Sales Page'),
-    Text('Logout'),
+    const Text('Report STTPP Page'),
+    const Text('Perencanaan Page'),
+    const Text('Input Kebutuhan Material Page'),
+    const Text('Input Dokumen Pendukung Page'),
+    const Text('After Sales Page'),
+    const Text('Logout'),
   ];
 
   static Widget _buildInputDataPage() {
     return Column(
       children: [
-        Text('Input Data Page'),
+        const Text('Dashboard Page'),
+        _buildDataRow(1, 'Nama Proyek 1'),
+        _buildDataRow(2, 'Nama Proyek 2'),
+        _buildDataRow(3, 'Nama Proyek 3'),
         _buildSubMenu(),
+      ],
+    );
+  }
+
+  static Widget _buildDataRow(int number, String projectName) {
+    return Row(
+      children: [
+        Text('No: $number'),
+        SizedBox(width: 8),
+        Text('Nama Proyek: $projectName'),
       ],
     );
   }
 
   static Widget _buildSubMenu() {
     return ExpansionTile(
-      title: Row(
+      title: const Row(
         children: [
           Icon(Icons.input),
-          SizedBox(width: 12), // Add space between icon and text
+          SizedBox(width: 12),
           Text('Input Data'),
         ],
       ),
@@ -52,10 +65,7 @@ class _DashboardState extends State<Dashboard> {
     return ListTile(
       title: Text(title),
       leading: Icon(icon),
-      onTap: () {
-        // Handle sub-menu item tap
-        // You may want to do something specific for sub-menu items
-      },
+      onTap: () {},
     );
   }
 
@@ -63,7 +73,17 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 1.0,
+        toolbarHeight: 0.5,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.notifications_active),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.person_pin_rounded),
+            onPressed: () {},
+          ),
+        ],
       ),
       body: Stack(
         children: [
@@ -79,17 +99,18 @@ class _DashboardState extends State<Dashboard> {
       child: ListView(
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Stack(
               children: [
-                SizedBox(height: 35),
-                Image.asset(
-                  'assets/images/logoreka.png',
-                  height: 100,
-                  width: 150,
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Image.asset(
+                    'assets/images/logoreka.png',
+                    height: 130,
+                    width: 250,
+                  ),
                 ),
               ],
             ),

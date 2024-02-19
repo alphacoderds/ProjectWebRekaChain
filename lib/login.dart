@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
               right: 5.5,
             ),
             child: Image(
-              image: AssetImage('assets/images/bolder31.png'),
+              image: const AssetImage('assets/images/bolder31.png'),
               width: screenWidth * 1.9,
               height: screenHeight * 0.17,
               alignment: Alignment.centerLeft,
@@ -117,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
             bottom: -screenHeight * 0.001,
             left: 0,
             child: Image(
-              image: AssetImage('assets/images/icon.png'),
+              image: const AssetImage('assets/images/icon.png'),
               width: screenWidth * 1.89,
               height: screenHeight * 0.17,
             ),
@@ -139,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(
-              color: Color.fromARGB(255, 73, 72, 72),
+              color: const Color.fromARGB(255, 73, 72, 72),
               fontSize: hintTextSize * screenWidth / 1050,
             ),
             fillColor: backgroundColor,

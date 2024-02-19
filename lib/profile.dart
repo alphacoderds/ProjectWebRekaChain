@@ -17,7 +17,7 @@ class _ProfileState extends State<Profile> {
         switch (settings.name) {
           case '/':
             return MaterialPageRoute(
-              builder: (context) => Profile(),
+              builder: (context) => const Profile(),
             );
           case '/editprofile':
             return MaterialPageRoute(
@@ -36,7 +36,7 @@ class _ProfileState extends State<Profile> {
                 width: 250,
                 height: 300,
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
             ],
           ),
           toolbarHeight: 100.0,
@@ -52,7 +52,7 @@ class _ProfileState extends State<Profile> {
                   _buildAvatar(),
                   Center(
                     child: Container(
-                      margin: EdgeInsets.only(top: 20),
+                      margin: const EdgeInsets.only(top: 20),
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.push(
@@ -68,7 +68,7 @@ class _ProfileState extends State<Profile> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
                           ),
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                             vertical: 10,
                             horizontal: 20,
                           ),
@@ -85,7 +85,7 @@ class _ProfileState extends State<Profile> {
             ),
             Expanded(
               child: SingleChildScrollView(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: _buildRightSection(),
               ),
             ),
@@ -102,9 +102,9 @@ class _ProfileState extends State<Profile> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              color: Color.fromRGBO(43, 56, 86, 1),
-              padding: EdgeInsets.only(top: 3.5, left: 15.0),
-              child: Text(
+              color: const Color.fromRGBO(43, 56, 86, 1),
+              padding: const EdgeInsets.only(top: 3.5, left: 15.0),
+              child: const Text(
                 'PROFIL SAYA',
                 style: TextStyle(
                   color: Colors.white,
@@ -115,7 +115,7 @@ class _ProfileState extends State<Profile> {
                 textAlign: TextAlign.start,
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             _buildTextView(' Nama Lengkap :', text: ''),
             _buildDivider(),
             _buildTextView(' Jabatan :', text: ''),
@@ -134,7 +134,7 @@ class _ProfileState extends State<Profile> {
             _buildDivider(),
             _buildTextView(' Status :', text: ''),
             _buildDivider(),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
           ],
         ),
       ],
@@ -147,15 +147,15 @@ class _ProfileState extends State<Profile> {
       children: [
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14.0,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 8.0),
+        const SizedBox(height: 8.0),
         Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16.0,
           ),
         ),
@@ -164,7 +164,7 @@ class _ProfileState extends State<Profile> {
   }
 
   Widget _buildDivider() {
-    return Divider(
+    return const Divider(
       color: Colors.grey,
       thickness: 1.0,
       height: 16.0,

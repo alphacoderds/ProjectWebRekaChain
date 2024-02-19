@@ -18,7 +18,7 @@ class _logoutPageState extends State<logoutPage> {
     screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: Row(children: [dasboard(), _logout()]),
+      body: Row(children: [Dashboard(), _logout()]),
     );
     // return Scaffold(
     //   body: Column(
@@ -140,13 +140,13 @@ class _logoutPageState extends State<logoutPage> {
                 height: screenHeight * 0.4,
                 width: screenWidth * 0.3,
                 decoration: BoxDecoration(
-                  color: Color.fromRGBO(43, 56, 86, 1),
+                  color: const Color.fromRGBO(43, 56, 86, 1),
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Apakah Anda Yakin Logout?',
                       style: TextStyle(
                           color: Colors.white,
@@ -174,7 +174,7 @@ class _logoutPageState extends State<logoutPage> {
                               vertical: screenHeight * 0.012,
                               horizontal: screenWidth * 0.015,
                             ),
-                            child: Text(
+                            child: const Text(
                               "Tidak",
                               style: TextStyle(
                                 fontSize: 15,
@@ -201,7 +201,7 @@ class _logoutPageState extends State<logoutPage> {
                               vertical: screenHeight * 0.012,
                               horizontal: screenWidth * 0.015,
                             ),
-                            child: Text(
+                            child: const Text(
                               "Ya",
                               style: TextStyle(
                                 fontSize: 15,
