@@ -35,14 +35,16 @@ class _AfterSalesState extends State<AfterSales> {
               children: [
                 ListTile(
                   leading: const Icon(Icons.home, size: 45),
-                  title: const Text('Dashboard', style: TextStyle(fontSize: 20)),
+                  title:
+                      const Text('Dashboard', style: TextStyle(fontSize: 20)),
                   onTap: () {
                     // TODO: Implement logic for Dashboard page
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.bar_chart, size: 45),
-                  title: const Text('Input Data', style: TextStyle(fontSize: 20)),
+                  title:
+                      const Text('Input Data', style: TextStyle(fontSize: 20)),
                   onTap: () {
                     // TODO: Implement logic for Input Data page
                   },
