@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+class ReportSTTP extends StatefulWidget {
+  const ReportSTTP({Key? key}) : super(key: key);
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<ReportSTTP> createState() => _ReportSTTPState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _ReportSTTPState extends State<ReportSTTP> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
@@ -145,26 +145,26 @@ class _DashboardState extends State<Dashboard> {
 
   Widget _buildNotificationAndPersonIcons() {
     return Padding(
-      padding: const EdgeInsets.only(top: 50, right: 90),
+      padding: const EdgeInsets.only(top: 90, right: 90),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          IconButton(
-            icon: Icon(
-              Icons.notifications_active,
-              size: 35,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            IconButton(
+              icon: Icon(
+                Icons.notifications_active,
+                size: 35,
+              ),
+              onPressed: () {},
             ),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.account_circle_rounded,
-              size: 38,
+            IconButton(
+              icon: Icon(
+                Icons.account_circle_rounded,
+                size: 38,
+              ),
+              onPressed: () {},
             ),
-            onPressed: () {},
-          ),
-        ],
-      ),
+          ],
+        ),
     );
   }
 
