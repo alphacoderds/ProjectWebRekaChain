@@ -1,70 +1,137 @@
-import 'package:RekaChain/AfterSales1.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
-class barchat extends StatefulWidget {
+class AfterSales extends StatefulWidget {
   @override
-  _barchatState createState() => _barchatState();
+  State<AfterSales> createState() => _AfterSalesState();
 }
 
-class _barchatState extends State<barchat> {
+class _AfterSalesState extends State<AfterSales> {
   int _selectedIndex = 0;
-  late List<_ChartData> data;
-  late TooltipBehavior _tooltip;
-
-  @override
-  void initState() {
-    data = [
-      _ChartData('Panel 1', 12),
-      _ChartData('Panel 2', 15),
-      _ChartData('Panel 3', 30),
-      _ChartData('Panel 4', 6.4),
-      _ChartData('Panel 5', 14),
-    ];
-    _tooltip = TooltipBehavior(enable: true);
-    super.initState();
-  }
+  bool isViewVisible = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(''),
-      ),
       body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildDrawer(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildChartContainer(),
-                  SizedBox(width: 20), // Jarak antara dua grafik batang
-                  _buildChartContainer(),
-                ],
+          Expanded(
+            child: Center(
+              child: Container(
+                padding: EdgeInsets.fromLTRB(20.0, 50.0, 20.0, 20.0),
+                margin: EdgeInsets.all(20.0),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: isViewVisible ? _buildViewTable() : _buildMainTable(),
               ),
-              SizedBox(height: 20), // Jarak antara dua baris grafik batang
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildChartContainer(),
-                  SizedBox(width: 20), // Jarak antara dua grafik batang
-                  _buildChartContainer(),
-                  SizedBox(
-                      width: 20), // Sesuaikan jarak antara dua grafik batang
-                ],
-              ),
-            ],
+            ),
           ),
         ],
       ),
       floatingActionButton: _buildNotificationAndPersonIcons(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+    );
+  }
+
+  Widget _buildMainTable() {
+    return DataTable(
+      columnSpacing: 50,
+      horizontalMargin: 100,
+      columns: [
+        DataColumn(label: Text('No')),
+        DataColumn(
+          label: Row(
+            children: [
+              Text('Nama Project'),
+              Icon(Icons.arrow_drop_down, size: 24),
+            ],
+          ),
+        ),
+        DataColumn(
+          label: Row(
+            children: [
+              Text('Nomor Produk'),
+              Icon(Icons.arrow_drop_down, size: 24),
+            ],
+          ),
+        ),
+        DataColumn(label: Text('Tanggal Report')),
+        DataColumn(
+          label: Row(
+            children: [Text('View')],
+          ),
+        ),
+      ],
+      rows: [
+        DataRow(cells: [
+          DataCell(Text('1')),
+          DataCell(Text('PT. Nugraha Jasa')),
+          DataCell(Text('AA21 1/24')),
+          DataCell(Text('2024-02-13')),
+          DataCell(
+            IconButton(
+              icon: Icon(Icons.visibility),
+              onPressed: () {
+                setState(() {
+                  isViewVisible = !isViewVisible;
+                });
+              },
+            ),
+          ),
+        ]),
+        DataRow(cells: [
+          DataCell(Text('2')),
+          DataCell(Text('PT. INKA')),
+          DataCell(Text('AA21 2/24')),
+          DataCell(Text('2024-02-14')),
+          DataCell(
+            IconButton(
+              icon: Icon(Icons.visibility),
+              onPressed: () {
+                setState(() {
+                  isViewVisible = !isViewVisible;
+                });
+              },
+            ),
+          ),
+        ]),
+      ],
+    );
+  }
+
+  Widget _buildViewTable() {
+    return DataTable(
+      columnSpacing: 50,
+      horizontalMargin: 100,
+      columns: [
+        DataColumn(label: Text('No')),
+        DataColumn(label: Text('Detail Kerusakan')),
+        DataColumn(label: Text('Item')),
+        DataColumn(label: Text('Keterangan')),
+        DataColumn(label: Text('Saran')),
+      ],
+      rows: [
+        DataRow(cells: [
+          DataCell(Text('1')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+        ]),
+        DataRow(cells: [
+          DataCell(Text('2')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+        ]),
+      ],
     );
   }
 
@@ -232,31 +299,4 @@ class _barchatState extends State<barchat> {
       },
     );
   }
-
-  Widget _buildChartContainer() {
-    return Container(
-      width: 500.0, // Sesuaikan lebar sesuai keinginan Anda
-      height: 300.0, // Sesuaikan tinggi sesuai keinginan Anda
-      child: SfCartesianChart(
-        primaryXAxis: CategoryAxis(),
-        primaryYAxis: NumericAxis(minimum: 0, maximum: 40, interval: 10),
-        tooltipBehavior: _tooltip,
-        series: <CartesianSeries<_ChartData, String>>[
-          BarSeries<_ChartData, String>(
-            dataSource: data,
-            xValueMapper: (_ChartData data, _) => data.x,
-            yValueMapper: (_ChartData data, _) => data.y,
-            name: 'Gold',
-            color: Color.fromRGBO(43, 56, 103, 1),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class _ChartData {
-  _ChartData(this.x, this.y);
-  final String x;
-  final double y;
 }
