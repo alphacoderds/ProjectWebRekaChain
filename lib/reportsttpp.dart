@@ -147,25 +147,24 @@ class _ReportSTTPState extends State<ReportSTTP> {
     return Padding(
       padding: const EdgeInsets.only(top: 90, right: 90),
       child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            IconButton(
-              icon: Icon(
-                Icons.notifications_active,
-                size: 35,
-              ),
-              onPressed: () {},
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          IconButton(
+            icon: Icon(
+              Icons.notifications_active,
+              size: 35,
             ),
-            IconButton(
-              icon: Icon(
-                Icons.account_circle_rounded,
-                size: 38,
-              ),
-              onPressed: () {},
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.account_circle_rounded,
+              size: 38,
             ),
-          ],
-          
-        ),
+            onPressed: () {},
+          ),
+        ],
+      ),
     );
   }
 

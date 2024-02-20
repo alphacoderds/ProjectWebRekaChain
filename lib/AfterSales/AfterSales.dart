@@ -3,6 +3,21 @@ import 'package:RekaChain/login.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:flutter/material.dart';
 
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Responsive Sidebar',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: AfterSales(),
+    );
+  }
+}
+
 class AfterSales extends StatefulWidget {
   @override
   State<AfterSales> createState() => _AfterSalesState();
@@ -11,6 +26,8 @@ class AfterSales extends StatefulWidget {
 class _AfterSalesState extends State<AfterSales> {
   int _selectedIndex = 0;
   bool isViewVisible = false;
+  late double screenWidth = MediaQuery.of(context).size.width;
+  late double screenHeight = MediaQuery.of(context).size.height;
 
   @override
   Widget build(BuildContext context) {
@@ -20,94 +37,241 @@ class _AfterSalesState extends State<AfterSales> {
         children: [
           _buildDrawer(),
           Expanded(
-            child: Center(
-              child: Container(
-                padding: EdgeInsets.fromLTRB(20.0, 50.0, 20.0, 20.0),
-                margin: EdgeInsets.all(20.0),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.circular(10.0),
+            child: Scaffold(
+              appBar: AppBar(
+                backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+                toolbarHeight: 80,
+                actions: [
+                  Padding(
+                    padding: EdgeInsets.only(right: screenHeight * 0.13),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: screenWidth * 0.005,
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.notifications_active,
+                            size: 35,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          ),
+                          onPressed: () {},
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.account_circle_rounded,
+                            size: 38,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          ),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              body: Center(
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                  margin: EdgeInsets.all(50.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  child: isViewVisible ? _buildViewTable() : _buildMainTable(),
                 ),
-                child: isViewVisible ? _buildViewTable() : _buildMainTable(),
               ),
             ),
           ),
         ],
       ),
-      floatingActionButton: _buildNotificationAndPersonIcons(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 
   Widget _buildMainTable() {
-    return DataTable(
-      columnSpacing: 50,
-      horizontalMargin: 100,
-      columns: [
-        DataColumn(label: Text('No')),
-        DataColumn(
-          label: Row(
-            children: [
-              Text('Nama Project'),
-              Icon(Icons.arrow_drop_down, size: 24),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: MediaQuery.of(context).size.height - 200,
+        ),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+            columnSpacing: 100.0,
+            horizontalMargin: 70.0,
+            columns: [
+              DataColumn(
+                label: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 1.0),
+                  child: Text(
+                    'No',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Nama Project',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Icon(
+                        Icons.arrow_drop_down,
+                        size: 24,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Nomor Produk',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Icon(Icons.arrow_drop_down, size: 25),
+                    ],
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Text(
+                    'Tanggal Report',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'View',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+            rows: [
+              DataRow(cells: [
+                DataCell(Text('1')),
+                DataCell(Text('PT. Nugraha Jasa')),
+                DataCell(Text('AA21 1/24')),
+                DataCell(Text('13-02-2024')),
+                DataCell(
+                  IconButton(
+                    icon: Icon(Icons.visibility),
+                    onPressed: () {
+                      setState(() {
+                        isViewVisible = !isViewVisible;
+                      });
+                    },
+                  ),
+                ),
+              ]),
+              DataRow(cells: [
+                DataCell(Text('2')),
+                DataCell(Text('PT. INKA')),
+                DataCell(Text('AA21 2/24')),
+                DataCell(Text('13-02-2024')),
+                DataCell(
+                  IconButton(
+                    icon: Icon(Icons.visibility),
+                    onPressed: () {
+                      setState(() {
+                        isViewVisible = !isViewVisible;
+                      });
+                    },
+                  ),
+                ),
+              ]),
+              DataRow(cells: [
+                DataCell(Text('2')),
+                DataCell(Text('PT. INKA')),
+                DataCell(Text('AA21 2/24')),
+                DataCell(Text('13-02-2024')),
+                DataCell(
+                  IconButton(
+                    icon: Icon(Icons.visibility),
+                    onPressed: () {
+                      setState(() {
+                        isViewVisible = !isViewVisible;
+                      });
+                    },
+                  ),
+                ),
+              ]),
+              DataRow(cells: [
+                DataCell(Text('2')),
+                DataCell(Text('PT. INKA')),
+                DataCell(Text('AA21 2/24')),
+                DataCell(Text('13-02-2024')),
+                DataCell(
+                  IconButton(
+                    icon: Icon(Icons.visibility),
+                    onPressed: () {
+                      setState(() {
+                        isViewVisible = !isViewVisible;
+                      });
+                    },
+                  ),
+                ),
+              ]),
+              DataRow(cells: [
+                DataCell(Text('2')),
+                DataCell(Text('PT. INKA')),
+                DataCell(Text('AA21 2/24')),
+                DataCell(Text('13-02-2024')),
+                DataCell(
+                  IconButton(
+                    icon: Icon(Icons.visibility),
+                    onPressed: () {
+                      setState(() {
+                        isViewVisible = !isViewVisible;
+                      });
+                    },
+                  ),
+                ),
+              ]),
+              DataRow(cells: [
+                DataCell(Text('2')),
+                DataCell(Text('PT. INKA')),
+                DataCell(Text('AA21 2/24')),
+                DataCell(Text('13-02-2024')),
+                DataCell(
+                  IconButton(
+                    icon: Icon(Icons.visibility),
+                    onPressed: () {
+                      setState(() {
+                        isViewVisible = !isViewVisible;
+                      });
+                    },
+                  ),
+                ),
+              ]),
             ],
           ),
         ),
-        DataColumn(
-          label: Row(
-            children: [
-              Text('Nomor Produk'),
-              Icon(Icons.arrow_drop_down, size: 24),
-            ],
-          ),
-        ),
-        DataColumn(label: Text('Tanggal Report')),
-        DataColumn(
-          label: Row(
-            children: [Text('View')],
-          ),
-        ),
-      ],
-      rows: [
-        DataRow(cells: [
-          DataCell(Text('1')),
-          DataCell(Text('PT. Nugraha Jasa')),
-          DataCell(Text('AA21 1/24')),
-          DataCell(Text('2024-02-13')),
-          DataCell(
-            IconButton(
-              icon: Icon(Icons.visibility),
-              onPressed: () {
-                setState(() {
-                  isViewVisible = !isViewVisible;
-                });
-              },
-            ),
-          ),
-        ]),
-        DataRow(cells: [
-          DataCell(Text('2')),
-          DataCell(Text('PT. INKA')),
-          DataCell(Text('AA21 2/24')),
-          DataCell(Text('2024-02-14')),
-          DataCell(
-            IconButton(
-              icon: Icon(Icons.visibility),
-              onPressed: () {
-                setState(() {
-                  isViewVisible = !isViewVisible;
-                });
-              },
-            ),
-          ),
-        ]),
-      ],
+      ),
     );
   }
 
   Widget _buildViewTable() {
     return DataTable(
-      columnSpacing: 50,
+      columnSpacing: 0,
       horizontalMargin: 100,
       columns: [
         DataColumn(label: Text('No')),
@@ -171,6 +335,7 @@ class _AfterSalesState extends State<AfterSales> {
       leading: Icon(
         icon,
         size: size.toDouble(),
+        color: Color.fromARGB(255, 6, 37, 55),
       ),
       onTap: () {
         if (index == 7) {
@@ -208,6 +373,7 @@ class _AfterSalesState extends State<AfterSales> {
           Icon(
             icon ?? Icons.input,
             size: 35,
+            color: Color.fromARGB(255, 6, 37, 55),
           ),
           SizedBox(width: 12),
           Text('Input Data'),
@@ -233,38 +399,9 @@ class _AfterSalesState extends State<AfterSales> {
       leading: Icon(
         icon,
         size: size.toDouble(),
+        color: Color.fromARGB(255, 6, 37, 55),
       ),
       onTap: () {},
-    );
-  }
-
-  Widget _buildNotificationAndPersonIcons() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 18, right: 90),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          IconButton(
-            icon: Icon(
-              Icons.notifications_active,
-              size: 35,
-            ),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.account_circle_rounded,
-              size: 38,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Profile()),
-              );
-            },
-          ),
-        ],
-      ),
     );
   }
 

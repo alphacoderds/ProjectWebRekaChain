@@ -1,155 +1,4 @@
-import 'package:RekaChain/AfterSales/AfterSales.dart';
-import 'package:RekaChain/login.dart';
-import 'package:RekaChain/profile.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
-
-void main() {
-  runApp(ChartApp());
-}
-
-class ChartApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  late List<_ChartData> data;
-  late TooltipBehavior _tooltip;
-
-  @override
-  void initState() {
-    data = [
-      _ChartData('CHN', 12),
-      _ChartData('GER', 15),
-      _ChartData('RUS', 30),
-      _ChartData('BRZ', 6.4),
-      _ChartData('IND', 14),
-    ];
-    _tooltip = TooltipBehavior(enable: true);
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Syncfusion Flutter chart'),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(left: 20.0), // Geser ke kanan
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 300.0, // Sesuaikan lebar sesuai keinginan Anda
-                  height: 300.0, // Sesuaikan tinggi sesuai keinginan Anda
-                  child: SfCartesianChart(
-                    primaryXAxis: CategoryAxis(),
-                    primaryYAxis:
-                        NumericAxis(minimum: 0, maximum: 40, interval: 10),
-                    tooltipBehavior: _tooltip,
-                    series: <CartesianSeries<_ChartData, String>>[
-                      BarSeries<_ChartData, String>(
-                        dataSource: data,
-                        xValueMapper: (_ChartData data, _) => data.x,
-                        yValueMapper: (_ChartData data, _) => data.y,
-                        name: 'Gold',
-                        color: Color.fromRGBO(8, 142, 255, 1),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(width: 20), // Jarak antara dua grafik batang
-                Container(
-                  width: 300.0, // Sesuaikan lebar sesuai keinginan Anda
-                  height: 300.0, // Sesuaikan tinggi sesuai keinginan Anda
-                  child: SfCartesianChart(
-                    primaryXAxis: CategoryAxis(),
-                    primaryYAxis:
-                        NumericAxis(minimum: 0, maximum: 40, interval: 10),
-                    tooltipBehavior: _tooltip,
-                    series: <CartesianSeries<_ChartData, String>>[
-                      BarSeries<_ChartData, String>(
-                        dataSource: data,
-                        xValueMapper: (_ChartData data, _) => data.x,
-                        yValueMapper: (_ChartData data, _) => data.y,
-                        name: 'Gold',
-                        color: Color.fromRGBO(8, 142, 255, 1),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 20), // Jarak antara dua baris grafik batang
-          Padding(
-            padding: EdgeInsets.only(left: 20.0), // Geser ke kanan
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 300.0, // Sesuaikan lebar sesuai keinginan Anda
-                  height: 300.0, // Sesuaikan tinggi sesuai keinginan Anda
-                  child: SfCartesianChart(
-                    primaryXAxis: CategoryAxis(),
-                    primaryYAxis:
-                        NumericAxis(minimum: 0, maximum: 40, interval: 10),
-                    tooltipBehavior: _tooltip,
-                    series: <CartesianSeries<_ChartData, String>>[
-                      BarSeries<_ChartData, String>(
-                        dataSource: data,
-                        xValueMapper: (_ChartData data, _) => data.x,
-                        yValueMapper: (_ChartData data, _) => data.y,
-                        name: 'Gold',
-                        color: Color.fromRGBO(8, 142, 255, 1),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(width: 20), // Jarak antara dua grafik batang
-                Container(
-                  width: 300.0, // Sesuaikan lebar sesuai keinginan Anda
-                  height: 300.0, // Sesuaikan tinggi sesuai keinginan Anda
-                  child: SfCartesianChart(
-                    primaryXAxis: CategoryAxis(),
-                    primaryYAxis:
-                        NumericAxis(minimum: 0, maximum: 40, interval: 10),
-                    tooltipBehavior: _tooltip,
-                    series: <CartesianSeries<_ChartData, String>>[
-                      BarSeries<_ChartData, String>(
-                        dataSource: data,
-                        xValueMapper: (_ChartData data, _) => data.x,
-                        yValueMapper: (_ChartData data, _) => data.y,
-                        name: 'Gold',
-                        color: Color.fromRGBO(8, 142, 255, 1),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Dashboard(), // Tambahkan Dashboard di sini
-        ],
-      ),
-    );
-  }
-}
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -160,6 +9,8 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
+  late double screenWidth = MediaQuery.of(context).size.width;
+  late double screenHeight = MediaQuery.of(context).size.height;
 
   final List<Widget> _pages = [
     const Text('Dashboard Page'),
@@ -237,14 +88,46 @@ class _DashboardState extends State<Dashboard> {
       appBar: AppBar(
         toolbarHeight: 0.5,
       ),
-      body: Stack(
-        children: [
-          _pages[_selectedIndex],
-          if (_selectedIndex == 0) _buildDrawer(),
-        ],
+      body: Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+          toolbarHeight: 80,
+          actions: [
+            Padding(
+              padding: EdgeInsets.only(right: screenHeight * 0.13),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: screenWidth * 0.005,
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.notifications_active,
+                      size: 35,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.account_circle_rounded,
+                      size: 38,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+        body: Stack(
+          children: [
+            _pages[_selectedIndex],
+            if (_selectedIndex == 0) _buildDrawer(),
+          ],
+        ),
       ),
-      floatingActionButton: _buildNotificationAndPersonIcons(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 
@@ -272,7 +155,7 @@ class _DashboardState extends State<Dashboard> {
           _buildListTile('Dashboard', Icons.dashboard, 0, 35),
           _buildSubMenu(),
           _buildListTile('After Sales', Icons.headset_mic, 6, 35),
-          _buildListTile('Logout', Icons.logout, 7, 35),
+          _buildListTile('Keluar', Icons.logout, 7, 35),
         ],
       ),
     );
@@ -286,37 +169,17 @@ class _DashboardState extends State<Dashboard> {
         size: size.toDouble(),
       ),
       onTap: () {
-        if (index == 7) {
-          _showLogoutDialog();
-        } else {
-          setState(() {
-            _selectedIndex = index;
-          });
-          if (index == 0) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Dashboard(),
-              ),
-            );
-          } else if (index == 6) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AfterSales(),
-              ),
-            );
-          } else {
-            Navigator.pop(context);
-          }
-        }
+        setState(() {
+          _selectedIndex = index;
+        });
+        Navigator.pop(context);
       },
     );
   }
 
   Widget _buildNotificationAndPersonIcons() {
     return Padding(
-      padding: const EdgeInsets.only(top: 50, right: 90),
+      padding: const EdgeInsets.only(top: 90, right: 90),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -332,53 +195,28 @@ class _DashboardState extends State<Dashboard> {
               Icons.account_circle_rounded,
               size: 38,
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Profile()),
-              );
-            },
+            onPressed: () {},
           ),
         ],
       ),
     );
   }
 
-  void _showLogoutDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text("Logout", style: TextStyle(color: Colors.white)),
-          content: Text("Apakah Anda yakin ingin logout?",
-              style: TextStyle(color: Colors.white)),
-          backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text("Batal", style: TextStyle(color: Colors.white)),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
-                );
-              },
-              child: Text("Logout", style: TextStyle(color: Colors.white)),
-            ),
-          ],
-        );
+  Widget _buildSubmenu(String title, IconData icon, int index) {
+    return ListTile(
+      title: Text(title),
+      leading: Icon(
+        icon,
+        size: 35,
+        color: Color.fromARGB(255, 6, 37, 55),
+      ),
+      onTap: () {
+        print('Submenu $title ditekan');
+        setState(() {
+          _selectedIndex = index;
+        });
+        Navigator.pop(context);
       },
     );
   }
-}
-
-class _ChartData {
-  _ChartData(this.x, this.y);
-  final String x;
-  final double y;
 }
