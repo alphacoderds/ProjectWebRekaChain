@@ -1,5 +1,6 @@
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/login.dart';
+import 'package:RekaChain/profile.dart';
 import 'package:flutter/material.dart';
 
 class AfterSales extends StatefulWidget {
@@ -9,6 +10,7 @@ class AfterSales extends StatefulWidget {
 
 class _AfterSalesState extends State<AfterSales> {
   int _selectedIndex = 0;
+  bool isViewVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -26,53 +28,7 @@ class _AfterSalesState extends State<AfterSales> {
                   border: Border.all(color: Colors.black),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                child: DataTable(
-                  columnSpacing: 50,
-                  horizontalMargin: 100,
-                  columns: [
-                    DataColumn(label: Text('No')),
-                    DataColumn(
-                      label: Row(
-                        children: [
-                          Text('Nama Project'),
-                          Icon(Icons.arrow_drop_down, size: 24),
-                        ],
-                      ),
-                    ),
-                    DataColumn(
-                      label: Row(
-                        children: [
-                          Text('Nomor Produk'),
-                          Icon(Icons.arrow_drop_down, size: 24),
-                        ],
-                      ),
-                    ),
-                    DataColumn(label: Text('Tanggal Report')),
-                    DataColumn(label: Text('View')),
-                  ],
-                  rows: [
-                    DataRow(cells: [
-                      DataCell(Text('1')),
-                      DataCell(Text('PT. Nugraha Jasa')),
-                      DataCell(Text('AA21 1/24')),
-                      DataCell(Text('2024-02-13')),
-                      DataCell(IconButton(
-                        icon: Icon(Icons.visibility),
-                        onPressed: () {},
-                      )),
-                    ]),
-                    DataRow(cells: [
-                      DataCell(Text('2')),
-                      DataCell(Text('PT. INKA')),
-                      DataCell(Text('AA21 2/24')),
-                      DataCell(Text('2024-02-14')),
-                      DataCell(IconButton(
-                        icon: Icon(Icons.visibility),
-                        onPressed: () {},
-                      )),
-                    ]),
-                  ],
-                ),
+                child: isViewVisible ? _buildViewTable() : _buildMainTable(),
               ),
             ),
           ),
@@ -80,6 +36,102 @@ class _AfterSalesState extends State<AfterSales> {
       ),
       floatingActionButton: _buildNotificationAndPersonIcons(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+    );
+  }
+
+  Widget _buildMainTable() {
+    return DataTable(
+      columnSpacing: 50,
+      horizontalMargin: 100,
+      columns: [
+        DataColumn(label: Text('No')),
+        DataColumn(
+          label: Row(
+            children: [
+              Text('Nama Project'),
+              Icon(Icons.arrow_drop_down, size: 24),
+            ],
+          ),
+        ),
+        DataColumn(
+          label: Row(
+            children: [
+              Text('Nomor Produk'),
+              Icon(Icons.arrow_drop_down, size: 24),
+            ],
+          ),
+        ),
+        DataColumn(label: Text('Tanggal Report')),
+        DataColumn(
+          label: Row(
+            children: [Text('View')],
+          ),
+        ),
+      ],
+      rows: [
+        DataRow(cells: [
+          DataCell(Text('1')),
+          DataCell(Text('PT. Nugraha Jasa')),
+          DataCell(Text('AA21 1/24')),
+          DataCell(Text('2024-02-13')),
+          DataCell(
+            IconButton(
+              icon: Icon(Icons.visibility),
+              onPressed: () {
+                setState(() {
+                  isViewVisible = !isViewVisible;
+                });
+              },
+            ),
+          ),
+        ]),
+        DataRow(cells: [
+          DataCell(Text('2')),
+          DataCell(Text('PT. INKA')),
+          DataCell(Text('AA21 2/24')),
+          DataCell(Text('2024-02-14')),
+          DataCell(
+            IconButton(
+              icon: Icon(Icons.visibility),
+              onPressed: () {
+                setState(() {
+                  isViewVisible = !isViewVisible;
+                });
+              },
+            ),
+          ),
+        ]),
+      ],
+    );
+  }
+
+  Widget _buildViewTable() {
+    return DataTable(
+      columnSpacing: 50,
+      horizontalMargin: 100,
+      columns: [
+        DataColumn(label: Text('No')),
+        DataColumn(label: Text('Detail Kerusakan')),
+        DataColumn(label: Text('Item')),
+        DataColumn(label: Text('Keterangan')),
+        DataColumn(label: Text('Saran')),
+      ],
+      rows: [
+        DataRow(cells: [
+          DataCell(Text('1')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+        ]),
+        DataRow(cells: [
+          DataCell(Text('2')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+        ]),
+      ],
     );
   }
 
@@ -149,7 +201,7 @@ class _AfterSalesState extends State<AfterSales> {
     );
   }
 
-  static Widget _buildSubMenu({IconData? icon}) {
+  Widget _buildSubMenu({IconData? icon}) {
     return ExpansionTile(
       title: Row(
         children: [
@@ -170,7 +222,7 @@ class _AfterSalesState extends State<AfterSales> {
     );
   }
 
-  static ListTile _buildSubListTile(
+  Widget _buildSubListTile(
     String title,
     IconData icon,
     int index,
@@ -188,7 +240,7 @@ class _AfterSalesState extends State<AfterSales> {
 
   Widget _buildNotificationAndPersonIcons() {
     return Padding(
-      padding: const EdgeInsets.only(top: 90, right: 90),
+      padding: const EdgeInsets.only(top: 18, right: 90),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -204,7 +256,12 @@ class _AfterSalesState extends State<AfterSales> {
               Icons.account_circle_rounded,
               size: 38,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Profile()),
+              );
+            },
           ),
         ],
       ),

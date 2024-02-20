@@ -1,16 +1,13 @@
-import 'package:RekaChain/AfterSales/AfterSales.dart';
-import 'package:RekaChain/login.dart';
-import 'package:RekaChain/profile.dart';
 import 'package:flutter/material.dart';
 
-class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+class ReportSTTP extends StatefulWidget {
+  const ReportSTTP({Key? key}) : super(key: key);
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<ReportSTTP> createState() => _ReportSTTPState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _ReportSTTPState extends State<ReportSTTP> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
@@ -124,7 +121,7 @@ class _DashboardState extends State<Dashboard> {
           _buildListTile('Dashboard', Icons.dashboard, 0, 35),
           _buildSubMenu(),
           _buildListTile('After Sales', Icons.headset_mic, 6, 35),
-          _buildListTile('Logout', Icons.logout, 7, 35),
+          _buildListTile('Keluar', Icons.logout, 7, 35),
         ],
       ),
     );
@@ -138,92 +135,52 @@ class _DashboardState extends State<Dashboard> {
         size: size.toDouble(),
       ),
       onTap: () {
-        if (index == 7) {
-          _showLogoutDialog();
-        } else {
-          setState(() {
-            _selectedIndex = index;
-          });
-          if (index == 0) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Dashboard(),
-              ),
-            );
-          } else if (index == 6) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AfterSales(),
-              ),
-            );
-          } else {
-            Navigator.pop(context);
-          }
-        }
+        setState(() {
+          _selectedIndex = index;
+        });
+        Navigator.pop(context);
       },
     );
   }
 
   Widget _buildNotificationAndPersonIcons() {
     return Padding(
-      padding: const EdgeInsets.only(top: 50, right: 90),
+      padding: const EdgeInsets.only(top: 90, right: 90),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          IconButton(
-            icon: Icon(
-              Icons.notifications_active,
-              size: 35,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            IconButton(
+              icon: Icon(
+                Icons.notifications_active,
+                size: 35,
+              ),
+              onPressed: () {},
             ),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.account_circle_rounded,
-              size: 38,
+            IconButton(
+              icon: Icon(
+                Icons.account_circle_rounded,
+                size: 38,
+              ),
+              onPressed: () {},
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Profile()),
-              );
-            },
-          ),
-        ],
-      ),
+          ],
+        ),
     );
   }
 
-  void _showLogoutDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text("Logout", style: TextStyle(color: Colors.white)),
-          content: Text("Apakah Anda yakin ingin logout?",
-              style: TextStyle(color: Colors.white)),
-          backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text("Batal", style: TextStyle(color: Colors.white)),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
-                );
-              },
-              child: Text("Logout", style: TextStyle(color: Colors.white)),
-            ),
-          ],
-        );
+  Widget _buildSubmenu(String title, IconData icon, int index) {
+    return ListTile(
+      title: Text(title),
+      leading: Icon(
+        icon,
+        size: 35,
+      ),
+      onTap: () {
+        print('Submenu $title ditekan');
+        setState(() {
+          _selectedIndex = index;
+        });
+        Navigator.pop(context);
       },
     );
   }

@@ -1,5 +1,6 @@
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/perencanaan.dart';
+import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:flutter/material.dart';
 
 void main() {
