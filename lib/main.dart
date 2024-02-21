@@ -25,11 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-<<<<<<< HEAD
-      home: Perencanaan(),
-=======
       home: InputDokumen(),
->>>>>>> 338084940876601f3bba0db96b9b3ca23d1f095e
     );
   }
 }

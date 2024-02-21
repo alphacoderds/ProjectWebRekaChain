@@ -105,8 +105,11 @@ class _PerencanaanState extends State<Perencanaan> {
                         height: 10,
                       ),
                       Container(
+                        width: screenWidth * 0.75,
+                        height: screenHeight * 0.71,
                         decoration: BoxDecoration(
-                            border: BorderRadius.circular(radius)),
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(10)),
                         child: Row(
                           children: [
                             SizedBox(width: screenWidth * 0.13),
