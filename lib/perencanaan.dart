@@ -12,6 +12,7 @@ class Perencanaan extends StatefulWidget {
 class _PerencanaanState extends State<Perencanaan> {
   late double screenWidth = MediaQuery.of(context).size.width;
   late double screenHeight = MediaQuery.of(context).size.height;
+  bool isViewVisible = false;
 
   int _selectedIndex = 0;
   List<String> dropdownItems = [
@@ -32,15 +33,21 @@ class _PerencanaanState extends State<Perencanaan> {
             _buildDrawer(),
             Expanded(
                 child: Scaffold(
+//===========================================================Appbar===========================================================//
               appBar: AppBar(
                 backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-                toolbarHeight: 80,
-                leading: Row(
-                  children: [
-                    SizedBox(width: screenWidth * 0.08),
-                    Icon(Icons.emoji_nature_outlined),
-                    Text('Input Progress'),
-                  ],
+                toolbarHeight: 65,
+                title: Padding(
+                  padding: EdgeInsets.only(left: screenHeight * 0.02),
+                  child: Text(
+                    'Input Dokumen Pendukung',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Donegal One',
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
                 actions: [
                   Padding(
@@ -70,7 +77,7 @@ class _PerencanaanState extends State<Perencanaan> {
                           icon: Icon(
                             Icons.notifications_active,
                             size: 35,
-                            color: const Color.fromRGBO(43, 56, 86, 1),
+                            color: Colors.white,
                           ),
                           onPressed: () {},
                         ),
@@ -78,7 +85,7 @@ class _PerencanaanState extends State<Perencanaan> {
                           icon: Icon(
                             Icons.account_circle_rounded,
                             size: 38,
-                            color: const Color.fromRGBO(43, 56, 86, 1),
+                            color: Colors.white,
                           ),
                           onPressed: () {},
                         ),
@@ -87,6 +94,8 @@ class _PerencanaanState extends State<Perencanaan> {
                   )
                 ],
               ),
+
+//===========================================================Body Tambah Project===========================================================//
               body: SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsets.all(screenHeight * 0.05),
@@ -330,6 +339,26 @@ class _PerencanaanState extends State<Perencanaan> {
                           )
                         ],
                       ),
+                      SizedBox(height: 100),
+
+//===========================================================Body Tambah Kolom===========================================================//
+                      Container(
+                        padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                        margin: EdgeInsets.all(50.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        child: isViewVisible
+                            ? _buildViewTable()
+                            : _buildMainTable(),
+                      ),
+                      SizedBox(width: 30),
+                      Row(children: [
+                        ElevatedButton(
+                            onPressed: () {}, child: Text('Tambah Kolom')),
+                        ElevatedButton(onPressed: () {}, child: Text('Simpan'))
+                      ])
                     ],
                   ),
                 ),
@@ -341,6 +370,109 @@ class _PerencanaanState extends State<Perencanaan> {
     );
   }
 
+//===========================================================Widget Table Alur===========================================================//
+  Widget _buildMainTable() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: MediaQuery.of(context).size.height - 200,
+        ),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+            columnSpacing: 100.0,
+            horizontalMargin: 70.0,
+            columns: [
+              DataColumn(
+                label: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Nama Project',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Icon(
+                        Icons.arrow_drop_down,
+                        size: 24,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Nomor Produk',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Icon(Icons.arrow_drop_down, size: 25),
+                    ],
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(
+                    'Nomor Produk',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ],
+            rows: [
+              DataRow(cells: [
+                DataCell(Text('PT. Nugraha Jasa')),
+                DataCell(Text('AA21 1/24')),
+                DataCell(Text('13-02-2024')),
+              ]),
+              DataRow(cells: [
+                DataCell(Text('PT. INKA')),
+                DataCell(Text('AA21 2/24')),
+                DataCell(Text('13-02-2024')),
+              ]),
+              DataRow(cells: [
+                DataCell(Text('PT. INKA')),
+                DataCell(Text('AA21 2/24')),
+                DataCell(Text('13-02-2024')),
+              ]),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildViewTable() {
+    return DataTable(
+      columnSpacing: 0,
+      horizontalMargin: 100,
+      columns: [
+        DataColumn(label: Text('Detail Kerusakan')),
+        DataColumn(label: Text('Item')),
+        DataColumn(label: Text('Keterangan')),
+      ],
+      rows: [
+        DataRow(cells: [
+          DataCell(Text('')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+        ]),
+        DataRow(cells: [
+          DataCell(Text('')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+        ]),
+      ],
+    );
+  }
+
+//===========================================================Widget Sidebar===========================================================//
   Widget _buildDrawer() {
     return Drawer(
       child: ListView(
