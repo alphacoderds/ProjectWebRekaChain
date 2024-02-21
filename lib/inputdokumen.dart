@@ -1,6 +1,10 @@
+import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
+import 'package:RekaChain/editprofile.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/perencanaan.dart';
+import 'package:RekaChain/profile.dart';
+import 'package:RekaChain/viewupload.dart';
 import 'package:flutter/material.dart';
 
 class InputDokumen extends StatefulWidget {
@@ -24,192 +28,266 @@ class _InputDokumenState extends State<InputDokumen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.only(left: screenWidth * 0.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildDrawer(),
-            Expanded(
-                child: Scaffold(
-              appBar: AppBar(
-                backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-                toolbarHeight: 80,
-                leading: Row(
-                  children: [
-                    SizedBox(width: screenWidth * 0.08),
-                    Text(
-                      'Input Progress',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-                actions: [
-                  Padding(
-                    padding: EdgeInsets.only(right: screenHeight * 0.13),
-                    child: Row(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text(
-                            'View',
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor:
-                                const Color.fromRGBO(43, 56, 86, 1),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 3),
-                          ),
-                        ),
-                        SizedBox(
-                          width: screenWidth * 0.005,
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.notifications_active,
-                            size: 35,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {},
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.account_circle_rounded,
-                            size: 38,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {},
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              body: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.all(screenHeight * 0.09),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 10,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(
+              builder: (context) => const InputDokumen(),
+            );
+          default:
+            return null;
+        }
+      },
+      home: Scaffold(
+        body: Padding(
+          padding: EdgeInsets.only(left: screenWidth * 0.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildDrawer(),
+              Expanded(
+                  child: Scaffold(
+                appBar: AppBar(
+                  backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+                  toolbarHeight: 65,
+                  title: Padding(
+                    padding: EdgeInsets.only(left: screenHeight * 0.02),
+                    child: Text(
+                      'Input Dokumen Pendukung',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Donegal One',
+                        color: Colors.white,
                       ),
-                      Row(
+                    ),
+                  ),
+                  actions: [
+                    Padding(
+                      padding: EdgeInsets.only(right: screenHeight * 0.11),
+                      child: Row(
                         children: [
-                          SizedBox(width: screenWidth * 0.1),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Project',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 17,
-                                      ),
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        border: Border.all(),
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      child: DropdownButton<String>(
-                                        alignment: Alignment.center,
-                                        hint:
-                                            Text('--Pilih Nama/Kode Project--'),
-                                        value: selectedValue,
-                                        borderRadius: BorderRadius.circular(5),
-                                        items:
-                                            dropdownItems.map((String value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value,
-                                            child: Text(value),
-                                          );
-                                        }).toList(),
-                                        onChanged: (newValue) {
-                                          setState(() {
-                                            selectedValue = newValue;
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 50),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'No Induk Finish Produk',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 17,
-                                      ),
-                                    ),
-                                    Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 7),
-                                      width: 400,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(),
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      child: TextField(
-                                        decoration: InputDecoration(),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                          SizedBox(width: 16),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ViewUpload()),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Color.fromARGB(255, 89, 100, 122),
+                              onPrimary: Colors.white,
                             ),
+                            child: Text("Unduhan"),
                           ),
-                          SizedBox(width: 20), // Adjust the width as needed
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Nama Produk',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 17,
-                                      ),
-                                    ),
-                                    Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 7),
-                                      width: 225,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(),
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      child: TextField(
-                                        decoration: InputDecoration(),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                          SizedBox(width: 16),
+                          IconButton(
+                            icon: Icon(
+                              Icons.notifications_active,
+                              size: 33,
+                              color: Colors.white,
                             ),
+                            onPressed: () {},
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.account_circle_rounded,
+                              size: 35,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Profile()),
+                              );
+                            },
                           ),
                         ],
                       ),
-                    ],
+                    )
+                  ],
+                ),
+                body: Container(
+                  child: Padding(
+                    padding: EdgeInsets.all(screenHeight * 0.09),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          width: screenWidth * 0.75,
+                          height: screenHeight * 0.71,
+                          decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Row(
+                            children: [
+                              SizedBox(width: screenWidth * 0.1),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Nama Project',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            border: Border.all(),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                          child: DropdownButton<String>(
+                                            alignment: Alignment.center,
+                                            hint:
+                                                Text('--Pilih Nama Project--'),
+                                            value: selectedValue,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            items: dropdownItems
+                                                .map((String value) {
+                                              return DropdownMenuItem<String>(
+                                                value: value,
+                                                child: Text(value),
+                                              );
+                                            }).toList(),
+                                            onChanged: (newValue) {
+                                              setState(() {
+                                                selectedValue = newValue;
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 50),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Upload',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 7),
+                                          width: 1000,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              SizedBox(width: 8),
+                                              IconButton(
+                                                icon: Icon(
+                                                  Icons.add,
+                                                  size: 35,
+                                                ),
+                                                onPressed: () {},
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(height: 10),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 20),
+                              Align(
+                                alignment: Alignment.bottomLeft,
+                                child: ElevatedButton(
+                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                    primary:
+                                        const Color.fromRGBO(43, 56, 86, 1),
+                                  ),
+                                  child: Text(
+                                    'Simpan',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'No Produk',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            border: Border.all(),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                          child: DropdownButton<String>(
+                                            alignment: Alignment.center,
+                                            hint: Text('--Pilih No Produk--'),
+                                            value: selectedValue,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            items: dropdownItems
+                                                .map((String value) {
+                                              return DropdownMenuItem<String>(
+                                                value: value,
+                                                child: Text(value),
+                                              );
+                                            }).toList(),
+                                            onChanged: (newValue) {
+                                              setState(() {
+                                                selectedValue = newValue;
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ))
-          ],
+              ))
+            ],
+          ),
         ),
       ),
     );
@@ -266,11 +344,11 @@ class _InputDokumenState extends State<InputDokumen> {
                 builder: (context) => Dashboard(),
               ),
             );
-          } else if (index == 3) {
+          } else if (index == 6) {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Perencanaan(),
+                builder: (context) => AfterSales(),
               ),
             );
           } else {
@@ -281,7 +359,7 @@ class _InputDokumenState extends State<InputDokumen> {
     );
   }
 
-  static Widget _buildSubMenu({IconData? icon}) {
+  Widget _buildSubMenu({IconData? icon}) {
     return ExpansionTile(
       title: Row(
         children: [
@@ -302,7 +380,7 @@ class _InputDokumenState extends State<InputDokumen> {
     );
   }
 
-  static ListTile _buildSubListTile(
+  Widget _buildSubListTile(
     String title,
     IconData icon,
     int index,
@@ -314,7 +392,45 @@ class _InputDokumenState extends State<InputDokumen> {
         icon,
         size: size.toDouble(),
       ),
-      onTap: () {},
+      onTap: () {
+        if (index == 7) {
+          _showLogoutDialog();
+        } else {
+          setState(() {
+            _selectedIndex = index;
+          });
+          if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => InputDokumen(),
+              ),
+            );
+          } else if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => InputDokumen(),
+              ),
+            );
+          } else if (index == 4) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => InputDokumen(),
+              ),
+            );
+          } else if (index == 5) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => InputDokumen(),
+              ),
+            );
+            Navigator.pop(context);
+          }
+        }
+      },
     );
   }
 

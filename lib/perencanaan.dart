@@ -413,31 +413,9 @@ class _PerencanaanState extends State<Perencanaan> {
               DataColumn(
                 label: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Nama Project',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Icon(
-                        Icons.arrow_drop_down,
-                        size: 24,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              DataColumn(
-                label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Nomor Produk',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Icon(Icons.arrow_drop_down, size: 25),
-                    ],
+                  child: Text(
+                    'Alur Proses',
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -445,7 +423,16 @@ class _PerencanaanState extends State<Perencanaan> {
                 label: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.0),
                   child: Text(
-                    'Nomor Produk',
+                    'Kategori',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(
+                    'Detail/Keterangan',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),

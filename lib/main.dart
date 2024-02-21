@@ -1,4 +1,3 @@
-import 'package:RekaChain/ReportSTTPP.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/logout.dart';
 import 'package:RekaChain/profile.dart';
@@ -7,6 +6,7 @@ import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/AfterSales/AfterSales.dart';
+import 'package:RekaChain/reportsttpp.dart';
 import 'package:flutter/material.dart';
 
 void main() {

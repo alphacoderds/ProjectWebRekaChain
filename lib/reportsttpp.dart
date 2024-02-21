@@ -1,21 +1,36 @@
-import 'package:RekaChain/AfterSales/AfterSales.dart';
+import 'dart:html';
+
 import 'package:RekaChain/dasboard.dart';
-import 'package:RekaChain/inputdokumen.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:flutter/material.dart';
 
-class ViewUpload extends StatefulWidget {
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
   @override
-  State<ViewUpload> createState() => _ViewUploadState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Responsive Sidebar',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: ReportSTTPP(),
+    );
+  }
 }
 
-class _ViewUploadState extends State<ViewUpload> {
-  int _selectedIndex = 0;
+class ReportSTTPP extends StatefulWidget {
+  @override
+  State<ReportSTTPP> createState() => _ReportSTTPState();
+}
+
+class _ReportSTTPState extends State<ReportSTTPP> {
   bool isViewVisible = false;
   late double screenWidth = MediaQuery.of(context).size.width;
   late double screenHeight = MediaQuery.of(context).size.height;
 
+  int _selectedIndex = 0;
   List<String> dropdownItems = [
     '--Pilih Nama/Kode Project--',
     'R22-PT. Nugraha Jasa',
@@ -25,167 +40,95 @@ class _ViewUploadState extends State<ViewUpload> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: (settings) {
-        switch (settings.name) {
-          case '/':
-            return MaterialPageRoute(
-              builder: (context) => ViewUpload(),
-            );
-          default:
-            return null;
-        }
-      },
-      home: Scaffold(
-        body: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildDrawer(),
-            Expanded(
-              child: Scaffold(
-                appBar: AppBar(
-                  backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-                  toolbarHeight: 65,
-                  title: Padding(
-                    padding: EdgeInsets.only(left: screenHeight * 0.02, top: 2),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 7),
-                          width: 250,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(width: 8),
-                              Expanded(
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: 'Nama Project',
-                                  ),
-                                ),
-                              ),
-                              IconButton(
-                                icon: Icon(
-                                  Icons.search,
-                                  size: 30,
-                                ),
-                                onPressed: () {},
-                              ),
-                            ],
-                          ),
+    return Scaffold(
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildDrawer(),
+          Expanded(
+            child: Scaffold(
+              appBar: AppBar(
+                backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+                toolbarHeight: 65,
+                title: Padding(
+                  padding: EdgeInsets.only(left: screenHeight * 0.02),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 300,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.white,
                         ),
-                        SizedBox(width: 20),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 7),
-                          width: 250,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(),
-                            borderRadius: BorderRadius.circular(5),
+                        child: DropdownButton<String>(
+                          alignment: Alignment.center,
+                          hint: Text('--Pilih Nama/Kode Project--'),
+                          value: selectedValue,
+                          borderRadius: BorderRadius.circular(5),
+                          items: dropdownItems.map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                          onChanged: (newValue) {
+                            setState(() {
+                              selectedValue = newValue;
+                            });
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                actions: [
+                  Padding(
+                    padding: EdgeInsets.only(right: screenHeight * 0.13),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: screenWidth * 0.005,
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.notifications_active,
+                            size: 35,
+                            color: Color.fromARGB(255, 255, 255, 255),
                           ),
-                          child: Row(
-                            children: [
-                              SizedBox(width: 8),
-                              Expanded(
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: 'Kode Lot',
-                                  ),
-                                ),
-                              ),
-                              IconButton(
-                                icon: Icon(
-                                  Icons.search,
-                                  size: 30,
-                                ),
-                                onPressed: () {},
-                              ),
-                            ],
+                          onPressed: () {},
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.account_circle_rounded,
+                            size: 38,
+                            color: Color.fromARGB(255, 255, 255, 255),
                           ),
+                          onPressed: () {},
                         ),
                       ],
                     ),
-                  ),
-                  actions: [
-                    Padding(
-                      padding: EdgeInsets.only(right: screenHeight * 0.11),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: screenWidth * 0.005,
-                          ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.notifications_active,
-                              size: 33,
-                              color: Color.fromARGB(255, 255, 255, 255),
-                            ),
-                            onPressed: () {},
-                          ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.account_circle_rounded,
-                              size: 35,
-                              color: Color.fromARGB(255, 255, 255, 255),
-                            ),
-                            onPressed: () {},
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                body: Center(
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                    margin: EdgeInsets.all(50.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    child:
-                        isViewVisible ? _buildViewTable() : _buildMainTable(),
-                  ),
-                ),
+                  )
+                ],
               ),
-            ),
-          ],
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-        floatingActionButton: Padding(
-          padding: EdgeInsets.only(right: 0.01, bottom: 8),
-          child: SizedBox(
-            width: 100.0,
-            height: 40.0,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ViewUpload()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                primary: const Color.fromRGBO(43, 56, 86, 1),
-              ),
-              child: Text(
-                'Kembali',
-                style: TextStyle(
-                  color: Colors.white,
+              body: Center(
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                  margin: EdgeInsets.all(50.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  child: isViewVisible ? _buildViewTable() : _buildMainTable(),
                 ),
               ),
             ),
           ),
-        ),
+        ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 
@@ -217,7 +160,7 @@ class _ViewUploadState extends State<ViewUpload> {
                   child: Row(
                     children: [
                       Text(
-                        'Nama Dokumen',
+                        'Nama Project',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
@@ -231,7 +174,7 @@ class _ViewUploadState extends State<ViewUpload> {
                   child: Row(
                     children: [
                       Text(
-                        'Unduh',
+                        'Kode Lot',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
@@ -246,7 +189,7 @@ class _ViewUploadState extends State<ViewUpload> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Lihat',
+                        'View',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
@@ -265,18 +208,12 @@ class _ViewUploadState extends State<ViewUpload> {
                 )),
                 DataCell(Container(
                   alignment: Alignment.center,
-                  child: Text('Pdf 1'),
+                  child: Text('Project 1'),
                 )),
-                DataCell(
-                  IconButton(
-                    icon: Icon(Icons.download),
-                    onPressed: () {
-                      setState(() {
-                        isViewVisible = !isViewVisible;
-                      });
-                    },
-                  ),
-                ),
+                DataCell(Container(
+                  alignment: Alignment.center,
+                  child: Text('AA21 1/24'),
+                )),
                 DataCell(
                   Center(
                     child: IconButton(
@@ -297,18 +234,12 @@ class _ViewUploadState extends State<ViewUpload> {
                 )),
                 DataCell(Container(
                   alignment: Alignment.center,
-                  child: Text('Pdf 2'),
+                  child: Text('Project 2'),
                 )),
-                DataCell(
-                  IconButton(
-                    icon: Icon(Icons.download),
-                    onPressed: () {
-                      setState(() {
-                        isViewVisible = !isViewVisible;
-                      });
-                    },
-                  ),
-                ),
+                DataCell(Container(
+                  alignment: Alignment.center,
+                  child: Text('AA22 1/26'),
+                )),
                 DataCell(
                   Center(
                     child: IconButton(
@@ -335,10 +266,9 @@ class _ViewUploadState extends State<ViewUpload> {
       horizontalMargin: 100,
       columns: [
         DataColumn(label: Text('No')),
-        DataColumn(label: Text('Detail Kerusakan')),
-        DataColumn(label: Text('Item')),
-        DataColumn(label: Text('Keterangan')),
-        DataColumn(label: Text('Saran')),
+        DataColumn(label: Text('Nama Project')),
+        DataColumn(label: Text('Kode Lot')),
+        DataColumn(label: Text('View')),
       ],
       rows: [
         DataRow(cells: [
@@ -346,11 +276,9 @@ class _ViewUploadState extends State<ViewUpload> {
           DataCell(Text('')),
           DataCell(Text('')),
           DataCell(Text('')),
-          DataCell(Text('')),
         ]),
         DataRow(cells: [
           DataCell(Text('2')),
-          DataCell(Text('')),
           DataCell(Text('')),
           DataCell(Text('')),
           DataCell(Text('')),
@@ -415,7 +343,7 @@ class _ViewUploadState extends State<ViewUpload> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AfterSales(),
+                builder: (context) => ReportSTTPP(),
               ),
             );
           } else {
