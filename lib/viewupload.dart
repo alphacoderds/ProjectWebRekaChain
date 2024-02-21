@@ -3,149 +3,358 @@ import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/inputdokumen.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/profile.dart';
-import 'package:RekaChain/reportsttpp.dart';
 import 'package:flutter/material.dart';
 
-class ViewUnduh extends StatefulWidget {
+class ViewUpload extends StatefulWidget {
   @override
-  State<ViewUnduh> createState() => _ViewUnduhState();
+  State<ViewUpload> createState() => _ViewUploadState();
 }
 
-class _ViewUnduhState extends State<ViewUnduh> {
+class _ViewUploadState extends State<ViewUpload> {
   int _selectedIndex = 0;
   bool isViewVisible = false;
+  late double screenWidth = MediaQuery.of(context).size.width;
+  late double screenHeight = MediaQuery.of(context).size.height;
+
+  List<String> dropdownItems = [
+    '--Pilih Nama/Kode Project--',
+    'R22-PT. Nugraha Jasa',
+    'PT. INDAH JAYA'
+  ];
+  String? selectedValue;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildDrawer(),
-          Expanded(
-            child: Center(
-              child: Container(
-                padding: EdgeInsets.fromLTRB(20.0, 50.0, 20.0, 20.0),
-                margin: EdgeInsets.all(20.0),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.circular(10.0),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(
+              builder: (context) => ViewUpload(),
+            );
+          default:
+            return null;
+        }
+      },
+      home: Scaffold(
+        body: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildDrawer(),
+            Expanded(
+              child: Scaffold(
+                appBar: AppBar(
+                  backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+                  toolbarHeight: 65,
+                  title: Padding(
+                    padding: EdgeInsets.only(left: screenHeight * 0.02, top: 2),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 7),
+                          width: 250,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(width: 8),
+                              Expanded(
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Nama Project',
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                icon: Icon(
+                                  Icons.search,
+                                  size: 30,
+                                ),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(width: 20),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 7),
+                          width: 250,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Row(
+                            children: [
+                              SizedBox(width: 8),
+                              Expanded(
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Kode Lot',
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                icon: Icon(
+                                  Icons.search,
+                                  size: 30,
+                                ),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  actions: [
+                    Padding(
+                      padding: EdgeInsets.only(right: screenHeight * 0.11),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: screenWidth * 0.005,
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.notifications_active,
+                              size: 33,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {},
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.account_circle_rounded,
+                              size: 35,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
-                child: isViewVisible ? _buildViewTable() : _buildMainTable(),
+                body: Center(
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                    margin: EdgeInsets.all(50.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    child:
+                        isViewVisible ? _buildViewTable() : _buildMainTable(),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        floatingActionButton: Padding(
+          padding: EdgeInsets.only(right: 0.01, bottom: 8),
+          child: SizedBox(
+            width: 100.0,
+            height: 40.0,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ViewUpload()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                primary: const Color.fromRGBO(43, 56, 86, 1),
+              ),
+              child: Text(
+                'Kembali',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
-        ],
+        ),
       ),
-      floatingActionButton: _buildNotificationAndPersonIcons(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 
   Widget _buildMainTable() {
-    return DataTable(
-      columnSpacing: 50,
-      horizontalMargin: 100,
-      columns: [
-        DataColumn(label: Text('No')),
-        DataColumn(
-          label: Row(
-            children: [
-              Text('Nama Project'),
-              Icon(Icons.arrow_drop_down, size: 24),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: MediaQuery.of(context).size.height - 50,
+        ),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+            columnSpacing: 200.0,
+            horizontalMargin: 50.0,
+            columns: [
+              DataColumn(
+                label: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Text(
+                    'No.',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Nama Dokumen',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Unduh',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Lihat',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+            rows: [
+              DataRow(cells: [
+                DataCell(Container(
+                  alignment: Alignment.center,
+                  child: Text('1'),
+                )),
+                DataCell(Container(
+                  alignment: Alignment.center,
+                  child: Text('Pdf 1'),
+                )),
+                DataCell(
+                  IconButton(
+                    icon: Icon(Icons.download),
+                    onPressed: () {
+                      setState(() {
+                        isViewVisible = !isViewVisible;
+                      });
+                    },
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: IconButton(
+                      icon: Icon(Icons.visibility),
+                      onPressed: () {
+                        setState(() {
+                          isViewVisible = !isViewVisible;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ]),
+              DataRow(cells: [
+                DataCell(Container(
+                  alignment: Alignment.center,
+                  child: Text('2'),
+                )),
+                DataCell(Container(
+                  alignment: Alignment.center,
+                  child: Text('Pdf 2'),
+                )),
+                DataCell(
+                  IconButton(
+                    icon: Icon(Icons.download),
+                    onPressed: () {
+                      setState(() {
+                        isViewVisible = !isViewVisible;
+                      });
+                    },
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: IconButton(
+                      icon: Icon(Icons.visibility),
+                      onPressed: () {
+                        setState(() {
+                          isViewVisible = !isViewVisible;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ]),
             ],
           ),
         ),
-        DataColumn(
-          label: Row(
-            children: [
-              Text('No Produk'),
-              Icon(Icons.arrow_drop_down, size: 24),
-            ],
-          ),
-        ),
-        DataColumn(label: Text('Upload')),
-        DataColumn(
-          label: Row(
-            children: [Text('Unduh')],
-          ),
-        ),
-      ],
-      rows: [
-        DataRow(cells: [
-          DataCell(Text('1')),
-          DataCell(Text('PT. Nugraha Jasa')),
-          DataCell(Text('AA21 1/24')),
-          DataCell(Text('2024-02-13')),
-          DataCell(
-            IconButton(
-              icon: Icon(Icons.visibility),
-              onPressed: () {
-                setState(() {
-                  isViewVisible = !isViewVisible;
-                });
-              },
-            ),
-          ),
-        ]),
-        DataRow(cells: [
-          DataCell(Text('2')),
-          DataCell(Text('PT. INKA')),
-          DataCell(Text('AA21 2/24')),
-          DataCell(Text('2024-02-14')),
-          DataCell(
-            IconButton(
-              icon: Icon(Icons.visibility),
-              onPressed: () {
-                setState(() {
-                  isViewVisible = !isViewVisible;
-                });
-              },
-            ),
-          ),
-        ]),
-      ],
+      ),
     );
   }
 
   Widget _buildViewTable() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Riwayat Unduh',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        DataTable(
-          columnSpacing: 50,
-          horizontalMargin: 100,
-          columns: [
-            DataColumn(label: Text('No')),
-            DataColumn(label: Text('Nama Project')),
-            DataColumn(label: Text('No Produk')),
-            DataColumn(label: Text('Upload')),
-            DataColumn(label: Text('Unduh')),
-          ],
-          rows: [
-            DataRow(cells: [
-              DataCell(Text('1')),
-              DataCell(Text('')),
-              DataCell(Text('')),
-              DataCell(Text('')),
-              DataCell(Text('')),
-            ]),
-            DataRow(cells: [
-              DataCell(Text('2')),
-              DataCell(Text('')),
-              DataCell(Text('')),
-              DataCell(Text('')),
-              DataCell(Text('')),
-            ]),
-          ],
-        ),
+    return DataTable(
+      columnSpacing: 0,
+      horizontalMargin: 100,
+      columns: [
+        DataColumn(label: Text('No')),
+        DataColumn(label: Text('Detail Kerusakan')),
+        DataColumn(label: Text('Item')),
+        DataColumn(label: Text('Keterangan')),
+        DataColumn(label: Text('Saran')),
+      ],
+      rows: [
+        DataRow(cells: [
+          DataCell(Text('1')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+        ]),
+        DataRow(cells: [
+          DataCell(Text('2')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+          DataCell(Text('')),
+        ]),
       ],
     );
   }
@@ -186,6 +395,7 @@ class _ViewUnduhState extends State<ViewUnduh> {
       leading: Icon(
         icon,
         size: size.toDouble(),
+        color: Color.fromARGB(255, 6, 37, 55),
       ),
       onTap: () {
         if (index == 7) {
@@ -223,6 +433,7 @@ class _ViewUnduhState extends State<ViewUnduh> {
           Icon(
             icon ?? Icons.input,
             size: 35,
+            color: Color.fromARGB(255, 6, 37, 55),
           ),
           SizedBox(width: 12),
           Text('Input Data'),
@@ -248,91 +459,9 @@ class _ViewUnduhState extends State<ViewUnduh> {
       leading: Icon(
         icon,
         size: size.toDouble(),
+        color: Color.fromARGB(255, 6, 37, 55),
       ),
-      onTap: () {
-        if (index == 7) {
-          _showLogoutDialog();
-        } else {
-          setState(() {
-            _selectedIndex = index;
-          });
-          if (index == 2) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ReportSTTP(),
-              ),
-            );
-          } else if (index == 3) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => InputDokumen(),
-              ),
-            );
-          } else if (index == 4) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => InputDokumen(),
-              ),
-            );
-          } else if (index == 5) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => InputDokumen(),
-              ),
-            );
-            Navigator.pop(context);
-          }
-        }
-      },
-    );
-  }
-
-  Widget _buildNotificationAndPersonIcons() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 18, right: 90),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          SizedBox(width: 16),
-          TextButton(
-            onPressed: () {},
-            style: TextButton.styleFrom(
-              primary: const Color.fromRGBO(43, 56, 86, 1),
-            ),
-            child: Text(
-              "Riwayat Unduh",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-              ),
-            ),
-          ),
-          SizedBox(width: 800),
-          IconButton(
-            icon: Icon(
-              Icons.notifications_active,
-              size: 35,
-            ),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.account_circle_rounded,
-              size: 38,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Profile()),
-              );
-            },
-          ),
-        ],
-      ),
+      onTap: () {},
     );
   }
 
