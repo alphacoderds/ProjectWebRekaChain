@@ -1,133 +1,80 @@
+import 'package:RekaChain/dasboard.dart';
+import 'package:RekaChain/login.dart';
+import 'package:RekaChain/profile.dart';
 import 'package:flutter/material.dart';
 
-class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+void main() => runApp(MyApp());
 
+class MyApp extends StatelessWidget {
   @override
-  State<Dashboard> createState() => _DashboardState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Responsive Sidebar',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Dashboard(),
+    );
+  }
 }
 
-class _DashboardState extends State<Dashboard> {
+class Dashboard extends StatefulWidget {
+  @override
+  State<Dashboard> createState() => _AfterSalesState();
+}
+
+class _AfterSalesState extends State<Dashboard> {
   int _selectedIndex = 0;
+  bool isViewVisible = false;
   late double screenWidth = MediaQuery.of(context).size.width;
   late double screenHeight = MediaQuery.of(context).size.height;
-
-  final List<Widget> _pages = [
-    const Text('Dashboard Page'),
-    _buildInputDataPage(),
-    const Text('Report STTPP Page'),
-    const Text('Perencanaan Page'),
-    const Text('Input Kebutuhan Material Page'),
-    const Text('Input Dokumen Pendukung Page'),
-    const Text('After Sales Page'),
-    const Text('Logout'),
-  ];
-
-  static Widget _buildInputDataPage() {
-    return Column(
-      children: [
-        const Text('Dashboard Page'),
-        _buildDataRow(1, 'Nama Proyek 1'),
-        _buildDataRow(2, 'Nama Proyek 2'),
-        _buildDataRow(3, 'Nama Proyek 3'),
-        _buildSubMenu(),
-      ],
-    );
-  }
-
-  static Widget _buildDataRow(int number, String projectName) {
-    return Row(
-      children: [
-        Text('No: $number'),
-        SizedBox(width: 8),
-        Text('Nama Proyek: $projectName'),
-      ],
-    );
-  }
-
-  static Widget _buildSubMenu({IconData? icon}) {
-    return ExpansionTile(
-      title: Row(
-        children: [
-          Icon(
-            icon ?? Icons.input,
-            size: 35,
-          ),
-          SizedBox(width: 12),
-          Text('Input Data'),
-        ],
-      ),
-      children: [
-        _buildSubListTile('Report STTPP', Icons.receipt, 2, 35),
-        _buildSubListTile('Perencanaan', Icons.calendar_today, 3, 35),
-        _buildSubListTile('Input Kebutuhan Material', Icons.assignment, 4, 35),
-        _buildSubListTile('Input Dokumen Pendukung', Icons.file_present, 5, 35),
-      ],
-    );
-  }
-
-  static ListTile _buildSubListTile(
-    String title,
-    IconData icon,
-    int index,
-    int size,
-  ) {
-    return ListTile(
-      title: Text(title),
-      leading: Icon(
-        icon,
-        size: size.toDouble(),
-      ),
-      onTap: () {},
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 0.5,
-      ),
-      body: Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-          toolbarHeight: 80,
-          actions: [
-            Padding(
-              padding: EdgeInsets.only(right: screenHeight * 0.13),
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: screenWidth * 0.005,
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.notifications_active,
-                      size: 35,
-                      color: Color.fromARGB(255, 255, 255, 255),
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildDrawer(),
+          Expanded(
+            child: Scaffold(
+              appBar: AppBar(
+                backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+                toolbarHeight: 80,
+                actions: [
+                  Padding(
+                    padding: EdgeInsets.only(right: screenHeight * 0.13),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: screenWidth * 0.005,
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.notifications_active,
+                            size: 35,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          ),
+                          onPressed: () {},
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.account_circle_rounded,
+                            size: 38,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          ),
+                          onPressed: () {},
+                        ),
+                      ],
                     ),
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.account_circle_rounded,
-                      size: 38,
-                      color: Color.fromARGB(255, 255, 255, 255),
-                    ),
-                    onPressed: () {},
-                  ),
+                  )
                 ],
               ),
-            )
-          ],
-        ),
-        body: Stack(
-          children: [
-            _pages[_selectedIndex],
-            if (_selectedIndex == 0) _buildDrawer(),
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 
@@ -155,7 +102,7 @@ class _DashboardState extends State<Dashboard> {
           _buildListTile('Dashboard', Icons.dashboard, 0, 35),
           _buildSubMenu(),
           _buildListTile('After Sales', Icons.headset_mic, 6, 35),
-          _buildListTile('Keluar', Icons.logout, 7, 35),
+          _buildListTile('Logout', Icons.logout, 7, 35),
         ],
       ),
     );
@@ -167,55 +114,104 @@ class _DashboardState extends State<Dashboard> {
       leading: Icon(
         icon,
         size: size.toDouble(),
+        color: Color.fromARGB(255, 6, 37, 55),
       ),
       onTap: () {
-        setState(() {
-          _selectedIndex = index;
-        });
-        Navigator.pop(context);
+        if (index == 7) {
+          _showLogoutDialog();
+        } else {
+          setState(() {
+            _selectedIndex = index;
+          });
+          if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Dashboard(),
+              ),
+            );
+          } else if (index == 6) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Dashboard(),
+              ),
+            );
+          } else {
+            Navigator.pop(context);
+          }
+        }
       },
     );
   }
 
-  Widget _buildNotificationAndPersonIcons() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 90, right: 90),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+  Widget _buildSubMenu({IconData? icon}) {
+    return ExpansionTile(
+      title: Row(
         children: [
-          IconButton(
-            icon: Icon(
-              Icons.notifications_active,
-              size: 35,
-            ),
-            onPressed: () {},
+          Icon(
+            icon ?? Icons.input,
+            size: 35,
+            color: Color.fromARGB(255, 6, 37, 55),
           ),
-          IconButton(
-            icon: Icon(
-              Icons.account_circle_rounded,
-              size: 38,
-            ),
-            onPressed: () {},
-          ),
+          SizedBox(width: 12),
+          Text('Input Data'),
         ],
       ),
+      children: [
+        _buildSubListTile('Report STTPP', Icons.receipt, 2, 35),
+        _buildSubListTile('Perencanaan', Icons.calendar_today, 3, 35),
+        _buildSubListTile('Input Kebutuhan Material', Icons.assignment, 4, 35),
+        _buildSubListTile('Input Dokumen Pendukung', Icons.file_present, 5, 35),
+      ],
     );
   }
 
-  Widget _buildSubmenu(String title, IconData icon, int index) {
+  Widget _buildSubListTile(
+    String title,
+    IconData icon,
+    int index,
+    int size,
+  ) {
     return ListTile(
       title: Text(title),
       leading: Icon(
         icon,
-        size: 35,
+        size: size.toDouble(),
         color: Color.fromARGB(255, 6, 37, 55),
       ),
-      onTap: () {
-        print('Submenu $title ditekan');
-        setState(() {
-          _selectedIndex = index;
-        });
-        Navigator.pop(context);
+      onTap: () {},
+    );
+  }
+
+  void _showLogoutDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Logout", style: TextStyle(color: Colors.white)),
+          content: Text("Apakah Anda yakin ingin logout?",
+              style: TextStyle(color: Colors.white)),
+          backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("Batal", style: TextStyle(color: Colors.white)),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
+                );
+              },
+              child: Text("Logout", style: TextStyle(color: Colors.white)),
+            ),
+          ],
+        );
       },
     );
   }
