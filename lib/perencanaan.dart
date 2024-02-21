@@ -35,12 +35,12 @@ class _PerencanaanState extends State<Perencanaan> {
                 child: Scaffold(
 //===========================================================Appbar===========================================================//
               appBar: AppBar(
-                backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+                backgroundColor: const Color.fromRGBO(43, 56, 86, 0.5),
                 toolbarHeight: 65,
                 title: Padding(
                   padding: EdgeInsets.only(left: screenHeight * 0.02),
                   child: Text(
-                    'Input Dokumen Pendukung',
+                    'Input Proses',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -106,7 +106,7 @@ class _PerencanaanState extends State<Perencanaan> {
                       ),
                       Row(
                         children: [
-                          SizedBox(width: screenWidth * 0.07),
+                          SizedBox(width: screenWidth * 0.13),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -117,7 +117,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'Project',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     decoration: BoxDecoration(
@@ -149,7 +149,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'No Induk Finish Produk',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     padding:
@@ -172,7 +172,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'No Seri Awal',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     padding:
@@ -196,7 +196,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'Target Mulai',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     padding:
@@ -225,7 +225,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'Nama Produk',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     padding:
@@ -248,7 +248,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'Jumlah dalam 1 lot',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     padding:
@@ -271,7 +271,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'Kode Lot',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     padding:
@@ -295,7 +295,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'No Seri Akhir',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     padding:
@@ -319,7 +319,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'Target Selesai',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     padding:
@@ -354,10 +354,36 @@ class _PerencanaanState extends State<Perencanaan> {
                             : _buildMainTable(),
                       ),
                       SizedBox(width: 30),
-                      Row(children: [
+                      Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                         ElevatedButton(
-                            onPressed: () {}, child: Text('Tambah Kolom')),
-                        ElevatedButton(onPressed: () {}, child: Text('Simpan'))
+                          onPressed: () {},
+                          child: Text(
+                            'Tambah Kolom',
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            backgroundColor:
+                                const Color.fromRGBO(43, 56, 86, 1),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: screenWidth * 0.02),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Simpan',
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            backgroundColor:
+                                const Color.fromRGBO(43, 56, 86, 1),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                        ),
                       ])
                     ],
                   ),
