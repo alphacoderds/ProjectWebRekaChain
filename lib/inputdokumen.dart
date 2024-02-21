@@ -4,6 +4,7 @@ import 'package:RekaChain/editprofile.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
+import 'package:RekaChain/reportsttpp.dart';
 import 'package:RekaChain/viewupload.dart';
 import 'package:flutter/material.dart';
 
@@ -403,14 +404,14 @@ class _InputDokumenState extends State<InputDokumen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => InputDokumen(),
+                builder: (context) => ReportSTTPP(),
               ),
             );
           } else if (index == 3) {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => InputDokumen(),
+                builder: (context) => Perencanaan(),
               ),
             );
           } else if (index == 4) {

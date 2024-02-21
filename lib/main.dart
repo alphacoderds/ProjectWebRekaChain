@@ -1,4 +1,5 @@
 import 'package:RekaChain/dasboard.dart';
+import 'package:RekaChain/inputdokumen.dart';
 import 'package:RekaChain/logout.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:RekaChain/Barchart.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ReportSTTPP(),
+      home: InputDokumen(),
     );
   }
 }
