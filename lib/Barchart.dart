@@ -1,79 +1,69 @@
+import 'package:RekaChain/AfterSales1.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
+class barchat extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Responsive Sidebar',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Dashboard(),
-    );
-  }
+  _barchatState createState() => _barchatState();
 }
 
-class Dashboard extends StatefulWidget {
-  @override
-  State<Dashboard> createState() => _AfterSalesState();
-}
-
-class _AfterSalesState extends State<Dashboard> {
+class _barchatState extends State<barchat> {
   int _selectedIndex = 0;
-  bool isViewVisible = false;
-  late double screenWidth = MediaQuery.of(context).size.width;
-  late double screenHeight = MediaQuery.of(context).size.height;
+  late List<_ChartData> data;
+  late TooltipBehavior _tooltip;
+
+  @override
+  void initState() {
+    data = [
+      _ChartData('Panel 1', 12),
+      _ChartData('Panel 2', 15),
+      _ChartData('Panel 3', 30),
+      _ChartData('Panel 4', 6.4),
+      _ChartData('Panel 5', 14),
+    ];
+    _tooltip = TooltipBehavior(enable: true);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(''),
+      ),
       body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildDrawer(),
-          Expanded(
-            child: Scaffold(
-              appBar: AppBar(
-                backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-                toolbarHeight: 80,
-                actions: [
-                  Padding(
-                    padding: EdgeInsets.only(right: screenHeight * 0.13),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: screenWidth * 0.005,
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.notifications_active,
-                            size: 35,
-                            color: Color.fromARGB(255, 255, 255, 255),
-                          ),
-                          onPressed: () {},
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.account_circle_rounded,
-                            size: 38,
-                            color: Color.fromARGB(255, 255, 255, 255),
-                          ),
-                          onPressed: () {},
-                        ),
-                      ],
-                    ),
-                  )
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildChartContainer(),
+                  SizedBox(width: 20), // Jarak antara dua grafik batang
+                  _buildChartContainer(),
                 ],
               ),
-            ),
+              SizedBox(height: 20), // Jarak antara dua baris grafik batang
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildChartContainer(),
+                  SizedBox(width: 20), // Jarak antara dua grafik batang
+                  _buildChartContainer(),
+                  SizedBox(
+                      width: 20), // Sesuaikan jarak antara dua grafik batang
+                ],
+              ),
+            ],
           ),
         ],
       ),
+      floatingActionButton: _buildNotificationAndPersonIcons(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
@@ -114,7 +104,6 @@ class _AfterSalesState extends State<Dashboard> {
       leading: Icon(
         icon,
         size: size.toDouble(),
-        color: Color.fromARGB(255, 6, 37, 55),
       ),
       onTap: () {
         if (index == 7) {
@@ -134,7 +123,7 @@ class _AfterSalesState extends State<Dashboard> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Dashboard(),
+                builder: (context) => AfterSales(),
               ),
             );
           } else {
@@ -152,7 +141,6 @@ class _AfterSalesState extends State<Dashboard> {
           Icon(
             icon ?? Icons.input,
             size: 35,
-            color: Color.fromARGB(255, 6, 37, 55),
           ),
           SizedBox(width: 12),
           Text('Input Data'),
@@ -178,9 +166,38 @@ class _AfterSalesState extends State<Dashboard> {
       leading: Icon(
         icon,
         size: size.toDouble(),
-        color: Color.fromARGB(255, 6, 37, 55),
       ),
       onTap: () {},
+    );
+  }
+
+  Widget _buildNotificationAndPersonIcons() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 18, right: 90),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          IconButton(
+            icon: Icon(
+              Icons.notifications_active,
+              size: 35,
+            ),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.account_circle_rounded,
+              size: 38,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Profile()),
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 
@@ -215,4 +232,31 @@ class _AfterSalesState extends State<Dashboard> {
       },
     );
   }
+
+  Widget _buildChartContainer() {
+    return Container(
+      width: 500.0, // Sesuaikan lebar sesuai keinginan Anda
+      height: 300.0, // Sesuaikan tinggi sesuai keinginan Anda
+      child: SfCartesianChart(
+        primaryXAxis: CategoryAxis(),
+        primaryYAxis: NumericAxis(minimum: 0, maximum: 40, interval: 10),
+        tooltipBehavior: _tooltip,
+        series: <CartesianSeries<_ChartData, String>>[
+          BarSeries<_ChartData, String>(
+            dataSource: data,
+            xValueMapper: (_ChartData data, _) => data.x,
+            yValueMapper: (_ChartData data, _) => data.y,
+            name: 'Gold',
+            color: Color.fromRGBO(43, 56, 103, 1),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _ChartData {
+  _ChartData(this.x, this.y);
+  final String x;
+  final double y;
 }

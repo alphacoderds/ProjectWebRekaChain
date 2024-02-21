@@ -27,7 +27,7 @@ class _EditProfileState extends State<EditProfile> {
         switch (settings.name) {
           case '/':
             return MaterialPageRoute(
-              builder: (context) => EditProfile(),
+              builder: (context) => const EditProfile(),
             );
           case '/profile':
             return MaterialPageRoute(
@@ -46,7 +46,7 @@ class _EditProfileState extends State<EditProfile> {
                 width: 250,
                 height: 300,
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
             ],
           ),
           toolbarHeight: 100.0,
@@ -62,7 +62,7 @@ class _EditProfileState extends State<EditProfile> {
                   _buildAvatar(),
                   Center(
                     child: Container(
-                      margin: EdgeInsets.only(top: 20),
+                      margin: const EdgeInsets.only(top: 20),
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.push(
@@ -78,7 +78,7 @@ class _EditProfileState extends State<EditProfile> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
                           ),
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                             vertical: 10,
                             horizontal: 20,
                           ),
@@ -96,7 +96,7 @@ class _EditProfileState extends State<EditProfile> {
             // Main content
             Expanded(
               child: SingleChildScrollView(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: _buildRightSection(),
               ),
             ),
@@ -113,9 +113,9 @@ class _EditProfileState extends State<EditProfile> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              color: Color.fromRGBO(43, 56, 86, 1),
-              padding: EdgeInsets.only(top: 3.5, left: 15.0),
-              child: Text(
+              color: const Color.fromRGBO(43, 56, 86, 1),
+              padding: const EdgeInsets.only(top: 3.5, left: 15.0),
+              child: const Text(
                 'PROFIL SAYA',
                 style: TextStyle(
                   color: Colors.white,
@@ -126,7 +126,7 @@ class _EditProfileState extends State<EditProfile> {
                 textAlign: TextAlign.start,
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             // Letak widget content
             _buildTextView(
                 label: ' Nama Lengkap',
@@ -153,7 +153,7 @@ class _EditProfileState extends State<EditProfile> {
                 label: ' Password', text: '', controller: passwordController),
             _buildTextView(
                 label: ' Status', text: '', controller: statusController),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
           ],
         ),
       ],
@@ -169,12 +169,12 @@ class _EditProfileState extends State<EditProfile> {
       children: [
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14.0,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 8.0),
+        const SizedBox(height: 8.0),
         TextFormField(
           controller: controller,
           decoration: InputDecoration(
@@ -186,7 +186,7 @@ class _EditProfileState extends State<EditProfile> {
   }
 
   Widget _buildDivider() {
-    return Divider(
+    return const Divider(
       color: Colors.grey,
       thickness: 1.0,
       height: 16.0,
