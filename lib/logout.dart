@@ -18,7 +18,7 @@ class _logoutPageState extends State<logoutPage> {
     screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: Row(children: [dasboard(), _logout()]),
+      body: Row(children: [Dashboard(), _logout()]),
     );
     // return Scaffold(
     //   body: Column(

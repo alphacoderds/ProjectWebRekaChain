@@ -1,3 +1,4 @@
+import 'package:RekaChain/ReportSTTPP.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -13,7 +14,7 @@ class _DashboardState extends State<Dashboard> {
   final List<Widget> _pages = [
     Text('Dashboard Page'),
     _buildInputDataPage(),
-    Text('Report STTPP Page'),
+    CustomPage(),
     Text('Perencanaan Page'),
     Text('Input Kebutuhan Material Page'),
     Text('Input Dokumen Pendukung Page'),
