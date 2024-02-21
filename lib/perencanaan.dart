@@ -33,14 +33,19 @@ class _PerencanaanState extends State<Perencanaan> {
             Expanded(
                 child: Scaffold(
               appBar: AppBar(
-                backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-                toolbarHeight: 80,
-                leading: Row(
-                  children: [
-                    SizedBox(width: screenWidth * 0.08),
-                    Icon(Icons.emoji_nature_outlined),
-                    Text('Input Progress'),
-                  ],
+                backgroundColor: const Color.fromRGBO(43, 56, 86, 0.5),
+                toolbarHeight: 65,
+                title: Padding(
+                  padding: EdgeInsets.only(left: screenHeight * 0.02),
+                  child: Text(
+                    'Input Proses',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Donegal One',
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
                 actions: [
                   Padding(
@@ -108,7 +113,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'Project',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     decoration: BoxDecoration(
@@ -140,7 +145,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'No Induk Finish Produk',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     padding:
@@ -163,7 +168,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'No Seri Awal',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     padding:
@@ -187,7 +192,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'Target Mulai',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     padding:
@@ -216,7 +221,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'Nama Produk',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     padding:
@@ -239,7 +244,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'Jumlah dalam 1 lot',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     padding:
@@ -262,7 +267,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'Kode Lot',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     padding:
@@ -286,7 +291,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'No Seri Akhir',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     padding:
@@ -310,7 +315,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                     'Target Selesai',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17),
+                                        fontSize: 16),
                                   ),
                                   Container(
                                     padding:
