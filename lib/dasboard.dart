@@ -56,7 +56,7 @@ class _AfterSalesState extends State<Dashboard> {
               child: Scaffold(
                 appBar: AppBar(
                   backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-                  toolbarHeight: 80,
+                  toolbarHeight: 65,
                   actions: [
                     Padding(
                       padding: EdgeInsets.only(right: screenHeight * 0.13),
