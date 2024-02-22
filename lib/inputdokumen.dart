@@ -1,7 +1,9 @@
 import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/editprofile.dart';
+import 'package:RekaChain/inputkebutuhan%20material.dart';
 import 'package:RekaChain/login.dart';
+import 'package:RekaChain/notification.dart';
 import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:RekaChain/reportsttpp.dart';
@@ -72,7 +74,13 @@ class _InputDokumenState extends State<InputDokumen> {
                         children: [
                           SizedBox(width: 16),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ViewUpload()),
+                              );
+                            },
                             child: Text(
                               'Unduhan',
                               style: TextStyle(fontWeight: FontWeight.bold),
@@ -95,7 +103,13 @@ class _InputDokumenState extends State<InputDokumen> {
                               size: 33,
                               color: Colors.white,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Notifikasi()),
+                              );
+                            },
                           ),
                           IconButton(
                             icon: Icon(
@@ -437,7 +451,7 @@ class _InputDokumenState extends State<InputDokumen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => InputDokumen(),
+                builder: (context) => InputMaterial(),
               ),
             );
           } else if (index == 5) {

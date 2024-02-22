@@ -5,6 +5,7 @@ import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/editprofile.dart';
 import 'package:RekaChain/inputdokumen.dart';
 import 'package:RekaChain/login.dart';
+import 'package:RekaChain/notification.dart';
 import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:RekaChain/reportsttpp.dart';
@@ -110,7 +111,7 @@ class _InputMaterialState extends State<InputMaterial> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Profile()),
+                                    builder: (context) => Notifikasi()),
                               );
                             },
                           ),

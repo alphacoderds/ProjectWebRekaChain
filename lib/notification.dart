@@ -1,3 +1,4 @@
+import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/profile.dart';
@@ -69,7 +70,13 @@ class _NotifikasiState extends State<Notifikasi> {
                             size: 35,
                             color: Color.fromARGB(255, 255, 255, 255),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Notifikasi()),
+                            );
+                          },
                         ),
                         IconButton(
                           icon: Icon(
@@ -77,7 +84,13 @@ class _NotifikasiState extends State<Notifikasi> {
                             size: 38,
                             color: Color.fromARGB(255, 255, 255, 255),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Profile()),
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -150,7 +163,7 @@ class _NotifikasiState extends State<Notifikasi> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Dashboard(),
+                builder: (context) => AfterSales(),
               ),
             );
           } else {

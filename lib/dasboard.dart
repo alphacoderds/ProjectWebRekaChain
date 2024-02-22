@@ -234,7 +234,6 @@ class _AfterSalesState extends State<Dashboard> {
                 builder: (context) => InputDokumen(),
               ),
             );
-            Navigator.pop(context);
           }
         }
       },

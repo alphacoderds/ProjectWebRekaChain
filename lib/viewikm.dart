@@ -3,6 +3,7 @@ import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/inputdokumen.dart';
 import 'package:RekaChain/inputkebutuhan%20material.dart';
 import 'package:RekaChain/login.dart';
+import 'package:RekaChain/notification.dart';
 import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:RekaChain/reportsttpp.dart';
@@ -132,7 +133,13 @@ class _ViewkmState extends State<Viewkm> {
                               size: 33,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Notifikasi()),
+                              );
+                            },
                           ),
                           IconButton(
                             icon: Icon(
@@ -544,7 +551,7 @@ class _ViewkmState extends State<Viewkm> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => InputDokumen(),
+                builder: (context) => InputMaterial(),
               ),
             );
           } else if (index == 5) {
@@ -554,7 +561,6 @@ class _ViewkmState extends State<Viewkm> {
                 builder: (context) => InputDokumen(),
               ),
             );
-            Navigator.pop(context);
           }
         }
       },
