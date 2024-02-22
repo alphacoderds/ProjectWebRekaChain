@@ -41,6 +41,9 @@ class _PerencanaanState extends State<Perencanaan> {
   ];
   String? selectedValueKategori;
 
+  TextEditingController tglMulaicontroller = TextEditingController();
+  TextEditingController tglSelesaicontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -302,8 +305,13 @@ class _PerencanaanState extends State<Perencanaan> {
                                                           BorderRadius.circular(
                                                               20)),
                                                   child: TextField(
-                                                    decoration:
-                                                        InputDecoration(),
+                                                    controller:
+                                                        tglMulaicontroller,
+                                                    readOnly: true,
+                                                    onTap: () {
+                                                      _selectDate(
+                                                          tglMulaicontroller);
+                                                    },
                                                   ),
                                                 )
                                               ],
@@ -450,8 +458,22 @@ class _PerencanaanState extends State<Perencanaan> {
                                                           BorderRadius.circular(
                                                               20)),
                                                   child: TextField(
-                                                    decoration:
-                                                        InputDecoration(),
+                                                    textAlign: TextAlign.center,
+                                                    decoration: InputDecoration(
+                                                      border:
+                                                          OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20)),
+                                                    ),
+                                                    controller:
+                                                        tglSelesaicontroller,
+                                                    readOnly: true,
+                                                    onTap: () {
+                                                      _selectDate(
+                                                          tglSelesaicontroller);
+                                                    },
                                                   ),
                                                 )
                                               ],
@@ -523,6 +545,21 @@ class _PerencanaanState extends State<Perencanaan> {
         ),
       ),
     );
+  }
+
+//===========================================================Widget DatePicker===========================================================//
+  Future<void> _selectDate(TextEditingController controller) async {
+    DateTime? _picked = await showDatePicker(
+      context: context,
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2100),
+    );
+
+    if (_picked != null) {
+      setState(() {
+        controller.text = _picked.toString().split(" ")[0];
+      });
+    }
   }
 
 //===========================================================Widget Table Alur===========================================================//
