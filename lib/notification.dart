@@ -25,12 +25,14 @@ class Notifikasi extends StatefulWidget {
 
 class _NotifikasiState extends State<Notifikasi> {
   int _selectedIndex = 0;
-  bool isViewVisible = false;
-  late double screenWidth = MediaQuery.of(context).size.width;
-  late double screenHeight = MediaQuery.of(context).size.height;
+  late double screenWidth;
+  late double screenHeight;
 
   @override
   Widget build(BuildContext context) {
+    screenWidth = MediaQuery.of(context).size.width;
+    screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,7 +46,7 @@ class _NotifikasiState extends State<Notifikasi> {
                 title: Padding(
                   padding: EdgeInsets.only(left: screenHeight * 0.02),
                   child: Text(
-                    'View Report STTPP',
+                    'Notifications',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -82,113 +84,7 @@ class _NotifikasiState extends State<Notifikasi> {
                   )
                 ],
               ),
-              body: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 1100.0,
-                      height: 100.0,
-                      margin: EdgeInsets.all(20.0),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 35, left: 35),
-                        child: Text(
-                          'Panel 1',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.start,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 1100.0,
-                      height: 100.0,
-                      margin: EdgeInsets.all(20.0),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 35, left: 35),
-                        child: Text(
-                          'Panel 2',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.start,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 1100.0,
-                      height: 100.0,
-                      margin: EdgeInsets.all(20.0),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 35, left: 35),
-                        child: Text(
-                          'Panel 3',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.start,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 1100.0,
-                      height: 100.0,
-                      margin: EdgeInsets.all(20.0),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 35, left: 35),
-                        child: Text(
-                          'Panel 4',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.start,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 1100.0,
-                      height: 100.0,
-                      margin: EdgeInsets.all(20.0),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 35, left: 30),
-                        child: Text(
-                          'Panel 5',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.start,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              body: _ListView(),
             ),
           ),
         ],
@@ -199,7 +95,7 @@ class _NotifikasiState extends State<Notifikasi> {
 
   Widget _buildDrawer() {
     return Drawer(
-      child: ListView(
+      child: Column(
         children: [
           DrawerHeader(
             decoration: const BoxDecoration(
@@ -311,7 +207,7 @@ class _NotifikasiState extends State<Notifikasi> {
           title: Text("Logout", style: TextStyle(color: Colors.white)),
           content: Text("Apakah Anda yakin ingin logout?",
               style: TextStyle(color: Colors.white)),
-          backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+          backgroundColor: const Color.fromRGBO(255, 6, 37, 55),
           actions: [
             TextButton(
               onPressed: () {
@@ -334,4 +230,105 @@ class _NotifikasiState extends State<Notifikasi> {
       },
     );
   }
+}
+
+Widget _ListView() {
+  return ListView.separated(
+    itemBuilder: (context, index) {
+      return ListViewItem(index);
+    },
+    separatorBuilder: (context, index) {
+      return Divider(height: 0);
+    },
+    itemCount: 15,
+  );
+}
+
+Widget ListViewItem(int index) {
+  return Container(
+    margin: EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        prefixIcon(),
+        Expanded(
+          child: Container(
+            margin: EdgeInsets.only(left: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                message(index),
+              ],
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget prefixIcon() {
+  return Container(
+    height: 80,
+    width: 60,
+    margin: EdgeInsets.only(left: 4),
+    padding: EdgeInsets.all(10),
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      color: Colors.grey.shade300,
+    ),
+    child: Icon(
+      Icons.notifications,
+      size: 35,
+      color: Color.fromARGB(255, 6, 37, 55),
+    ),
+  );
+}
+
+Widget message(int index) {
+  double textsize = 14;
+  return Container(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 15,
+        ),
+        Text(
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
+          'Panel ${index + 1}',
+          style: TextStyle(
+            fontSize: 17,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 5),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                '23-2-2024',
+                style: TextStyle(
+                  fontSize: 12,
+                ),
+              ),
+              SizedBox(
+                width: 7,
+              ),
+              Text(
+                '07:00 AM',
+                style: TextStyle(
+                  fontSize: 12,
+                ),
+              )
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
 }
