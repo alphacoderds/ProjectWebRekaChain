@@ -239,7 +239,7 @@ class _barchatState extends State<barchat> {
       height: 300.0, // Sesuaikan tinggi sesuai keinginan Anda
       child: SfCartesianChart(
         primaryXAxis: CategoryAxis(),
-        primaryYAxis: NumericAxis(minimum: 0, maximum: 40, interval: 10),
+        primaryYAxis: NumericAxis(minimum: 0, maximum: 100, interval: 10),
         tooltipBehavior: _tooltip,
         series: <CartesianSeries<_ChartData, String>>[
           BarSeries<_ChartData, String>(

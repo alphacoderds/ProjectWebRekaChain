@@ -22,6 +22,20 @@ class _PerencanaanState extends State<Perencanaan> {
   ];
   String? selectedValue;
 
+  List<String> dropdownItemsAlurProses = [
+    '--Pilih Alur Proses--',
+    'PPC',
+    'Produksi'
+  ];
+  String? selectedValueAlurProses;
+
+  List<String> dropdownItemsKategori = [
+    '--Pilih Kategori--',
+    'Produk',
+    'Material'
+  ];
+  String? selectedValueKategori;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,264 +112,297 @@ class _PerencanaanState extends State<Perencanaan> {
 //===========================================================Body Tambah Project===========================================================//
               body: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.all(screenHeight * 0.05),
+                  padding: EdgeInsets.symmetric(
+                      vertical: screenHeight * 0.05,
+                      horizontal: screenWidth * 0.02),
                   child: Column(
                     children: [
                       SizedBox(
                         height: 10,
                       ),
                       Container(
-                        width: screenWidth * 0.75,
-                        height: screenHeight * 0.71,
+                        width: screenWidth * 0.6,
+                        height: screenHeight * 0.8,
                         decoration: BoxDecoration(
                             border: Border.all(),
                             borderRadius: BorderRadius.circular(10)),
-                        child: Row(
-                          children: [
-                            SizedBox(width: screenWidth * 0.13),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: screenHeight * 0.05,
+                              horizontal: screenWidth * 0.05),
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      'Project',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 16),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Project',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 15),
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: DropdownButton<String>(
+                                            alignment: Alignment.center,
+                                            hint: Text(
+                                                '--Pilih Nama/Kode Project--',
+                                                style: TextStyle(fontSize: 15)),
+                                            value: selectedValue,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            items: dropdownItems
+                                                .map((String value) {
+                                              return DropdownMenuItem<String>(
+                                                  value: value,
+                                                  child: Text(value));
+                                            }).toList(),
+                                            onChanged: (newValue) {
+                                              setState(() {
+                                                selectedValue = newValue;
+                                              });
+                                            },
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          border: Border.all(),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: DropdownButton<String>(
-                                        alignment: Alignment.center,
-                                        hint:
-                                            Text('--Pilih Nama/Kode Project--'),
-                                        value: selectedValue,
-                                        borderRadius: BorderRadius.circular(5),
-                                        items:
-                                            dropdownItems.map((String value) {
-                                          return DropdownMenuItem<String>(
-                                              value: value, child: Text(value));
-                                        }).toList(),
-                                        onChanged: (newValue) {
-                                          setState(() {
-                                            selectedValue = newValue;
-                                          });
-                                        },
-                                      ),
+                                    SizedBox(height: 40),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'No Induk Finish Produk',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 15),
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 7),
+                                          width: 225,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: TextField(
+                                            decoration: InputDecoration(),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(height: 134.1),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'No Seri Awal',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 15),
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 15),
+                                          width: 150,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(),
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: TextField(
+                                            decoration: InputDecoration(),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(height: 30),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Target Mulai',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 15),
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 15),
+                                          width: 150,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(),
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: TextField(
+                                            decoration: InputDecoration(),
+                                          ),
+                                        )
+                                      ],
                                     )
                                   ],
                                 ),
-                                SizedBox(height: 40),
+                                SizedBox(width: screenWidth * 0.2),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      'No Induk Finish Produk',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 16),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Nama Produk',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 15),
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 7),
+                                          width: 225,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: TextField(
+                                            decoration: InputDecoration(),
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                    Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 7),
-                                      width: 225,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: TextField(
-                                        decoration: InputDecoration(),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(height: 134.1),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'No Seri Awal',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 16),
+                                    SizedBox(height: 40),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Jumlah dalam 1 lot',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 15),
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 7),
+                                          width: 225,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: TextField(
+                                            decoration: InputDecoration(),
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                    Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 15),
-                                      width: 150,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(),
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
-                                      child: TextField(
-                                        decoration: InputDecoration(),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(height: 30),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Target Mulai',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 16),
+                                    SizedBox(height: 30),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Kode Lot',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 15),
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 15),
+                                          width: 150,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(),
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: TextField(
+                                            decoration: InputDecoration(),
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                    Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 15),
-                                      width: 150,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(),
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
-                                      child: TextField(
-                                        decoration: InputDecoration(),
-                                      ),
+                                    SizedBox(height: 30),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'No Seri Akhir',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 15),
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 15),
+                                          width: 150,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(),
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: TextField(
+                                            decoration: InputDecoration(),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(height: 30),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Target Selesai',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 15),
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 15),
+                                          width: 150,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(),
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: TextField(
+                                            decoration: InputDecoration(),
+                                          ),
+                                        )
+                                      ],
                                     )
                                   ],
                                 )
                               ],
                             ),
-                            SizedBox(width: screenWidth * 0.2),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Nama Produk',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 16),
-                                    ),
-                                    Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 7),
-                                      width: 225,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: TextField(
-                                        decoration: InputDecoration(),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(height: 40),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Jumlah dalam 1 lot',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 16),
-                                    ),
-                                    Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 7),
-                                      width: 225,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: TextField(
-                                        decoration: InputDecoration(),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(height: 30),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Kode Lot',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 16),
-                                    ),
-                                    Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 15),
-                                      width: 150,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(),
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
-                                      child: TextField(
-                                        decoration: InputDecoration(),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(height: 30),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'No Seri Akhir',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 16),
-                                    ),
-                                    Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 15),
-                                      width: 150,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(),
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
-                                      child: TextField(
-                                        decoration: InputDecoration(),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(height: 30),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Target Selesai',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 16),
-                                    ),
-                                    Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 15),
-                                      width: 150,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(),
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
-                                      child: TextField(
-                                        decoration: InputDecoration(),
-                                      ),
-                                    )
-                                  ],
-                                )
-                              ],
-                            )
-                          ],
+                          ),
                         ),
                       ),
                       SizedBox(height: 100),
 
-                      //===========================================================Body Tambah Kolom dan Button===========================================================//
+//===========================================================Body Tambah Kolom dan Button===========================================================//
+
+                      SizedBox(width: 30),
                       Container(
+                        width: screenWidth * 0.6,
                         padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
                         margin: EdgeInsets.all(50.0),
                         decoration: BoxDecoration(
@@ -366,7 +413,6 @@ class _PerencanaanState extends State<Perencanaan> {
                             ? _buildViewTable()
                             : _buildMainTable(),
                       ),
-                      SizedBox(width: 30),
                       Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                         ElevatedButton(
                           onPressed: () {},
@@ -420,12 +466,12 @@ class _PerencanaanState extends State<Perencanaan> {
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: DataTable(
-            columnSpacing: 100.0,
-            horizontalMargin: 70.0,
+            columnSpacing: 70.0,
+            horizontalMargin: 90.0,
             columns: [
               DataColumn(
                 label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30.0),
+                  padding: EdgeInsets.symmetric(horizontal: 10.0),
                   child: Text(
                     'Alur Proses',
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -434,16 +480,17 @@ class _PerencanaanState extends State<Perencanaan> {
               ),
               DataColumn(
                 label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: EdgeInsets.symmetric(horizontal: 10.0),
                   child: Text(
                     'Kategori',
                     style: TextStyle(fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
               DataColumn(
                 label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: EdgeInsets.symmetric(horizontal: 10.0),
                   child: Text(
                     'Detail/Keterangan',
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -453,19 +500,122 @@ class _PerencanaanState extends State<Perencanaan> {
             ],
             rows: [
               DataRow(cells: [
-                DataCell(Text('PT. Nugraha Jasa')),
-                DataCell(Text('AA21 1/24')),
-                DataCell(Text('13-02-2024')),
+                DataCell(
+                  DropdownButton<String>(
+                    alignment: Alignment.center,
+                    hint: Text('--Pilih Alur Proses--',
+                        style: TextStyle(fontSize: 15)),
+                    value: selectedValueAlurProses,
+                    borderRadius: BorderRadius.circular(5),
+                    focusColor: Colors.white,
+                    items: dropdownItemsAlurProses.map((String value) {
+                      return DropdownMenuItem<String>(
+                          value: value, child: Text(value));
+                    }).toList(),
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedValueAlurProses = newValue;
+                      });
+                    },
+                    dropdownColor: Colors.white,
+                  ),
+                ),
+                DataCell(
+                  DropdownButton<String>(
+                    alignment: Alignment.center,
+                    hint: Text('--Pilih Kategori--',
+                        style: TextStyle(fontSize: 15)),
+                    value: selectedValueKategori,
+                    borderRadius: BorderRadius.circular(5),
+                    focusColor: Colors.white,
+                    items: dropdownItemsKategori.map((String value) {
+                      return DropdownMenuItem<String>(
+                          value: value, child: Text(value));
+                    }).toList(),
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedValueKategori = newValue;
+                      });
+                    },
+                    dropdownColor: Colors.white,
+                  ),
+                ),
+                DataCell(Container(
+                  height: 100,
+                  width: 300,
+                  // decoration: BoxDecoration(
+                  //   border:
+                  //       Border.all(color: Color.fromARGB(255, 177, 177, 177)),
+                  // ),
+                  child: TextField(
+                    maxLines: 5,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.symmetric(
+                          vertical: screenHeight * 0.005,
+                          horizontal: screenWidth * 0.005),
+                    ),
+                  ),
+                )),
               ]),
               DataRow(cells: [
-                DataCell(Text('PT. INKA')),
-                DataCell(Text('AA21 2/24')),
-                DataCell(Text('13-02-2024')),
-              ]),
-              DataRow(cells: [
-                DataCell(Text('PT. INKA')),
-                DataCell(Text('AA21 2/24')),
-                DataCell(Text('13-02-2024')),
+                DataCell(
+                  DropdownButton<String>(
+                    alignment: Alignment.center,
+                    hint: Text('--Pilih Alur Proses--',
+                        style: TextStyle(fontSize: 15)),
+                    value: selectedValueAlurProses,
+                    borderRadius: BorderRadius.circular(5),
+                    focusColor: Colors.white,
+                    items: dropdownItemsAlurProses.map((String value) {
+                      return DropdownMenuItem<String>(
+                          value: value, child: Text(value));
+                    }).toList(),
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedValueAlurProses = newValue;
+                      });
+                    },
+                    dropdownColor: Colors.white,
+                  ),
+                ),
+                DataCell(
+                  DropdownButton<String>(
+                    alignment: Alignment.center,
+                    hint: Text('--Pilih Kategori--',
+                        style: TextStyle(fontSize: 15)),
+                    value: selectedValueKategori,
+                    borderRadius: BorderRadius.circular(5),
+                    focusColor: Colors.white,
+                    items: dropdownItemsKategori.map((String value) {
+                      return DropdownMenuItem<String>(
+                          value: value, child: Text(value));
+                    }).toList(),
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedValueKategori = newValue;
+                      });
+                    },
+                    dropdownColor: Colors.white,
+                  ),
+                ),
+                DataCell(Container(
+                  height: 100,
+                  width: 300,
+                  // decoration: BoxDecoration(
+                  //   border:
+                  //       Border.all(color: Color.fromARGB(255, 177, 177, 177)),
+                  // ),
+                  child: TextField(
+                    maxLines: 5,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.symmetric(
+                          vertical: screenHeight * 0.005,
+                          horizontal: screenWidth * 0.005),
+                    ),
+                  ),
+                )),
               ]),
             ],
           ),
@@ -476,10 +626,10 @@ class _PerencanaanState extends State<Perencanaan> {
 
   Widget _buildViewTable() {
     return DataTable(
-      columnSpacing: 0,
-      horizontalMargin: 100,
+      columnSpacing: 70.0,
+      horizontalMargin: 90.0,
       columns: [
-        DataColumn(label: Text('Detail Kerusakan')),
+        DataColumn(label: Text('Item')),
         DataColumn(label: Text('Item')),
         DataColumn(label: Text('Keterangan')),
       ],
