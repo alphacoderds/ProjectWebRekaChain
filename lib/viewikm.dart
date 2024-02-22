@@ -1,9 +1,7 @@
 import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/inputdokumen.dart';
-import 'package:RekaChain/inputkebutuhan%20material.dart';
 import 'package:RekaChain/login.dart';
-import 'package:RekaChain/notification.dart';
 import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:RekaChain/reportsttpp.dart';
@@ -129,17 +127,24 @@ class _ViewkmState extends State<Viewkm> {
                           ),
                           IconButton(
                             icon: Icon(
+                              Icons
+                                  .file_download_outlined, // Tambahkan ikon unduh di sini
+                              size:
+                                  33, // Sesuaikan ukuran ikon unduh dengan ikon lonceng
+                              color: Color.fromARGB(255, 255, 255,
+                                  255), // Sesuaikan warna ikon unduh
+                            ),
+                            onPressed: () {
+                              // Logika ketika ikon unduh ditekan
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(
                               Icons.notifications_active,
                               size: 33,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Notifikasi()),
-                              );
-                            },
+                            onPressed: () {},
                           ),
                           IconButton(
                             icon: Icon(
@@ -186,7 +191,7 @@ class _ViewkmState extends State<Viewkm> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => InputMaterial()),
+                  MaterialPageRoute(builder: (context) => InputDokumen()),
                 );
               },
               style: ElevatedButton.styleFrom(
@@ -215,8 +220,8 @@ class _ViewkmState extends State<Viewkm> {
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: DataTable(
-            columnSpacing: 200.0,
-            horizontalMargin: 50.0,
+            columnSpacing: 70.0, // Sesuaikan jarak antara kolom di sini
+            horizontalMargin: 70.0, // Sesuaikan jarak antara kolom di sini
             columns: [
               DataColumn(
                 label: Container(
@@ -229,80 +234,51 @@ class _ViewkmState extends State<Viewkm> {
               ),
               DataColumn(
                 label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Kode Material',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                    ],
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 20.0), // Sesuaikan jarak antara kolom di sini
+                  child: Text(
+                    'Kode Material',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ),
               ),
               DataColumn(
                 label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Deskripsi',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                    ],
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 20.0), // Sesuaikan jarak antara kolom di sini
+                  child: Text(
+                    'Deskripsi',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ),
               ),
               DataColumn(
                 label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'SpecTech/Material',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 20.0), // Sesuaikan jarak antara kolom di sini
+                  child: Text(
+                    'SpecTech/Material',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ),
               ),
               DataColumn(
                 label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'QTY',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 20.0), // Sesuaikan jarak antara kolom di sini
+                  child: Text(
+                    'QTY',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ),
               ),
               DataColumn(
                 label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Unit',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 20.0), // Sesuaikan jarak antara kolom di sini
+                  child: Text(
+                    'Unit',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ),
               ),
@@ -317,16 +293,10 @@ class _ViewkmState extends State<Viewkm> {
                   alignment: Alignment.center,
                   child: Text('Pdf 1'),
                 )),
-                DataCell(
-                  IconButton(
-                    icon: Icon(Icons.download),
-                    onPressed: () {
-                      setState(() {
-                        isViewVisible = !isViewVisible;
-                      });
-                    },
-                  ),
-                ),
+                DataCell(Container(
+                  alignment: Alignment.center,
+                  child: Text('Pdf 2'),
+                )),
                 DataCell(Container(
                   alignment: Alignment.center,
                   child: Text('Pdf 2'),
@@ -357,16 +327,10 @@ class _ViewkmState extends State<Viewkm> {
                   alignment: Alignment.center,
                   child: Text('Pdf 2'),
                 )),
-                DataCell(
-                  IconButton(
-                    icon: Icon(Icons.download),
-                    onPressed: () {
-                      setState(() {
-                        isViewVisible = !isViewVisible;
-                      });
-                    },
-                  ),
-                ),
+                DataCell(Container(
+                  alignment: Alignment.center,
+                  child: Text('Pdf 2'),
+                )),
                 DataCell(Container(
                   alignment: Alignment.center,
                   child: Text('Pdf 2'),
@@ -551,7 +515,7 @@ class _ViewkmState extends State<Viewkm> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => InputMaterial(),
+                builder: (context) => InputDokumen(),
               ),
             );
           } else if (index == 5) {
@@ -561,6 +525,7 @@ class _ViewkmState extends State<Viewkm> {
                 builder: (context) => InputDokumen(),
               ),
             );
+            Navigator.pop(context);
           }
         }
       },
