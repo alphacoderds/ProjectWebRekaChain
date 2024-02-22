@@ -1,5 +1,6 @@
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/inputdokumen.dart';
+import 'package:RekaChain/login.dart';
 import 'package:RekaChain/logout.dart';
 import 'package:RekaChain/notification.dart';
 import 'package:RekaChain/profile.dart';
@@ -26,7 +27,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+<<<<<<< HEAD
       home: Perencanaan(),
+=======
+      home: LoginPage(),
+>>>>>>> 5e7de76539a0438c54954fd4a306fe93b34f1217
     );
   }
 }

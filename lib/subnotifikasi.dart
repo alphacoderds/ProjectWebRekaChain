@@ -39,75 +39,88 @@ class _SubnotifikasiState extends State<Subnotifikasi> {
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
 
-    return Scaffold(
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildDrawer(),
-          Expanded(
-            child: Scaffold(
-              appBar: AppBar(
-                backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-                toolbarHeight: 65,
-                title: Padding(
-                  padding: EdgeInsets.only(left: screenHeight * 0.02),
-                  child: Text(
-                    'Notifications',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Donegal One',
-                      color: Colors.white,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(
+              builder: (context) => Subnotifikasi(),
+            );
+          default:
+            return null;
+        }
+      },
+      home: Scaffold(
+        body: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildDrawer(),
+            Expanded(
+              child: Scaffold(
+                appBar: AppBar(
+                  backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+                  toolbarHeight: 65,
+                  title: Padding(
+                    padding: EdgeInsets.only(left: screenHeight * 0.02),
+                    child: Text(
+                      'Notifications',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Donegal One',
+                        color: Colors.white,
+                      ),
                     ),
                   ),
+                  actions: [
+                    Padding(
+                      padding: EdgeInsets.only(right: screenHeight * 0.13),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: screenWidth * 0.005,
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.notifications_active,
+                              size: 35,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Notifikasi()),
+                              );
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.account_circle_rounded,
+                              size: 38,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Profile()),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
-                actions: [
-                  Padding(
-                    padding: EdgeInsets.only(right: screenHeight * 0.13),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: screenWidth * 0.005,
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.notifications_active,
-                            size: 35,
-                            color: Color.fromARGB(255, 255, 255, 255),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Notifikasi()),
-                            );
-                          },
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.account_circle_rounded,
-                            size: 38,
-                            color: Color.fromARGB(255, 255, 255, 255),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Profile()),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                body: _ListView(),
               ),
-              body: _ListView(),
             ),
-          ),
-        ],
+          ],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 
