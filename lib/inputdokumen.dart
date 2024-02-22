@@ -461,7 +461,6 @@ class _InputDokumenState extends State<InputDokumen> {
                 builder: (context) => InputDokumen(),
               ),
             );
-            Navigator.pop(context);
           }
         }
       },

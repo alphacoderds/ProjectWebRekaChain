@@ -856,7 +856,6 @@ class _PerencanaanState extends State<Perencanaan> {
                 builder: (context) => InputDokumen(),
               ),
             );
-            Navigator.pop(context);
           }
         }
       },

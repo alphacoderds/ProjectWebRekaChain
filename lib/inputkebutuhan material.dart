@@ -491,7 +491,6 @@ class _InputMaterialState extends State<InputMaterial> {
                 builder: (context) => InputDokumen(),
               ),
             );
-            Navigator.pop(context);
           }
         }
       },

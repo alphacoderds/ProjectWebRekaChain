@@ -19,10 +19,6 @@ class _ProfileState extends State<Profile> {
             return MaterialPageRoute(
               builder: (context) => const Profile(),
             );
-          case '/editprofile':
-            return MaterialPageRoute(
-              builder: (context) => const EditProfile(),
-            );
           default:
             return null;
         }
