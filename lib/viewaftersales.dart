@@ -7,16 +7,13 @@ import 'package:RekaChain/profile.dart';
 import 'package:RekaChain/reportsttpp.dart';
 import 'package:flutter/material.dart';
 
-class ViewUpload extends StatefulWidget {
+class ViewAfterSales extends StatefulWidget {
   @override
-  State<ViewUpload> createState() => _ViewUploadState();
+  State<ViewAfterSales> createState() => _ViewAfterSalesState();
 }
 
-class _ViewUploadState extends State<ViewUpload> {
+class _ViewAfterSalesState extends State<ViewAfterSales> {
   int _selectedIndex = 0;
-  bool isViewVisible = false;
-  late double screenWidth = MediaQuery.of(context).size.width;
-  late double screenHeight = MediaQuery.of(context).size.height;
 
   List<String> dropdownItems = [
     '--Pilih Nama/Kode Project--',
@@ -25,15 +22,22 @@ class _ViewUploadState extends State<ViewUpload> {
   ];
   String? selectedValue;
 
+  bool isViewVisible = false;
+  late double screenWidth;
+  late double screenHeight;
+
   @override
   Widget build(BuildContext context) {
+    screenWidth = MediaQuery.of(context).size.width;
+    screenHeight = MediaQuery.of(context).size.height;
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case '/':
             return MaterialPageRoute(
-              builder: (context) => ViewUpload(),
+              builder: (context) => ViewAfterSales(),
             );
           default:
             return null;
@@ -50,68 +54,34 @@ class _ViewUploadState extends State<ViewUpload> {
                   backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
                   toolbarHeight: 65,
                   title: Padding(
-                    padding: EdgeInsets.only(left: screenHeight * 0.02, top: 2),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    padding: EdgeInsets.only(left: screenHeight * 0.02),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 7),
-                          width: 250,
+                          width: 300,
+                          alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            color: Colors.white,
                             border: Border.all(),
                             borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(width: 8),
-                              Expanded(
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: 'Nama Project',
-                                  ),
-                                ),
-                              ),
-                              IconButton(
-                                icon: Icon(
-                                  Icons.search,
-                                  size: 30,
-                                ),
-                                onPressed: () {},
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(width: 20),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 7),
-                          width: 250,
-                          decoration: BoxDecoration(
                             color: Colors.white,
-                            border: Border.all(),
-                            borderRadius: BorderRadius.circular(5),
                           ),
-                          child: Row(
-                            children: [
-                              SizedBox(width: 8),
-                              Expanded(
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: 'Kode Lot',
-                                  ),
-                                ),
-                              ),
-                              IconButton(
-                                icon: Icon(
-                                  Icons.search,
-                                  size: 30,
-                                ),
-                                onPressed: () {},
-                              ),
-                            ],
+                          child: DropdownButton<String>(
+                            alignment: Alignment.center,
+                            hint: Text('--Pilih Nama/Kode Project--'),
+                            value: selectedValue,
+                            borderRadius: BorderRadius.circular(5),
+                            items: dropdownItems.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (newValue) {
+                              setState(() {
+                                selectedValue = newValue;
+                              });
+                            },
                           ),
                         ),
                       ],
@@ -119,7 +89,7 @@ class _ViewUploadState extends State<ViewUpload> {
                   ),
                   actions: [
                     Padding(
-                      padding: EdgeInsets.only(right: screenHeight * 0.11),
+                      padding: EdgeInsets.only(right: screenHeight * 0.13),
                       child: Row(
                         children: [
                           SizedBox(
@@ -127,7 +97,7 @@ class _ViewUploadState extends State<ViewUpload> {
                           ),
                           IconButton(
                             icon: Icon(
-                              Icons.notifications_active,
+                              Icons.download,
                               size: 33,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
@@ -135,8 +105,16 @@ class _ViewUploadState extends State<ViewUpload> {
                           ),
                           IconButton(
                             icon: Icon(
-                              Icons.account_circle_rounded,
+                              Icons.notifications_active,
                               size: 35,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {},
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.account_circle_rounded,
+                              size: 38,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
                             onPressed: () {
@@ -152,46 +130,37 @@ class _ViewUploadState extends State<ViewUpload> {
                     )
                   ],
                 ),
-                body: Center(
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                    margin: EdgeInsets.all(50.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.circular(5.0),
+                body: Container(
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: screenHeight * 0.01),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Center(
+                          child: Container(
+                            width: screenWidth * 0.63,
+                            height: screenHeight * 0.70,
+                            padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                            margin: EdgeInsets.all(50.0),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black),
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            child: _buildMainTable(),
+                          ),
+                        ),
+                      ],
                     ),
-                    child: _buildMainTable(),
                   ),
                 ),
               ),
             ),
           ],
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-        floatingActionButton: Padding(
-          padding: EdgeInsets.only(right: 0.01, bottom: 8),
-          child: SizedBox(
-            width: 100.0,
-            height: 40.0,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => InputDokumen()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                primary: const Color.fromRGBO(43, 56, 86, 1),
-              ),
-              child: Text(
-                'Kembali',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       ),
     );
   }
@@ -201,34 +170,42 @@ class _ViewUploadState extends State<ViewUpload> {
       scrollDirection: Axis.horizontal,
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          minHeight: MediaQuery.of(context).size.height - 50,
+          minHeight: MediaQuery.of(context).size.height - 200,
         ),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: DataTable(
-            columnSpacing: 200.0,
-            horizontalMargin: 50.0,
+            columnSpacing: 100.0,
+            horizontalMargin: 70.0,
             columns: [
               DataColumn(
                 label: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 1.0),
+                  child: Text(
+                    'No',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Detail Kerusakan',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.0),
                   child: Text(
-                    'No.',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                ),
-              ),
-              DataColumn(
-                label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Nama Dokumen',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                    ],
+                    'Item',
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -238,26 +215,8 @@ class _ViewUploadState extends State<ViewUpload> {
                   child: Row(
                     children: [
                       Text(
-                        'Unduh',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              DataColumn(
-                label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Lihat',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
+                        'Keterangan',
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -266,68 +225,10 @@ class _ViewUploadState extends State<ViewUpload> {
             ],
             rows: [
               DataRow(cells: [
-                DataCell(Container(
-                  alignment: Alignment.center,
-                  child: Text('1'),
-                )),
-                DataCell(Container(
-                  alignment: Alignment.center,
-                  child: Text('Pdf 1'),
-                )),
-                DataCell(
-                  IconButton(
-                    icon: Icon(Icons.download),
-                    onPressed: () {
-                      setState(() {
-                        isViewVisible = !isViewVisible;
-                      });
-                    },
-                  ),
-                ),
-                DataCell(
-                  Center(
-                    child: IconButton(
-                      icon: Icon(Icons.visibility),
-                      onPressed: () {
-                        setState(() {
-                          isViewVisible = !isViewVisible;
-                        });
-                      },
-                    ),
-                  ),
-                ),
-              ]),
-              DataRow(cells: [
-                DataCell(Container(
-                  alignment: Alignment.center,
-                  child: Text('2'),
-                )),
-                DataCell(Container(
-                  alignment: Alignment.center,
-                  child: Text('Pdf 2'),
-                )),
-                DataCell(
-                  IconButton(
-                    icon: Icon(Icons.download),
-                    onPressed: () {
-                      setState(() {
-                        isViewVisible = !isViewVisible;
-                      });
-                    },
-                  ),
-                ),
-                DataCell(
-                  Center(
-                    child: IconButton(
-                      icon: Icon(Icons.visibility),
-                      onPressed: () {
-                        setState(() {
-                          isViewVisible = !isViewVisible;
-                        });
-                      },
-                    ),
-                  ),
-                ),
+                DataCell(Text('1')),
+                DataCell(Text('AA21 1/24')),
+                DataCell(Text('13-02-2024')),
+                DataCell(Text('13-02-2024')),
               ]),
             ],
           ),
@@ -436,6 +337,7 @@ class _ViewUploadState extends State<ViewUpload> {
       leading: Icon(
         icon,
         size: size.toDouble(),
+        color: Color.fromARGB(255, 6, 37, 55),
       ),
       onTap: () {
         if (index == 7) {
