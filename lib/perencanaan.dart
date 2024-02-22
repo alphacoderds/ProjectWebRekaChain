@@ -25,6 +25,7 @@ class _PerencanaanState extends State<Perencanaan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 244, 249, 255),
       body: Padding(
         padding: EdgeInsets.only(left: screenWidth * 0.0),
         child: Row(

@@ -97,6 +97,7 @@ class _AfterSalesState extends State<Dashboard> {
 
   Widget _buildDrawer() {
     return Drawer(
+      backgroundColor: Color.fromARGB(255, 244, 249, 255),
       child: ListView(
         children: [
           DrawerHeader(

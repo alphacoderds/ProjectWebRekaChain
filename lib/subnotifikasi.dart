@@ -18,12 +18,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Notifikasi extends StatefulWidget {
+class Subnotifikasi extends StatefulWidget {
   @override
-  State<Notifikasi> createState() => _NotifikasiState();
+  State<Subnotifikasi> createState() => _SubnotifikasiState();
 }
 
-class _NotifikasiState extends State<Notifikasi> {
+class _SubnotifikasiState extends State<Subnotifikasi> {
   int _selectedIndex = 0;
   late double screenWidth;
   late double screenHeight;
@@ -299,7 +299,7 @@ Widget message(int index) {
         Text(
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
-          'Panel ${index + 1}',
+          'Panel ${index + 1} Sub ${index + 1}',
           style: TextStyle(
             fontSize: 17,
             color: Colors.black,

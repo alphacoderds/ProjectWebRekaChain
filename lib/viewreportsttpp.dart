@@ -298,6 +298,7 @@ class _ViewReportSTTPState extends State<ViewReportSTTPP> {
 
   Widget _buildDrawer() {
     return Drawer(
+      backgroundColor: Color.fromARGB(255, 244, 249, 255),
       child: ListView(
         children: [
           DrawerHeader(

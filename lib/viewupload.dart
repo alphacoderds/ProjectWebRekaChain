@@ -369,6 +369,7 @@ class _ViewUploadState extends State<ViewUpload> {
 
   Widget _buildDrawer() {
     return Drawer(
+      backgroundColor: Color.fromARGB(255, 244, 249, 255),
       child: ListView(
         children: [
           DrawerHeader(
