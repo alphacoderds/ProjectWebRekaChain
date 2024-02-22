@@ -1,6 +1,7 @@
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/profile.dart';
+import 'package:RekaChain/reportsttpp.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -31,50 +32,63 @@ class _AfterSalesState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildDrawer(),
-          Expanded(
-            child: Scaffold(
-              appBar: AppBar(
-                backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-                toolbarHeight: 80,
-                actions: [
-                  Padding(
-                    padding: EdgeInsets.only(right: screenHeight * 0.13),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: screenWidth * 0.005,
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.notifications_active,
-                            size: 35,
-                            color: Color.fromARGB(255, 255, 255, 255),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(
+              builder: (context) => Dashboard(),
+            );
+          default:
+            return null;
+        }
+      },
+      home: Scaffold(
+        body: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildDrawer(),
+            Expanded(
+              child: Scaffold(
+                appBar: AppBar(
+                  backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+                  toolbarHeight: 80,
+                  actions: [
+                    Padding(
+                      padding: EdgeInsets.only(right: screenHeight * 0.13),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: screenWidth * 0.005,
                           ),
-                          onPressed: () {},
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.account_circle_rounded,
-                            size: 38,
-                            color: Color.fromARGB(255, 255, 255, 255),
+                          IconButton(
+                            icon: Icon(
+                              Icons.notifications_active,
+                              size: 35,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {},
                           ),
-                          onPressed: () {},
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                          IconButton(
+                            icon: Icon(
+                              Icons.account_circle_rounded,
+                              size: 38,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 

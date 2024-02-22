@@ -26,12 +26,25 @@ class _LoginPageState extends State<LoginPage> {
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
 
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(
+              builder: (context) => LoginPage(),
+            );
+          default:
+            return null;
+        }
+      },
+      home: Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+            color: Colors.white,
+          ),
+          child: _page(),
         ),
-        child: _page(),
       ),
     );
   }

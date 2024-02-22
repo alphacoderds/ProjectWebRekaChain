@@ -1,24 +1,10 @@
 import 'dart:html';
 
 import 'package:RekaChain/dasboard.dart';
+import 'package:RekaChain/inputdokumen.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:flutter/material.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Responsive Sidebar',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: ReportSTTPP(),
-    );
-  }
-}
 
 class ReportSTTPP extends StatefulWidget {
   @override
@@ -40,95 +26,109 @@ class _ReportSTTPState extends State<ReportSTTPP> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildDrawer(),
-          Expanded(
-            child: Scaffold(
-              appBar: AppBar(
-                backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-                toolbarHeight: 65,
-                title: Padding(
-                  padding: EdgeInsets.only(left: screenHeight * 0.02),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 300,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          border: Border.all(),
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.white,
-                        ),
-                        child: DropdownButton<String>(
-                          alignment: Alignment.center,
-                          hint: Text('--Pilih Nama/Kode Project--'),
-                          value: selectedValue,
-                          borderRadius: BorderRadius.circular(5),
-                          items: dropdownItems.map((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            setState(() {
-                              selectedValue = newValue;
-                            });
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                actions: [
-                  Padding(
-                    padding: EdgeInsets.only(right: screenHeight * 0.13),
-                    child: Row(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(
+              builder: (context) => ReportSTTPP(),
+            );
+          default:
+            return null;
+        }
+      },
+      home: Scaffold(
+        body: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildDrawer(),
+            Expanded(
+              child: Scaffold(
+                appBar: AppBar(
+                  backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+                  toolbarHeight: 65,
+                  title: Padding(
+                    padding: EdgeInsets.only(left: screenHeight * 0.02),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          width: screenWidth * 0.005,
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.notifications_active,
-                            size: 35,
-                            color: Color.fromARGB(255, 255, 255, 255),
+                        Container(
+                          width: 300,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(5),
+                            color: Colors.white,
                           ),
-                          onPressed: () {},
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.account_circle_rounded,
-                            size: 38,
-                            color: Color.fromARGB(255, 255, 255, 255),
+                          child: DropdownButton<String>(
+                            alignment: Alignment.center,
+                            hint: Text('--Pilih Nama/Kode Project--'),
+                            value: selectedValue,
+                            borderRadius: BorderRadius.circular(5),
+                            items: dropdownItems.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (newValue) {
+                              setState(() {
+                                selectedValue = newValue;
+                              });
+                            },
                           ),
-                          onPressed: () {},
                         ),
                       ],
                     ),
-                  )
-                ],
-              ),
-              body: Center(
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                  margin: EdgeInsets.all(50.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                    borderRadius: BorderRadius.circular(5.0),
                   ),
-                  child: isViewVisible ? _buildViewTable() : _buildMainTable(),
+                  actions: [
+                    Padding(
+                      padding: EdgeInsets.only(right: screenHeight * 0.13),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: screenWidth * 0.005,
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.notifications_active,
+                              size: 35,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {},
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.account_circle_rounded,
+                              size: 38,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                body: Center(
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                    margin: EdgeInsets.all(50.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    child:
+                        isViewVisible ? _buildViewTable() : _buildMainTable(),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 
