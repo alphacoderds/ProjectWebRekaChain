@@ -1,8 +1,10 @@
 import 'dart:html';
 
+import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/inputdokumen.dart';
 import 'package:RekaChain/login.dart';
+import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:flutter/material.dart';
 
@@ -343,7 +345,7 @@ class _ReportSTTPState extends State<ReportSTTPP> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ReportSTTPP(),
+                builder: (context) => AfterSales(),
               ),
             );
           } else {
@@ -389,7 +391,45 @@ class _ReportSTTPState extends State<ReportSTTPP> {
         size: size.toDouble(),
         color: Color.fromARGB(255, 6, 37, 55),
       ),
-      onTap: () {},
+      onTap: () {
+        if (index == 7) {
+          _showLogoutDialog();
+        } else {
+          setState(() {
+            _selectedIndex = index;
+          });
+          if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ReportSTTPP(),
+              ),
+            );
+          } else if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Perencanaan(),
+              ),
+            );
+          } else if (index == 4) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => InputDokumen(),
+              ),
+            );
+          } else if (index == 5) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => InputDokumen(),
+              ),
+            );
+            Navigator.pop(context);
+          }
+        }
+      },
     );
   }
 
