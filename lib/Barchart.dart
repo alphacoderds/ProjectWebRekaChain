@@ -1,4 +1,4 @@
-import 'package:RekaChain/AfterSales1.dart';
+import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/profile.dart';
