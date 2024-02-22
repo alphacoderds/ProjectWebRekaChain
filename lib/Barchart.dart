@@ -142,6 +142,7 @@ class _barchatState extends State<barchat> {
           Icon(
             icon ?? Icons.input,
             size: 35,
+            color: Color.fromARGB(255, 6, 37, 55),
           ),
           SizedBox(width: 12),
           Text('Input Data'),

@@ -1,6 +1,7 @@
 import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/inputdokumen.dart';
+import 'package:RekaChain/inputkebutuhan%20material.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
@@ -178,7 +179,7 @@ class _ViewkmState extends State<Viewkm> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => InputDokumen()),
+                  MaterialPageRoute(builder: (context) => InputMaterial()),
                 );
               },
               style: ElevatedButton.styleFrom(

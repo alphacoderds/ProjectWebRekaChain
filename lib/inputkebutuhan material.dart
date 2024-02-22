@@ -3,10 +3,12 @@ import 'dart:html';
 import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/editprofile.dart';
+import 'package:RekaChain/inputdokumen.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:RekaChain/reportsttpp.dart';
+import 'package:RekaChain/viewikm.dart';
 import 'package:RekaChain/viewupload.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -79,14 +81,23 @@ class _InputMaterialState extends State<InputMaterial> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ViewUpload()),
+                                    builder: (context) => Viewkm()),
                               );
                             },
-                            style: ElevatedButton.styleFrom(
-                              primary: Color.fromARGB(255, 89, 100, 122),
-                              onPrimary: Colors.white,
+                            child: Text(
+                              'View',
+                              style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            child: Text("View"),
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor:
+                                  Color.fromARGB(255, 89, 100, 122),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 3),
+                            ),
                           ),
                           SizedBox(width: 16),
                           IconButton(
@@ -95,7 +106,13 @@ class _InputMaterialState extends State<InputMaterial> {
                               size: 33,
                               color: Colors.white,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Profile()),
+                              );
+                            },
                           ),
                           IconButton(
                             icon: Icon(
@@ -296,7 +313,9 @@ class _InputMaterialState extends State<InputMaterial> {
                                                     MainAxisAlignment.end,
                                                 children: [
                                                   ElevatedButton(
-                                                    onPressed: () {},
+                                                    onPressed: () {
+                                                      _showFinishDialog();
+                                                    },
                                                     style: ElevatedButton
                                                         .styleFrom(
                                                       primary:
@@ -371,6 +390,7 @@ class _InputMaterialState extends State<InputMaterial> {
       leading: Icon(
         icon,
         size: size.toDouble(),
+        color: Color.fromARGB(255, 6, 37, 55),
       ),
       onTap: () {
         if (index == 7) {
@@ -408,6 +428,7 @@ class _InputMaterialState extends State<InputMaterial> {
           Icon(
             icon ?? Icons.input,
             size: 35,
+            color: Color.fromARGB(255, 6, 37, 55),
           ),
           SizedBox(width: 12),
           Text('Input Data'),
@@ -466,12 +487,45 @@ class _InputMaterialState extends State<InputMaterial> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => InputMaterial(),
+                builder: (context) => InputDokumen(),
               ),
             );
             Navigator.pop(context);
           }
         }
+      },
+    );
+  }
+
+  void _showFinishDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.symmetric(
+              horizontal: 20, vertical: 10), // Adjust padding here
+          backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+          content: Container(
+            width: MediaQuery.of(context).size.width * 0.7, // Adjust width here
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "Data Anda Telah Tersimpan !",
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(height: 20),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("Kembali", style: TextStyle(color: Colors.white)),
+                ),
+              ],
+            ),
+          ),
+        );
       },
     );
   }

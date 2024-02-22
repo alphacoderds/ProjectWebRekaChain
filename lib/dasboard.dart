@@ -1,26 +1,13 @@
 import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/inputdokumen.dart';
+import 'package:RekaChain/inputkebutuhan%20material.dart';
 import 'package:RekaChain/login.dart';
+import 'package:RekaChain/notification.dart';
 import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:RekaChain/reportsttpp.dart';
 import 'package:flutter/material.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Responsive Sidebar',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Dashboard(),
-    );
-  }
-}
 
 class Dashboard extends StatefulWidget {
   @override
@@ -59,7 +46,7 @@ class _AfterSalesState extends State<Dashboard> {
                   toolbarHeight: 65,
                   actions: [
                     Padding(
-                      padding: EdgeInsets.only(right: screenHeight * 0.13),
+                      padding: EdgeInsets.only(right: screenHeight * 0.11),
                       child: Row(
                         children: [
                           SizedBox(
@@ -68,18 +55,32 @@ class _AfterSalesState extends State<Dashboard> {
                           IconButton(
                             icon: Icon(
                               Icons.notifications_active,
-                              size: 35,
+                              size: 33,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Notifikasi(),
+                                ),
+                              );
+                            },
                           ),
                           IconButton(
                             icon: Icon(
                               Icons.account_circle_rounded,
-                              size: 38,
+                              size: 35,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Profile(),
+                                ),
+                              );
+                            },
                           ),
                         ],
                       ),
@@ -223,7 +224,7 @@ class _AfterSalesState extends State<Dashboard> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => InputDokumen(),
+                builder: (context) => InputMaterial(),
               ),
             );
           } else if (index == 5) {

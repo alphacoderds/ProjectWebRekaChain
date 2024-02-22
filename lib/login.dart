@@ -1,3 +1,4 @@
+import 'package:RekaChain/dasboard.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -170,7 +171,14 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _loginBtn() {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Dashboard(),
+          ),
+        );
+      },
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
         backgroundColor: const Color.fromRGBO(43, 56, 86, 1),

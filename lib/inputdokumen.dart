@@ -72,18 +72,21 @@ class _InputDokumenState extends State<InputDokumen> {
                         children: [
                           SizedBox(width: 16),
                           ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ViewUpload()),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              primary: Color.fromARGB(255, 89, 100, 122),
-                              onPrimary: Colors.white,
+                            onPressed: () {},
+                            child: Text(
+                              'Unduhan',
+                              style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            child: Text("Unduhan"),
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor:
+                                  Color.fromARGB(255, 89, 100, 122),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 3),
+                            ),
                           ),
                           SizedBox(width: 16),
                           IconButton(
@@ -344,6 +347,7 @@ class _InputDokumenState extends State<InputDokumen> {
       leading: Icon(
         icon,
         size: size.toDouble(),
+        color: Color.fromARGB(255, 6, 37, 55),
       ),
       onTap: () {
         if (index == 7) {
@@ -381,6 +385,7 @@ class _InputDokumenState extends State<InputDokumen> {
           Icon(
             icon ?? Icons.input,
             size: 35,
+            color: Color.fromARGB(255, 6, 37, 55),
           ),
           SizedBox(width: 12),
           Text('Input Data'),
