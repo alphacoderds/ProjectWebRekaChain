@@ -1,22 +1,13 @@
+import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
+import 'package:RekaChain/inputdokumen.dart';
+import 'package:RekaChain/inputkebutuhan%20material.dart';
 import 'package:RekaChain/login.dart';
+import 'package:RekaChain/notification.dart';
+import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
+import 'package:RekaChain/reportsttpp.dart';
 import 'package:flutter/material.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Responsive Sidebar',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Dashboard(),
-    );
-  }
-}
 
 class Dashboard extends StatefulWidget {
   @override
@@ -31,55 +22,83 @@ class _AfterSalesState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildDrawer(),
-          Expanded(
-            child: Scaffold(
-              appBar: AppBar(
-                backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-                toolbarHeight: 80,
-                actions: [
-                  Padding(
-                    padding: EdgeInsets.only(right: screenHeight * 0.13),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: screenWidth * 0.005,
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.notifications_active,
-                            size: 35,
-                            color: Color.fromARGB(255, 255, 255, 255),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(
+              builder: (context) => Dashboard(),
+            );
+          default:
+            return null;
+        }
+      },
+      home: Scaffold(
+        body: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildDrawer(),
+            Expanded(
+              child: Scaffold(
+                appBar: AppBar(
+                  backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+                  toolbarHeight: 65,
+                  actions: [
+                    Padding(
+                      padding: EdgeInsets.only(right: screenHeight * 0.11),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: screenWidth * 0.005,
                           ),
-                          onPressed: () {},
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.account_circle_rounded,
-                            size: 38,
-                            color: Color.fromARGB(255, 255, 255, 255),
+                          IconButton(
+                            icon: Icon(
+                              Icons.notifications_active,
+                              size: 33,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Notifikasi(),
+                                ),
+                              );
+                            },
                           ),
-                          onPressed: () {},
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                          IconButton(
+                            icon: Icon(
+                              Icons.account_circle_rounded,
+                              size: 35,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Profile(),
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 
   Widget _buildDrawer() {
     return Drawer(
+      backgroundColor: Color.fromARGB(255, 244, 249, 255),
       child: ListView(
         children: [
           DrawerHeader(
@@ -134,7 +153,7 @@ class _AfterSalesState extends State<Dashboard> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Dashboard(),
+                builder: (context) => AfterSales(),
               ),
             );
           } else {
@@ -180,7 +199,45 @@ class _AfterSalesState extends State<Dashboard> {
         size: size.toDouble(),
         color: Color.fromARGB(255, 6, 37, 55),
       ),
-      onTap: () {},
+      onTap: () {
+        if (index == 7) {
+          _showLogoutDialog();
+        } else {
+          setState(() {
+            _selectedIndex = index;
+          });
+          if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ReportSTTPP(),
+              ),
+            );
+          } else if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Perencanaan(),
+              ),
+            );
+          } else if (index == 4) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => InputMaterial(),
+              ),
+            );
+          } else if (index == 5) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => InputDokumen(),
+              ),
+            );
+            Navigator.pop(context);
+          }
+        }
+      },
     );
   }
 

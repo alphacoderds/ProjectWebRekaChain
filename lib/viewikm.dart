@@ -1,24 +1,24 @@
-import 'dart:html';
-
 import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/inputdokumen.dart';
+import 'package:RekaChain/inputkebutuhan%20material.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
+import 'package:RekaChain/reportsttpp.dart';
 import 'package:flutter/material.dart';
 
-class ReportSTTPP extends StatefulWidget {
+class Viewkm extends StatefulWidget {
   @override
-  State<ReportSTTPP> createState() => _ReportSTTPState();
+  State<Viewkm> createState() => _ViewkmState();
 }
 
-class _ReportSTTPState extends State<ReportSTTPP> {
+class _ViewkmState extends State<Viewkm> {
+  int _selectedIndex = 0;
   bool isViewVisible = false;
   late double screenWidth = MediaQuery.of(context).size.width;
   late double screenHeight = MediaQuery.of(context).size.height;
 
-  int _selectedIndex = 0;
   List<String> dropdownItems = [
     '--Pilih Nama/Kode Project--',
     'R22-PT. Nugraha Jasa',
@@ -34,7 +34,7 @@ class _ReportSTTPState extends State<ReportSTTPP> {
         switch (settings.name) {
           case '/':
             return MaterialPageRoute(
-              builder: (context) => ReportSTTPP(),
+              builder: (context) => Viewkm(),
             );
           default:
             return null;
@@ -51,34 +51,68 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                   backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
                   toolbarHeight: 65,
                   title: Padding(
-                    padding: EdgeInsets.only(left: screenHeight * 0.02),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    padding: EdgeInsets.only(left: screenHeight * 0.02, top: 2),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          width: 300,
-                          alignment: Alignment.center,
+                          padding: EdgeInsets.symmetric(horizontal: 7),
+                          width: 250,
                           decoration: BoxDecoration(
+                            color: Colors.white,
                             border: Border.all(),
                             borderRadius: BorderRadius.circular(5),
-                            color: Colors.white,
                           ),
-                          child: DropdownButton<String>(
-                            alignment: Alignment.center,
-                            hint: Text('--Pilih Nama/Kode Project--'),
-                            value: selectedValue,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(width: 8),
+                              Expanded(
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Kode Project',
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                icon: Icon(
+                                  Icons.search,
+                                  size: 30,
+                                ),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(width: 20),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 7),
+                          width: 250,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(),
                             borderRadius: BorderRadius.circular(5),
-                            items: dropdownItems.map((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            onChanged: (newValue) {
-                              setState(() {
-                                selectedValue = newValue;
-                              });
-                            },
+                          ),
+                          child: Row(
+                            children: [
+                              SizedBox(width: 8),
+                              Expanded(
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Kode Lot',
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                icon: Icon(
+                                  Icons.search,
+                                  size: 30,
+                                ),
+                                onPressed: () {},
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -86,7 +120,7 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                   ),
                   actions: [
                     Padding(
-                      padding: EdgeInsets.only(right: screenHeight * 0.13),
+                      padding: EdgeInsets.only(right: screenHeight * 0.11),
                       child: Row(
                         children: [
                           SizedBox(
@@ -95,7 +129,7 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                           IconButton(
                             icon: Icon(
                               Icons.notifications_active,
-                              size: 35,
+                              size: 33,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
                             onPressed: () {},
@@ -103,10 +137,16 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                           IconButton(
                             icon: Icon(
                               Icons.account_circle_rounded,
-                              size: 38,
+                              size: 35,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Profile()),
+                              );
+                            },
                           ),
                         ],
                       ),
@@ -129,7 +169,31 @@ class _ReportSTTPState extends State<ReportSTTPP> {
             ),
           ],
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        floatingActionButton: Padding(
+          padding: EdgeInsets.only(right: 0.01, bottom: 8),
+          child: SizedBox(
+            width: 100.0,
+            height: 40.0,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => InputMaterial()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                primary: const Color.fromRGBO(43, 56, 86, 1),
+              ),
+              child: Text(
+                'Kembali',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -162,7 +226,7 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                   child: Row(
                     children: [
                       Text(
-                        'Nama Project',
+                        'Kode Material',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
@@ -176,7 +240,7 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                   child: Row(
                     children: [
                       Text(
-                        'Kode Lot',
+                        'Deskripsi',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
@@ -191,7 +255,41 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'View',
+                        'SpecTech/Material',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'QTY',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Unit',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
@@ -210,11 +308,25 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                 )),
                 DataCell(Container(
                   alignment: Alignment.center,
-                  child: Text('Project 1'),
+                  child: Text('Pdf 1'),
+                )),
+                DataCell(
+                  IconButton(
+                    icon: Icon(Icons.download),
+                    onPressed: () {
+                      setState(() {
+                        isViewVisible = !isViewVisible;
+                      });
+                    },
+                  ),
+                ),
+                DataCell(Container(
+                  alignment: Alignment.center,
+                  child: Text('Pdf 2'),
                 )),
                 DataCell(Container(
                   alignment: Alignment.center,
-                  child: Text('AA21 1/24'),
+                  child: Text('Pdf 2'),
                 )),
                 DataCell(
                   Center(
@@ -236,11 +348,25 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                 )),
                 DataCell(Container(
                   alignment: Alignment.center,
-                  child: Text('Project 2'),
+                  child: Text('Pdf 2'),
+                )),
+                DataCell(
+                  IconButton(
+                    icon: Icon(Icons.download),
+                    onPressed: () {
+                      setState(() {
+                        isViewVisible = !isViewVisible;
+                      });
+                    },
+                  ),
+                ),
+                DataCell(Container(
+                  alignment: Alignment.center,
+                  child: Text('Pdf 2'),
                 )),
                 DataCell(Container(
                   alignment: Alignment.center,
-                  child: Text('AA22 1/26'),
+                  child: Text('Pdf 2'),
                 )),
                 DataCell(
                   Center(
@@ -268,9 +394,10 @@ class _ReportSTTPState extends State<ReportSTTPP> {
       horizontalMargin: 100,
       columns: [
         DataColumn(label: Text('No')),
-        DataColumn(label: Text('Nama Project')),
-        DataColumn(label: Text('Kode Lot')),
-        DataColumn(label: Text('View')),
+        DataColumn(label: Text('Detail Kerusakan')),
+        DataColumn(label: Text('Item')),
+        DataColumn(label: Text('Keterangan')),
+        DataColumn(label: Text('Saran')),
       ],
       rows: [
         DataRow(cells: [
@@ -278,9 +405,11 @@ class _ReportSTTPState extends State<ReportSTTPP> {
           DataCell(Text('')),
           DataCell(Text('')),
           DataCell(Text('')),
+          DataCell(Text('')),
         ]),
         DataRow(cells: [
           DataCell(Text('2')),
+          DataCell(Text('')),
           DataCell(Text('')),
           DataCell(Text('')),
           DataCell(Text('')),
@@ -291,7 +420,6 @@ class _ReportSTTPState extends State<ReportSTTPP> {
 
   Widget _buildDrawer() {
     return Drawer(
-      backgroundColor: Color.fromARGB(255, 244, 249, 255),
       child: ListView(
         children: [
           DrawerHeader(
@@ -390,7 +518,6 @@ class _ReportSTTPState extends State<ReportSTTPP> {
       leading: Icon(
         icon,
         size: size.toDouble(),
-        color: Color.fromARGB(255, 6, 37, 55),
       ),
       onTap: () {
         if (index == 7) {

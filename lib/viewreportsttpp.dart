@@ -1,24 +1,13 @@
 import 'dart:html';
 
+import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
+import 'package:RekaChain/inputdokumen.dart';
 import 'package:RekaChain/login.dart';
+import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
+import 'package:RekaChain/reportsttpp.dart';
 import 'package:flutter/material.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Responsive Sidebar',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: ViewReportSTTPP(),
-    );
-  }
-}
 
 class ViewReportSTTPP extends StatefulWidget {
   @override
@@ -40,73 +29,95 @@ class _ViewReportSTTPState extends State<ViewReportSTTPP> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildDrawer(),
-          Expanded(
-            child: Scaffold(
-              appBar: AppBar(
-                backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-                toolbarHeight: 65,
-                title: Padding(
-                  padding: EdgeInsets.only(left: screenHeight * 0.02),
-                  child: Text(
-                    'View Report STTPP',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Donegal One',
-                      color: Colors.white,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(
+              builder: (context) => ViewReportSTTPP(),
+            );
+          default:
+            return null;
+        }
+      },
+      home: Scaffold(
+        body: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildDrawer(),
+            Expanded(
+              child: Scaffold(
+                appBar: AppBar(
+                  backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+                  toolbarHeight: 65,
+                  title: Padding(
+                    padding: EdgeInsets.only(left: screenHeight * 0.02),
+                    child: Text(
+                      'View Report STTPP',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Donegal One',
+                        color: Colors.white,
+                      ),
                     ),
                   ),
+                  actions: [
+                    Padding(
+                      padding: EdgeInsets.only(right: screenHeight * 0.13),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: screenWidth * 0.005,
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.download,
+                              size: 39,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {},
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.notifications_active,
+                              size: 35,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {},
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.account_circle_rounded,
+                              size: 38,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
-                actions: [
-                  Padding(
-                    padding: EdgeInsets.only(right: screenHeight * 0.13),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: screenWidth * 0.005,
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.notifications_active,
-                            size: 35,
-                            color: Color.fromARGB(255, 255, 255, 255),
-                          ),
-                          onPressed: () {},
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.account_circle_rounded,
-                            size: 38,
-                            color: Color.fromARGB(255, 255, 255, 255),
-                          ),
-                          onPressed: () {},
-                        ),
-                      ],
+                body: Center(
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                    margin: EdgeInsets.all(50.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(5.0),
                     ),
-                  )
-                ],
-              ),
-              body: Center(
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                  margin: EdgeInsets.all(50.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                    borderRadius: BorderRadius.circular(5.0),
+                    child:
+                        isViewVisible ? _buildViewTable() : _buildMainTable(),
                   ),
-                  child: isViewVisible ? _buildViewTable() : _buildMainTable(),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 
@@ -287,6 +298,7 @@ class _ViewReportSTTPState extends State<ViewReportSTTPP> {
 
   Widget _buildDrawer() {
     return Drawer(
+      backgroundColor: Color.fromARGB(255, 244, 249, 255),
       child: ListView(
         children: [
           DrawerHeader(
@@ -341,7 +353,7 @@ class _ViewReportSTTPState extends State<ViewReportSTTPP> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ViewReportSTTPP(),
+                builder: (context) => AfterSales(),
               ),
             );
           } else {
@@ -387,7 +399,45 @@ class _ViewReportSTTPState extends State<ViewReportSTTPP> {
         size: size.toDouble(),
         color: Color.fromARGB(255, 6, 37, 55),
       ),
-      onTap: () {},
+      onTap: () {
+        if (index == 7) {
+          _showLogoutDialog();
+        } else {
+          setState(() {
+            _selectedIndex = index;
+          });
+          if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ReportSTTPP(),
+              ),
+            );
+          } else if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Perencanaan(),
+              ),
+            );
+          } else if (index == 4) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => InputDokumen(),
+              ),
+            );
+          } else if (index == 5) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => InputDokumen(),
+              ),
+            );
+            Navigator.pop(context);
+          }
+        }
+      },
     );
   }
 

@@ -1,5 +1,10 @@
 import 'package:RekaChain/dasboard.dart';
+import 'package:RekaChain/inputdokumen.dart';
+import 'package:RekaChain/inputkebutuhan%20material.dart';
 import 'package:RekaChain/login.dart';
+import 'package:RekaChain/notification.dart';
+import 'package:RekaChain/profile.dart';
+import 'package:RekaChain/reportsttpp.dart';
 import 'package:flutter/material.dart';
 
 class Perencanaan extends StatefulWidget {
@@ -38,418 +43,483 @@ class _PerencanaanState extends State<Perencanaan> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.only(left: screenWidth * 0.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildDrawer(),
-            Expanded(
-                child: Scaffold(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(
+              builder: (context) => const Perencanaan(),
+            );
+          default:
+            return null;
+        }
+      },
+      home: Scaffold(
+        backgroundColor: Color.fromARGB(255, 244, 249, 255),
+        body: Padding(
+          padding: EdgeInsets.only(left: screenWidth * 0.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildDrawer(),
+              Expanded(
+                  child: Scaffold(
 //===========================================================Appbar===========================================================//
-              appBar: AppBar(
-                backgroundColor: const Color.fromRGBO(43, 56, 86, 0.5),
-                toolbarHeight: 65,
-                title: Padding(
-                  padding: EdgeInsets.only(left: screenHeight * 0.02),
-                  child: Text(
-                    'Input Proses',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Donegal One',
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                actions: [
-                  Padding(
-                    padding: EdgeInsets.only(right: screenHeight * 0.13),
-                    child: Row(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {},
+                      appBar: AppBar(
+                        backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+                        toolbarHeight: 65,
+                        title: Padding(
+                          padding: EdgeInsets.only(left: screenHeight * 0.01),
                           child: Text(
-                            'View',
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor:
-                                const Color.fromRGBO(43, 56, 86, 1),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                            'Input Proses',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Donegal One',
+                              color: Colors.white,
                             ),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 3),
                           ),
                         ),
-                        SizedBox(
-                          width: screenWidth * 0.005,
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.notifications_active,
-                            size: 35,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {},
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.account_circle_rounded,
-                            size: 38,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {},
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                        actions: [
+                          Padding(
+                            padding:
+                                EdgeInsets.only(right: screenHeight * 0.13),
+                            child: Row(
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    'View',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    foregroundColor: Colors.white,
+                                    backgroundColor:
+                                        Color.fromARGB(255, 89, 100, 122),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 5, vertical: 3),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: screenWidth * 0.005,
+                                ),
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.notifications_active,
+                                    size: 33,
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Notifikasi(),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.account_circle_rounded,
+                                    size: 35,
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Profile(),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
 
 //===========================================================Body Tambah Project===========================================================//
-              body: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: screenHeight * 0.05,
-                      horizontal: screenWidth * 0.02),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        width: screenWidth * 0.6,
-                        height: screenHeight * 0.8,
-                        decoration: BoxDecoration(
-                            border: Border.all(),
-                            borderRadius: BorderRadius.circular(10)),
+                      body: SingleChildScrollView(
                         child: Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: screenHeight * 0.05,
-                              horizontal: screenWidth * 0.05),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Column(
+                              horizontal: screenWidth * 0.02),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Container(
+                                width: screenWidth * 0.6,
+                                height: screenHeight * 0.8,
+                                decoration: BoxDecoration(
+                                    border: Border.all(),
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: screenHeight * 0.05,
+                                      horizontal: screenWidth * 0.05),
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                          CrossAxisAlignment.center,
                                       children: [
-                                        Text(
-                                          'Project',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 15),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Project',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 15),
+                                                ),
+                                                Container(
+                                                  height: 40,
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5)),
+                                                  child: DropdownButton<String>(
+                                                    alignment: Alignment.center,
+                                                    hint: Text(
+                                                        '--Pilih Nama/Kode Project--',
+                                                        style: TextStyle(
+                                                            fontSize: 15)),
+                                                    value: selectedValue,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    items: dropdownItems
+                                                        .map((String value) {
+                                                      return DropdownMenuItem<
+                                                              String>(
+                                                          value: value,
+                                                          child: Text(value));
+                                                    }).toList(),
+                                                    onChanged: (newValue) {
+                                                      setState(() {
+                                                        selectedValue =
+                                                            newValue;
+                                                      });
+                                                    },
+                                                    dropdownColor: Colors.white,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            SizedBox(height: 40),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'No Induk Finish Produk',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 15),
+                                                ),
+                                                Container(
+                                                  height: 40,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 7),
+                                                  width: 225,
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5)),
+                                                  child: TextField(
+                                                    decoration:
+                                                        InputDecoration(),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            SizedBox(height: 120),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'No Seri Awal',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 15),
+                                                ),
+                                                Container(
+                                                  height: 40,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 15),
+                                                  width: 150,
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20)),
+                                                  child: TextField(
+                                                    decoration:
+                                                        InputDecoration(),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            SizedBox(height: 30),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Target Mulai',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 15),
+                                                ),
+                                                Container(
+                                                  height: 40,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 15),
+                                                  width: 150,
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20)),
+                                                  child: TextField(
+                                                    decoration:
+                                                        InputDecoration(),
+                                                  ),
+                                                )
+                                              ],
+                                            )
+                                          ],
                                         ),
-                                        Container(
-                                          height: 40,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(),
-                                              borderRadius:
-                                                  BorderRadius.circular(5)),
-                                          child: DropdownButton<String>(
-                                            alignment: Alignment.center,
-                                            hint: Text(
-                                                '--Pilih Nama/Kode Project--',
-                                                style: TextStyle(fontSize: 15)),
-                                            value: selectedValue,
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            items: dropdownItems
-                                                .map((String value) {
-                                              return DropdownMenuItem<String>(
-                                                  value: value,
-                                                  child: Text(value));
-                                            }).toList(),
-                                            onChanged: (newValue) {
-                                              setState(() {
-                                                selectedValue = newValue;
-                                              });
-                                            },
-                                          ),
+                                        SizedBox(width: screenWidth * 0.2),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Nama Produk',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 15),
+                                                ),
+                                                Container(
+                                                  height: 40,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 7),
+                                                  width: 225,
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5)),
+                                                  child: TextField(
+                                                    decoration:
+                                                        InputDecoration(),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            SizedBox(height: 40),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Jumlah dalam 1 lot',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 15),
+                                                ),
+                                                Container(
+                                                  height: 40,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 7),
+                                                  width: 225,
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5)),
+                                                  child: TextField(
+                                                    decoration:
+                                                        InputDecoration(),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            SizedBox(height: 30),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Kode Lot',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 15),
+                                                ),
+                                                Container(
+                                                    height: 40,
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 15),
+                                                    width: 150,
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20)),
+                                                    child: Text(''))
+                                              ],
+                                            ),
+                                            SizedBox(height: 30),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'No Seri Akhir',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 15),
+                                                ),
+                                                Container(
+                                                  height: 40,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 15),
+                                                  width: 150,
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20)),
+                                                  child: TextField(
+                                                    decoration:
+                                                        InputDecoration(),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            SizedBox(height: 30),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Target Selesai',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 15),
+                                                ),
+                                                Container(
+                                                  height: 40,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 15),
+                                                  width: 150,
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20)),
+                                                  child: TextField(
+                                                    decoration:
+                                                        InputDecoration(),
+                                                  ),
+                                                )
+                                              ],
+                                            )
+                                          ],
                                         )
                                       ],
                                     ),
-                                    SizedBox(height: 40),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'No Induk Finish Produk',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 15),
-                                        ),
-                                        Container(
-                                          height: 40,
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 7),
-                                          width: 225,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(),
-                                              borderRadius:
-                                                  BorderRadius.circular(5)),
-                                          child: TextField(
-                                            decoration: InputDecoration(),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(height: 134.1),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'No Seri Awal',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 15),
-                                        ),
-                                        Container(
-                                          height: 40,
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 15),
-                                          width: 150,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(),
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                          child: TextField(
-                                            decoration: InputDecoration(),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(height: 30),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Target Mulai',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 15),
-                                        ),
-                                        Container(
-                                          height: 40,
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 15),
-                                          width: 150,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(),
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                          child: TextField(
-                                            decoration: InputDecoration(),
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  ],
+                                  ),
                                 ),
-                                SizedBox(width: screenWidth * 0.2),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Nama Produk',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 15),
-                                        ),
-                                        Container(
-                                          height: 40,
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 7),
-                                          width: 225,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(),
-                                              borderRadius:
-                                                  BorderRadius.circular(5)),
-                                          child: TextField(
-                                            decoration: InputDecoration(),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(height: 40),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Jumlah dalam 1 lot',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 15),
-                                        ),
-                                        Container(
-                                          height: 40,
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 7),
-                                          width: 225,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(),
-                                              borderRadius:
-                                                  BorderRadius.circular(5)),
-                                          child: TextField(
-                                            decoration: InputDecoration(),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(height: 30),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Kode Lot',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 15),
-                                        ),
-                                        Container(
-                                          height: 40,
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 15),
-                                          width: 150,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(),
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                          child: TextField(
-                                            decoration: InputDecoration(),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(height: 30),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'No Seri Akhir',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 15),
-                                        ),
-                                        Container(
-                                          height: 40,
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 15),
-                                          width: 150,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(),
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                          child: TextField(
-                                            decoration: InputDecoration(),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(height: 30),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Target Selesai',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 15),
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 15),
-                                          width: 150,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(),
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                          child: TextField(
-                                            decoration: InputDecoration(),
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 100),
+                              ),
 
 //===========================================================Body Tambah Kolom dan Button===========================================================//
 
-                      SizedBox(width: 30),
-                      Container(
-                        width: screenWidth * 0.6,
-                        padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                        margin: EdgeInsets.all(50.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black),
-                          borderRadius: BorderRadius.circular(5.0),
+                              SizedBox(width: 40),
+                              Container(
+                                width: screenWidth * 0.6,
+                                padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                margin: EdgeInsets.all(50.0),
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black),
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                child: isViewVisible
+                                    ? _buildViewTable()
+                                    : _buildMainTable(),
+                              ),
+                              Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () {},
+                                      child: Text(
+                                        'Tambah Kolom',
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        foregroundColor: Colors.white,
+                                        backgroundColor:
+                                            const Color.fromRGBO(43, 56, 86, 1),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 20),
+                                    ElevatedButton(
+                                      onPressed: () {},
+                                      child: Text(
+                                        'Simpan',
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        foregroundColor: Colors.white,
+                                        backgroundColor:
+                                            const Color.fromRGBO(43, 56, 86, 1),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        ),
+                                      ),
+                                    ),
+                                  ])
+                            ],
+                          ),
                         ),
-                        child: isViewVisible
-                            ? _buildViewTable()
-                            : _buildMainTable(),
-                      ),
-                      Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Tambah Kolom',
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor:
-                                const Color.fromRGBO(43, 56, 86, 1),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: screenWidth * 0.02),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Simpan',
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor:
-                                const Color.fromRGBO(43, 56, 86, 1),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                        ),
-                      ])
-                    ],
-                  ),
-                ),
-              ),
-            ))
-          ],
+                      )))
+            ],
+          ),
         ),
       ),
     );
@@ -651,6 +721,7 @@ class _PerencanaanState extends State<Perencanaan> {
 //===========================================================Widget Sidebar===========================================================//
   Widget _buildDrawer() {
     return Drawer(
+      backgroundColor: Color.fromARGB(255, 244, 249, 255),
       child: ListView(
         children: [
           DrawerHeader(
@@ -683,6 +754,7 @@ class _PerencanaanState extends State<Perencanaan> {
     return ListTile(
       title: Text(title),
       leading: Icon(
+        color: Color.fromARGB(255, 6, 37, 55),
         icon,
         size: size.toDouble(),
       ),
@@ -715,13 +787,14 @@ class _PerencanaanState extends State<Perencanaan> {
     );
   }
 
-  static Widget _buildSubMenu({IconData? icon}) {
+  Widget _buildSubMenu({IconData? icon}) {
     return ExpansionTile(
       title: Row(
         children: [
           Icon(
             icon ?? Icons.input,
             size: 35,
+            color: Color.fromARGB(255, 6, 37, 55),
           ),
           SizedBox(width: 12),
           Text('Input Data'),
@@ -736,7 +809,7 @@ class _PerencanaanState extends State<Perencanaan> {
     );
   }
 
-  static ListTile _buildSubListTile(
+  Widget _buildSubListTile(
     String title,
     IconData icon,
     int index,
@@ -748,7 +821,45 @@ class _PerencanaanState extends State<Perencanaan> {
         icon,
         size: size.toDouble(),
       ),
-      onTap: () {},
+      onTap: () {
+        if (index == 7) {
+          _showLogoutDialog();
+        } else {
+          setState(() {
+            _selectedIndex = index;
+          });
+          if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ReportSTTPP(),
+              ),
+            );
+          } else if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Perencanaan(),
+              ),
+            );
+          } else if (index == 4) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => InputMaterial(),
+              ),
+            );
+          } else if (index == 5) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => InputDokumen(),
+              ),
+            );
+            Navigator.pop(context);
+          }
+        }
+      },
     );
   }
 

@@ -160,8 +160,7 @@ class _ViewUploadState extends State<ViewUpload> {
                       border: Border.all(color: Colors.black),
                       borderRadius: BorderRadius.circular(5.0),
                     ),
-                    child:
-                        isViewVisible ? _buildViewTable() : _buildMainTable(),
+                    child: _buildMainTable(),
                   ),
                 ),
               ),
@@ -337,38 +336,9 @@ class _ViewUploadState extends State<ViewUpload> {
     );
   }
 
-  Widget _buildViewTable() {
-    return DataTable(
-      columnSpacing: 0,
-      horizontalMargin: 100,
-      columns: [
-        DataColumn(label: Text('No')),
-        DataColumn(label: Text('Detail Kerusakan')),
-        DataColumn(label: Text('Item')),
-        DataColumn(label: Text('Keterangan')),
-        DataColumn(label: Text('Saran')),
-      ],
-      rows: [
-        DataRow(cells: [
-          DataCell(Text('1')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-        ]),
-        DataRow(cells: [
-          DataCell(Text('2')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-        ]),
-      ],
-    );
-  }
-
   Widget _buildDrawer() {
     return Drawer(
+      backgroundColor: Color.fromARGB(255, 244, 249, 255),
       child: ListView(
         children: [
           DrawerHeader(

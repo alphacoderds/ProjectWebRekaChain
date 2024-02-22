@@ -1,22 +1,11 @@
 import 'package:RekaChain/dasboard.dart';
+import 'package:RekaChain/inputdokumen.dart';
 import 'package:RekaChain/login.dart';
+import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
+import 'package:RekaChain/reportsttpp.dart';
+import 'package:RekaChain/viewaftersales.dart';
 import 'package:flutter/material.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Responsive Sidebar',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: AfterSales(),
-    );
-  }
-}
 
 class AfterSales extends StatefulWidget {
   @override
@@ -25,67 +14,131 @@ class AfterSales extends StatefulWidget {
 
 class _AfterSalesState extends State<AfterSales> {
   int _selectedIndex = 0;
+
+  List<String> dropdownItems = [
+    '--Pilih Nama/Kode Project--',
+    'R22-PT. Nugraha Jasa',
+    'PT. INDAH JAYA'
+  ];
+  String? selectedValue;
+
   bool isViewVisible = false;
-  late double screenWidth = MediaQuery.of(context).size.width;
-  late double screenHeight = MediaQuery.of(context).size.height;
+  late double screenWidth;
+  late double screenHeight;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildDrawer(),
-          Expanded(
-            child: Scaffold(
-              appBar: AppBar(
-                backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-                toolbarHeight: 80,
-                actions: [
-                  Padding(
-                    padding: EdgeInsets.only(right: screenHeight * 0.13),
-                    child: Row(
+    screenWidth = MediaQuery.of(context).size.width;
+    screenHeight = MediaQuery.of(context).size.height;
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(
+              builder: (context) => AfterSales(),
+            );
+          default:
+            return null;
+        }
+      },
+      home: Scaffold(
+        body: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildDrawer(),
+            Expanded(
+              child: Scaffold(
+                appBar: AppBar(
+                  backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+                  toolbarHeight: 65,
+                  title: Padding(
+                    padding: EdgeInsets.only(left: screenHeight * 0.02, top: 2),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          width: screenWidth * 0.005,
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.notifications_active,
-                            size: 35,
-                            color: Color.fromARGB(255, 255, 255, 255),
+                        Container(
+                          width: 300,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(5),
+                            color: Colors.white,
                           ),
-                          onPressed: () {},
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.account_circle_rounded,
-                            size: 38,
-                            color: Color.fromARGB(255, 255, 255, 255),
+                          child: DropdownButton<String>(
+                            alignment: Alignment.center,
+                            hint: Text('--Pilih Nama/Kode Project--'),
+                            value: selectedValue,
+                            borderRadius: BorderRadius.circular(5),
+                            items: dropdownItems.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (newValue) {
+                              setState(() {
+                                selectedValue = newValue;
+                              });
+                            },
                           ),
-                          onPressed: () {},
                         ),
                       ],
                     ),
-                  )
-                ],
-              ),
-              body: Center(
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                  margin: EdgeInsets.all(50.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                    borderRadius: BorderRadius.circular(5.0),
                   ),
-                  child: isViewVisible ? _buildViewTable() : _buildMainTable(),
+                  actions: [
+                    Padding(
+                      padding: EdgeInsets.only(right: screenHeight * 0.11),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: screenWidth * 0.005,
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.notifications_active,
+                              size: 33,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {},
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.account_circle_rounded,
+                              size: 35,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Profile()),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                body: Center(
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                    margin: EdgeInsets.all(50.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    child: _buildMainTable(),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 
@@ -113,16 +166,12 @@ class _AfterSalesState extends State<AfterSales> {
               ),
               DataColumn(
                 label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
                   child: Row(
                     children: [
                       Text(
                         'Nama Project',
                         style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Icon(
-                        Icons.arrow_drop_down,
-                        size: 24,
                       ),
                     ],
                   ),
@@ -137,14 +186,13 @@ class _AfterSalesState extends State<AfterSales> {
                         'Nomor Produk',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Icon(Icons.arrow_drop_down, size: 25),
                     ],
                   ),
                 ),
               ),
               DataColumn(
                 label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
                   child: Text(
                     'Tanggal Report',
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -175,89 +223,11 @@ class _AfterSalesState extends State<AfterSales> {
                   IconButton(
                     icon: Icon(Icons.visibility),
                     onPressed: () {
-                      setState(() {
-                        isViewVisible = !isViewVisible;
-                      });
-                    },
-                  ),
-                ),
-              ]),
-              DataRow(cells: [
-                DataCell(Text('2')),
-                DataCell(Text('PT. INKA')),
-                DataCell(Text('AA21 2/24')),
-                DataCell(Text('13-02-2024')),
-                DataCell(
-                  IconButton(
-                    icon: Icon(Icons.visibility),
-                    onPressed: () {
-                      setState(() {
-                        isViewVisible = !isViewVisible;
-                      });
-                    },
-                  ),
-                ),
-              ]),
-              DataRow(cells: [
-                DataCell(Text('2')),
-                DataCell(Text('PT. INKA')),
-                DataCell(Text('AA21 2/24')),
-                DataCell(Text('13-02-2024')),
-                DataCell(
-                  IconButton(
-                    icon: Icon(Icons.visibility),
-                    onPressed: () {
-                      setState(() {
-                        isViewVisible = !isViewVisible;
-                      });
-                    },
-                  ),
-                ),
-              ]),
-              DataRow(cells: [
-                DataCell(Text('2')),
-                DataCell(Text('PT. INKA')),
-                DataCell(Text('AA21 2/24')),
-                DataCell(Text('13-02-2024')),
-                DataCell(
-                  IconButton(
-                    icon: Icon(Icons.visibility),
-                    onPressed: () {
-                      setState(() {
-                        isViewVisible = !isViewVisible;
-                      });
-                    },
-                  ),
-                ),
-              ]),
-              DataRow(cells: [
-                DataCell(Text('2')),
-                DataCell(Text('PT. INKA')),
-                DataCell(Text('AA21 2/24')),
-                DataCell(Text('13-02-2024')),
-                DataCell(
-                  IconButton(
-                    icon: Icon(Icons.visibility),
-                    onPressed: () {
-                      setState(() {
-                        isViewVisible = !isViewVisible;
-                      });
-                    },
-                  ),
-                ),
-              ]),
-              DataRow(cells: [
-                DataCell(Text('2')),
-                DataCell(Text('PT. INKA')),
-                DataCell(Text('AA21 2/24')),
-                DataCell(Text('13-02-2024')),
-                DataCell(
-                  IconButton(
-                    icon: Icon(Icons.visibility),
-                    onPressed: () {
-                      setState(() {
-                        isViewVisible = !isViewVisible;
-                      });
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ViewAfterSales()),
+                      );
                     },
                   ),
                 ),
@@ -269,38 +239,9 @@ class _AfterSalesState extends State<AfterSales> {
     );
   }
 
-  Widget _buildViewTable() {
-    return DataTable(
-      columnSpacing: 0,
-      horizontalMargin: 100,
-      columns: [
-        DataColumn(label: Text('No')),
-        DataColumn(label: Text('Detail Kerusakan')),
-        DataColumn(label: Text('Item')),
-        DataColumn(label: Text('Keterangan')),
-        DataColumn(label: Text('Saran')),
-      ],
-      rows: [
-        DataRow(cells: [
-          DataCell(Text('1')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-        ]),
-        DataRow(cells: [
-          DataCell(Text('2')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-        ]),
-      ],
-    );
-  }
-
   Widget _buildDrawer() {
     return Drawer(
+      backgroundColor: Color.fromARGB(255, 244, 249, 255),
       child: ListView(
         children: [
           DrawerHeader(
@@ -401,7 +342,45 @@ class _AfterSalesState extends State<AfterSales> {
         size: size.toDouble(),
         color: Color.fromARGB(255, 6, 37, 55),
       ),
-      onTap: () {},
+      onTap: () {
+        if (index == 7) {
+          _showLogoutDialog();
+        } else {
+          setState(() {
+            _selectedIndex = index;
+          });
+          if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ReportSTTPP(),
+              ),
+            );
+          } else if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Perencanaan(),
+              ),
+            );
+          } else if (index == 4) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => InputDokumen(),
+              ),
+            );
+          } else if (index == 5) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => InputDokumen(),
+              ),
+            );
+            Navigator.pop(context);
+          }
+        }
+      },
     );
   }
 

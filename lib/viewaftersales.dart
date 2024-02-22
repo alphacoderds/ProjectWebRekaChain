@@ -1,24 +1,21 @@
-import 'dart:html';
-
 import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/inputdokumen.dart';
 import 'package:RekaChain/login.dart';
+import 'package:RekaChain/notification.dart';
 import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
+import 'package:RekaChain/reportsttpp.dart';
 import 'package:flutter/material.dart';
 
-class ReportSTTPP extends StatefulWidget {
+class ViewAfterSales extends StatefulWidget {
   @override
-  State<ReportSTTPP> createState() => _ReportSTTPState();
+  State<ViewAfterSales> createState() => _ViewAfterSalesState();
 }
 
-class _ReportSTTPState extends State<ReportSTTPP> {
-  bool isViewVisible = false;
-  late double screenWidth = MediaQuery.of(context).size.width;
-  late double screenHeight = MediaQuery.of(context).size.height;
-
+class _ViewAfterSalesState extends State<ViewAfterSales> {
   int _selectedIndex = 0;
+
   List<String> dropdownItems = [
     '--Pilih Nama/Kode Project--',
     'R22-PT. Nugraha Jasa',
@@ -26,15 +23,22 @@ class _ReportSTTPState extends State<ReportSTTPP> {
   ];
   String? selectedValue;
 
+  bool isViewVisible = false;
+  late double screenWidth;
+  late double screenHeight;
+
   @override
   Widget build(BuildContext context) {
+    screenWidth = MediaQuery.of(context).size.width;
+    screenHeight = MediaQuery.of(context).size.height;
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case '/':
             return MaterialPageRoute(
-              builder: (context) => ReportSTTPP(),
+              builder: (context) => ViewAfterSales(),
             );
           default:
             return null;
@@ -94,11 +98,26 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                           ),
                           IconButton(
                             icon: Icon(
+                              Icons.download,
+                              size: 33,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {},
+                          ),
+                          IconButton(
+                            icon: Icon(
                               Icons.notifications_active,
                               size: 35,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Notifikasi(),
+                                ),
+                              );
+                            },
                           ),
                           IconButton(
                             icon: Icon(
@@ -106,23 +125,43 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                               size: 38,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Profile()),
+                              );
+                            },
                           ),
                         ],
                       ),
                     )
                   ],
                 ),
-                body: Center(
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                    margin: EdgeInsets.all(50.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.circular(5.0),
+                body: Container(
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: screenHeight * 0.01),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Center(
+                          child: Container(
+                            width: screenWidth * 0.63,
+                            height: screenHeight * 0.70,
+                            padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                            margin: EdgeInsets.all(50.0),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black),
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            child: _buildMainTable(),
+                          ),
+                        ),
+                      ],
                     ),
-                    child:
-                        isViewVisible ? _buildViewTable() : _buildMainTable(),
                   ),
                 ),
               ),
@@ -139,34 +178,42 @@ class _ReportSTTPState extends State<ReportSTTPP> {
       scrollDirection: Axis.horizontal,
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          minHeight: MediaQuery.of(context).size.height - 50,
+          minHeight: MediaQuery.of(context).size.height - 200,
         ),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: DataTable(
-            columnSpacing: 200.0,
-            horizontalMargin: 50.0,
+            columnSpacing: 100.0,
+            horizontalMargin: 70.0,
             columns: [
               DataColumn(
                 label: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 1.0),
+                  child: Text(
+                    'No',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Detail Kerusakan',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.0),
                   child: Text(
-                    'No.',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                ),
-              ),
-              DataColumn(
-                label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Nama Project',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                    ],
+                    'Item',
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -176,26 +223,8 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                   child: Row(
                     children: [
                       Text(
-                        'Kode Lot',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              DataColumn(
-                label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'View',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
+                        'Keterangan',
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -204,56 +233,10 @@ class _ReportSTTPState extends State<ReportSTTPP> {
             ],
             rows: [
               DataRow(cells: [
-                DataCell(Container(
-                  alignment: Alignment.center,
-                  child: Text('1'),
-                )),
-                DataCell(Container(
-                  alignment: Alignment.center,
-                  child: Text('Project 1'),
-                )),
-                DataCell(Container(
-                  alignment: Alignment.center,
-                  child: Text('AA21 1/24'),
-                )),
-                DataCell(
-                  Center(
-                    child: IconButton(
-                      icon: Icon(Icons.visibility),
-                      onPressed: () {
-                        setState(() {
-                          isViewVisible = !isViewVisible;
-                        });
-                      },
-                    ),
-                  ),
-                ),
-              ]),
-              DataRow(cells: [
-                DataCell(Container(
-                  alignment: Alignment.center,
-                  child: Text('2'),
-                )),
-                DataCell(Container(
-                  alignment: Alignment.center,
-                  child: Text('Project 2'),
-                )),
-                DataCell(Container(
-                  alignment: Alignment.center,
-                  child: Text('AA22 1/26'),
-                )),
-                DataCell(
-                  Center(
-                    child: IconButton(
-                      icon: Icon(Icons.visibility),
-                      onPressed: () {
-                        setState(() {
-                          isViewVisible = !isViewVisible;
-                        });
-                      },
-                    ),
-                  ),
-                ),
+                DataCell(Text('1')),
+                DataCell(Text('AA21 1/24')),
+                DataCell(Text('13-02-2024')),
+                DataCell(Text('13-02-2024')),
               ]),
             ],
           ),
@@ -262,36 +245,8 @@ class _ReportSTTPState extends State<ReportSTTPP> {
     );
   }
 
-  Widget _buildViewTable() {
-    return DataTable(
-      columnSpacing: 0,
-      horizontalMargin: 100,
-      columns: [
-        DataColumn(label: Text('No')),
-        DataColumn(label: Text('Nama Project')),
-        DataColumn(label: Text('Kode Lot')),
-        DataColumn(label: Text('View')),
-      ],
-      rows: [
-        DataRow(cells: [
-          DataCell(Text('1')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-        ]),
-        DataRow(cells: [
-          DataCell(Text('2')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-        ]),
-      ],
-    );
-  }
-
   Widget _buildDrawer() {
     return Drawer(
-      backgroundColor: Color.fromARGB(255, 244, 249, 255),
       child: ListView(
         children: [
           DrawerHeader(

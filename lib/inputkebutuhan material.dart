@@ -1,21 +1,26 @@
+import 'dart:html';
+
 import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/editprofile.dart';
+import 'package:RekaChain/inputdokumen.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:RekaChain/reportsttpp.dart';
+import 'package:RekaChain/viewikm.dart';
 import 'package:RekaChain/viewupload.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class InputDokumen extends StatefulWidget {
-  const InputDokumen({super.key});
+class InputMaterial extends StatefulWidget {
+  const InputMaterial({super.key});
 
   @override
-  State<InputDokumen> createState() => _InputDokumenState();
+  State<InputMaterial> createState() => _InputMaterialState();
 }
 
-class _InputDokumenState extends State<InputDokumen> {
+class _InputMaterialState extends State<InputMaterial> {
   late double screenWidth = MediaQuery.of(context).size.width;
   late double screenHeight = MediaQuery.of(context).size.height;
 
@@ -35,7 +40,7 @@ class _InputDokumenState extends State<InputDokumen> {
         switch (settings.name) {
           case '/':
             return MaterialPageRoute(
-              builder: (context) => const InputDokumen(),
+              builder: (context) => const InputMaterial(),
             );
           default:
             return null;
@@ -56,7 +61,7 @@ class _InputDokumenState extends State<InputDokumen> {
                   title: Padding(
                     padding: EdgeInsets.only(left: screenHeight * 0.02),
                     child: Text(
-                      'Input Dokumen Pendukung',
+                      'Input Kebutuhan Material',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -72,9 +77,15 @@ class _InputDokumenState extends State<InputDokumen> {
                         children: [
                           SizedBox(width: 16),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Viewkm()),
+                              );
+                            },
                             child: Text(
-                              'Unduhan',
+                              'View',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             style: ElevatedButton.styleFrom(
@@ -95,7 +106,13 @@ class _InputDokumenState extends State<InputDokumen> {
                               size: 33,
                               color: Colors.white,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Profile()),
+                              );
+                            },
                           ),
                           IconButton(
                             icon: Icon(
@@ -222,28 +239,30 @@ class _InputDokumenState extends State<InputDokumen> {
                                               ),
                                             ),
                                             SizedBox(height: 10),
+                                            RichText(
+                                                text: TextSpan(children: [
+                                              TextSpan(
+                                                text: 'Download Template Excel',
+                                              ),
+                                              TextSpan(
+                                                  style: TextStyle(
+                                                      color: Colors
+                                                          .blueAccent[700]),
+                                                  text:
+                                                      ' Input Kebutuhan Material',
+                                                  recognizer:
+                                                      TapGestureRecognizer()
+                                                        ..onTap = () async {
+                                                          var url =
+                                                              'https://www.figma.com/file/Oty6jOcRnse0kBBgrMNTJa/flutter-project?type=design&node-id=197-154&mode=design&t=oN7tMuNo70tqRCrq-0';
+                                                        })
+                                            ]))
                                           ],
                                         ),
                                       ],
                                     ),
                                   ),
                                   SizedBox(width: 20),
-                                  Align(
-                                    alignment: Alignment.bottomLeft,
-                                    child: ElevatedButton(
-                                      onPressed: () {},
-                                      style: ElevatedButton.styleFrom(
-                                        primary:
-                                            const Color.fromRGBO(43, 56, 86, 1),
-                                      ),
-                                      child: Text(
-                                        'Simpan',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
                                   Expanded(
                                     child: Column(
                                       crossAxisAlignment:
@@ -254,7 +273,7 @@ class _InputDokumenState extends State<InputDokumen> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'No Produk',
+                                              'Kode Lot',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 16,
@@ -269,7 +288,7 @@ class _InputDokumenState extends State<InputDokumen> {
                                               child: DropdownButton<String>(
                                                 alignment: Alignment.center,
                                                 hint:
-                                                    Text('--Pilih No Produk--'),
+                                                    Text('--Pilih Kode Lot--'),
                                                 value: selectedValue,
                                                 borderRadius:
                                                     BorderRadius.circular(5),
@@ -288,6 +307,30 @@ class _InputDokumenState extends State<InputDokumen> {
                                                 },
                                               ),
                                             ),
+                                            SizedBox(height: 340),
+                                            Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  ElevatedButton(
+                                                    onPressed: () {
+                                                      _showFinishDialog();
+                                                    },
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      primary:
+                                                          const Color.fromRGBO(
+                                                              43, 56, 86, 1),
+                                                    ),
+                                                    child: Text(
+                                                      'Simpan',
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 30),
+                                                ]),
                                           ],
                                         ),
                                       ],
@@ -437,7 +480,7 @@ class _InputDokumenState extends State<InputDokumen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => InputDokumen(),
+                builder: (context) => InputMaterial(),
               ),
             );
           } else if (index == 5) {
@@ -450,6 +493,39 @@ class _InputDokumenState extends State<InputDokumen> {
             Navigator.pop(context);
           }
         }
+      },
+    );
+  }
+
+  void _showFinishDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.symmetric(
+              horizontal: 20, vertical: 10), // Adjust padding here
+          backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+          content: Container(
+            width: MediaQuery.of(context).size.width * 0.7, // Adjust width here
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "Data Anda Telah Tersimpan !",
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(height: 20),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("Kembali", style: TextStyle(color: Colors.white)),
+                ),
+              ],
+            ),
+          ),
+        );
       },
     );
   }
