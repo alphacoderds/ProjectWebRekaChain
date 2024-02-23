@@ -11,6 +11,7 @@ import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/reportsttpp.dart';
 import 'package:RekaChain/viewikm.dart';
+import 'package:RekaChain/viewperencanaan.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: Vperencanaan(),
     );
   }
 }
