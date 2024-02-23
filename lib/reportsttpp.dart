@@ -69,6 +69,7 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                             alignment: Alignment.center,
                             hint: Text('--Pilih Nama/Kode Project--'),
                             value: selectedValue,
+                            underline: SizedBox(),
                             borderRadius: BorderRadius.circular(5),
                             items: dropdownItems.map((String value) {
                               return DropdownMenuItem<String>(

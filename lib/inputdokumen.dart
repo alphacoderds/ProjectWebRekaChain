@@ -178,6 +178,7 @@ class _InputDokumenState extends State<InputDokumen> {
                                                 alignment: Alignment.center,
                                                 hint: Text(
                                                     '--Pilih Nama Project--'),
+                                                underline: SizedBox(),
                                                 value: selectedValue,
                                                 borderRadius:
                                                     BorderRadius.circular(5),
@@ -285,6 +286,7 @@ class _InputDokumenState extends State<InputDokumen> {
                                                 hint:
                                                     Text('--Pilih No Produk--'),
                                                 value: selectedValue,
+                                                underline: SizedBox(),
                                                 borderRadius:
                                                     BorderRadius.circular(5),
                                                 items: dropdownItems
