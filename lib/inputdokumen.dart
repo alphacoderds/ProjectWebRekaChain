@@ -1,6 +1,5 @@
 import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
-import 'package:RekaChain/editprofile.dart';
 import 'package:RekaChain/inputkebutuhan%20material.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/notification.dart';
@@ -31,298 +30,335 @@ class _InputDokumenState extends State<InputDokumen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: (settings) {
-        switch (settings.name) {
-          case '/':
-            return MaterialPageRoute(
-              builder: (context) => const InputDokumen(),
-            );
-          default:
-            return null;
-        }
-      },
-      home: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.only(left: screenWidth * 0.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildDrawer(),
-              Expanded(
-                  child: Scaffold(
-                appBar: AppBar(
-                  backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
-                  toolbarHeight: 65,
-                  title: Padding(
-                    padding: EdgeInsets.only(left: screenHeight * 0.02),
-                    child: Text(
-                      'Input Dokumen Pendukung',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Donegal One',
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  actions: [
-                    Padding(
-                      padding: EdgeInsets.only(right: screenHeight * 0.11),
-                      child: Row(
-                        children: [
-                          SizedBox(width: 16),
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ViewUpload()),
-                              );
-                            },
-                            child: Text(
-                              'Unduhan',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              backgroundColor:
-                                  Color.fromARGB(255, 89, 100, 122),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 5, vertical: 3),
-                            ),
-                          ),
-                          SizedBox(width: 16),
-                          IconButton(
-                            icon: Icon(
-                              Icons.notifications_active,
-                              size: 33,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        screenWidth = constraints.maxWidth;
+        screenHeight = constraints.maxHeight;
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          onGenerateRoute: (settings) {
+            switch (settings.name) {
+              case '/':
+                return MaterialPageRoute(
+                  builder: (context) => const InputDokumen(),
+                );
+              default:
+                return null;
+            }
+          },
+          home: Scaffold(
+            body: Padding(
+              padding: EdgeInsets.only(left: screenWidth * 0.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildDrawer(),
+                  Expanded(
+                    child: Scaffold(
+                      appBar: AppBar(
+                        backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+                        toolbarHeight: 65,
+                        title: Padding(
+                          padding: EdgeInsets.only(left: screenHeight * 0.01),
+                          child: Text(
+                            'Input Dokumen Pendukung',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Donegal One',
                               color: Colors.white,
                             ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Notifikasi()),
-                              );
-                            },
                           ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.account_circle_rounded,
-                              size: 35,
-                              color: Color.fromARGB(255, 255, 255, 255),
+                        ),
+                        actions: [
+                          Padding(
+                            padding:
+                                EdgeInsets.only(right: screenHeight * 0.11),
+                            child: Row(
+                              children: [
+                                SizedBox(width: 16),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => ViewUpload()),
+                                    );
+                                  },
+                                  child: Text(
+                                    'Uploads',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    foregroundColor: Colors.white,
+                                    backgroundColor:
+                                        Color.fromARGB(255, 89, 100, 122),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 5, vertical: 3),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: screenWidth * 0.005,
+                                ),
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.notifications_active,
+                                    size: 33,
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Notifikasi()),
+                                    );
+                                  },
+                                ),
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.account_circle_rounded,
+                                    size: 35,
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Profile()),
+                                    );
+                                  },
+                                ),
+                              ],
                             ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Profile()),
-                              );
-                            },
-                          ),
+                          )
                         ],
                       ),
-                    )
-                  ],
-                ),
-                body: Container(
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: screenHeight * 0.09),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Center(
-                          child: Container(
-                            width: screenWidth * 0.75,
-                            height: screenHeight * 0.71,
-                            decoration: BoxDecoration(
-                                border: Border.all(),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: screenHeight * 0.05),
-                              child: Row(
-                                children: [
-                                  SizedBox(width: screenWidth * 0.1),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                      body: Container(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: screenHeight * 0.04),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Center(
+                                child: Container(
+                                  width: screenWidth * 0.6,
+                                  height: screenHeight * 0.8,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: screenHeight * 0.09,
+                                        horizontal: screenWidth * 0.05),
+                                    child: Row(
                                       children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Nama Project',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                border: Border.all(),
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                              ),
-                                              child: DropdownButton<String>(
-                                                alignment: Alignment.center,
-                                                hint: Text(
-                                                    '--Pilih Nama Project--'),
-                                                underline: SizedBox(),
-                                                value: selectedValue,
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                items: dropdownItems
-                                                    .map((String value) {
-                                                  return DropdownMenuItem<
-                                                      String>(
-                                                    value: value,
-                                                    child: Text(value),
-                                                  );
-                                                }).toList(),
-                                                onChanged: (newValue) {
-                                                  setState(() {
-                                                    selectedValue = newValue;
-                                                  });
-                                                },
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(height: 50),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Upload',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                            Container(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 7),
-                                              width: 1000,
-                                              decoration: BoxDecoration(
-                                                border: Border.all(),
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                        SizedBox(width: screenWidth * 0.05),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
-                                                  SizedBox(width: 8),
-                                                  IconButton(
-                                                    icon: Icon(
-                                                      Icons.add,
-                                                      size: 35,
+                                                  Text(
+                                                    'Nama Project',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 16,
                                                     ),
-                                                    onPressed: () {},
+                                                  ),
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      border: Border.all(),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                    ),
+                                                    child:
+                                                        DropdownButton<String>(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      hint: Text(
+                                                          '--Pilih Nama Project--'),
+                                                      underline: SizedBox(),
+                                                      value: selectedValue,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      items: dropdownItems
+                                                          .map((String value) {
+                                                        return DropdownMenuItem<
+                                                            String>(
+                                                          value: value,
+                                                          child: Text(value),
+                                                        );
+                                                      }).toList(),
+                                                      onChanged: (newValue) {
+                                                        setState(() {
+                                                          selectedValue =
+                                                              newValue;
+                                                        });
+                                                      },
+                                                    ),
                                                   ),
                                                 ],
                                               ),
-                                            ),
-                                            SizedBox(height: 10),
-                                          ],
+                                              SizedBox(height: 40),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Upload',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 7),
+                                                    width: 2000,
+                                                    decoration: BoxDecoration(
+                                                      border: Border.all(),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        SizedBox(width: 8),
+                                                        IconButton(
+                                                          icon: Icon(
+                                                            Icons.add,
+                                                            size: 35,
+                                                          ),
+                                                          onPressed: () {},
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: 10),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(width: screenWidth * 0.05),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'No Produk',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      border: Border.all(),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                    ),
+                                                    child:
+                                                        DropdownButton<String>(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      hint: Text(
+                                                          '--Pilih No Produk--'),
+                                                      value: selectedValue,
+                                                      underline: SizedBox(),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      items: dropdownItems
+                                                          .map((String value) {
+                                                        return DropdownMenuItem<
+                                                            String>(
+                                                          value: value,
+                                                          child: Text(value),
+                                                        );
+                                                      }).toList(),
+                                                      onChanged: (newValue) {
+                                                        setState(() {
+                                                          selectedValue =
+                                                              newValue;
+                                                        });
+                                                      },
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: 341),
+                                                  Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: [
+                                                        ElevatedButton(
+                                                          onPressed: () {
+                                                            _showFinishDialog();
+                                                          },
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                            primary: const Color
+                                                                .fromRGBO(
+                                                                43, 56, 86, 1),
+                                                          ),
+                                                          child: Text(
+                                                            'Simpan',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        SizedBox(width: 10),
+                                                      ]),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                  SizedBox(width: 20),
-                                  Align(
-                                    alignment: Alignment.bottomLeft,
-                                    child: ElevatedButton(
-                                      onPressed: () {},
-                                      style: ElevatedButton.styleFrom(
-                                        primary:
-                                            const Color.fromRGBO(43, 56, 86, 1),
-                                      ),
-                                      child: Text(
-                                        'Simpan',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'No Produk',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                border: Border.all(),
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                              ),
-                                              child: DropdownButton<String>(
-                                                alignment: Alignment.center,
-                                                hint:
-                                                    Text('--Pilih No Produk--'),
-                                                value: selectedValue,
-                                                underline: SizedBox(),
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                items: dropdownItems
-                                                    .map((String value) {
-                                                  return DropdownMenuItem<
-                                                      String>(
-                                                    value: value,
-                                                    child: Text(value),
-                                                  );
-                                                }).toList(),
-                                                onChanged: (newValue) {
-                                                  setState(() {
-                                                    selectedValue = newValue;
-                                                  });
-                                                },
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
-                            ),
+                            ],
                           ),
                         ),
-                      ],
+                      ),
                     ),
                   ),
-                ),
-              ))
-            ],
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -465,6 +501,38 @@ class _InputDokumenState extends State<InputDokumen> {
             );
           }
         }
+      },
+    );
+  }
+
+  void _showFinishDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Simpan Data", style: TextStyle(color: Colors.white)),
+          content: Text("Apakah Anda yakin ingin simpan data?",
+              style: TextStyle(color: Colors.white)),
+          backgroundColor: const Color.fromRGBO(43, 56, 86, 1),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("Batal", style: TextStyle(color: Colors.white)),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const InputDokumen()),
+                );
+              },
+              child: Text("Ya", style: TextStyle(color: Colors.white)),
+            ),
+          ],
+        );
       },
     );
   }
