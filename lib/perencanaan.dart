@@ -20,13 +20,25 @@ class _PerencanaanState extends State<Perencanaan> {
   bool isViewVisible = false;
 
   int _selectedIndex = 0;
-  List<String> dropdownItems = [];
+  List<String> dropdownItems = [
+    '--Pilih Nama/Kode Project--',
+    'R22-PT. Nugraha Jasa',
+    'PT. INDAH JAYA'
+  ];
   String? selectedValue;
 
-  late List<String> dropdownItemsAlurProses;
+  List<String> dropdownItemsAlurProses = [
+    '--Pilih Alur Proses--',
+    'PPC',
+    'Produksi'
+  ];
   String? selectedValueAlurProses;
 
-  late List<String> dropdownItemsKategori;
+  List<String> dropdownItemsKategori = [
+    '--Pilih Kategori--',
+    'Produk',
+    'Material'
+  ];
   String? selectedValueKategori;
 
   TextEditingController tglMulaicontroller = TextEditingController();
@@ -191,7 +203,6 @@ class _PerencanaanState extends State<Perencanaan> {
                                                         style: TextStyle(
                                                             fontSize: 15)),
                                                     value: selectedValue,
-                                                    underline: SizedBox(),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             5),
@@ -472,14 +483,17 @@ class _PerencanaanState extends State<Perencanaan> {
 
                               SizedBox(width: 40),
                               Container(
-                                  width: screenWidth * 0.6,
-                                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                  margin: EdgeInsets.all(50.0),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.black),
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                  child: _buildMainTable()),
+                                width: screenWidth * 0.6,
+                                padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                margin: EdgeInsets.all(50.0),
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black),
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                child: isViewVisible
+                                    ? _buildViewTable()
+                                    : _buildMainTable(),
+                              ),
                               Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
@@ -547,13 +561,13 @@ class _PerencanaanState extends State<Perencanaan> {
       scrollDirection: Axis.horizontal,
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          minHeight: MediaQuery.of(context).size.height - 200,
+          minHeight: MediaQuery.of(context).size.height - 50,
         ),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: DataTable(
-            columnSpacing: 70.0,
-            horizontalMargin: 90.0,
+            columnSpacing: 100.0,
+            horizontalMargin: 60.0,
             columns: [
               DataColumn(
                 label: Padding(
@@ -566,7 +580,7 @@ class _PerencanaanState extends State<Perencanaan> {
               ),
               DataColumn(
                 label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
                     'Kategori',
                     style: TextStyle(fontWeight: FontWeight.bold),

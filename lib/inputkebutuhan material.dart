@@ -144,202 +144,206 @@ class _InputMaterialState extends State<InputMaterial> {
                           height: 10,
                         ),
                         Center(
-                          child: Container(
-                            width: screenWidth * 0.75,
-                            height: screenHeight * 0.71,
-                            decoration: BoxDecoration(
-                                border: Border.all(),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: screenHeight * 0.05),
-                              child: Row(
-                                children: [
-                                  SizedBox(width: screenWidth * 0.1),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Nama Project',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.03),
+                            child: Container(
+                              width: screenWidth * 0.75,
+                              height: screenHeight * 0.71,
+                              decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: screenHeight * 0.05,
+                                      horizontal: screenWidth * 0.05),
+                                  child: Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'Nama Project',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 16,
+                                                ),
                                               ),
-                                            ),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                border: Border.all(),
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                ),
+                                                child: DropdownButton<String>(
+                                                  alignment: Alignment.center,
+                                                  hint: Text(
+                                                      '--Pilih Nama Project--'),
+                                                  value: selectedValue,
+                                                  underline: SizedBox(),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  items: dropdownItems
+                                                      .map((String value) {
+                                                    return DropdownMenuItem<
+                                                        String>(
+                                                      value: value,
+                                                      child: Text(value),
+                                                    );
+                                                  }).toList(),
+                                                  onChanged: (newValue) {
+                                                    setState(() {
+                                                      selectedValue = newValue;
+                                                    });
+                                                  },
+                                                ),
                                               ),
-                                              child: DropdownButton<String>(
-                                                alignment: Alignment.center,
-                                                hint: Text(
-                                                    '--Pilih Nama Project--'),
-                                                value: selectedValue,
-                                                underline: SizedBox(),
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                items: dropdownItems
-                                                    .map((String value) {
-                                                  return DropdownMenuItem<
-                                                      String>(
-                                                    value: value,
-                                                    child: Text(value),
-                                                  );
-                                                }).toList(),
-                                                onChanged: (newValue) {
-                                                  setState(() {
-                                                    selectedValue = newValue;
-                                                  });
-                                                },
+                                            ],
+                                          ),
+                                          SizedBox(height: 50),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'Upload',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 16,
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(height: 50),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Upload',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                            Container(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 7),
-                                              width: 1000,
-                                              decoration: BoxDecoration(
-                                                border: Border.all(),
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  SizedBox(width: 8),
-                                                  IconButton(
-                                                    icon: Icon(
-                                                      Icons.add,
-                                                      size: 35,
+                                              Container(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 7),
+                                                width: 225,
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                ),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    SizedBox(width: 8),
+                                                    IconButton(
+                                                      icon: Icon(
+                                                        Icons.add,
+                                                        size: 35,
+                                                      ),
+                                                      onPressed: () {},
                                                     ),
-                                                    onPressed: () {},
-                                                  ),
-                                                ],
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                            SizedBox(height: 10),
-                                            RichText(
-                                                text: TextSpan(children: [
-                                              TextSpan(
-                                                text: 'Download Template Excel',
-                                              ),
-                                              TextSpan(
-                                                  style: TextStyle(
-                                                      color: Colors
-                                                          .blueAccent[700]),
+                                              SizedBox(height: 10),
+                                              RichText(
+                                                  text: TextSpan(children: [
+                                                TextSpan(
                                                   text:
-                                                      ' Input Kebutuhan Material',
-                                                  recognizer:
-                                                      TapGestureRecognizer()
-                                                        ..onTap = () async {
-                                                          var url =
-                                                              'https://www.figma.com/file/Oty6jOcRnse0kBBgrMNTJa/flutter-project?type=design&node-id=197-154&mode=design&t=oN7tMuNo70tqRCrq-0';
-                                                        })
-                                            ]))
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(width: 20),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Kode Lot',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
+                                                      'Download Template Excel',
+                                                ),
+                                                TextSpan(
+                                                    style: TextStyle(
+                                                        color: Colors
+                                                            .blueAccent[700]),
+                                                    text:
+                                                        ' Input Kebutuhan Material',
+                                                    recognizer:
+                                                        TapGestureRecognizer()
+                                                          ..onTap = () async {
+                                                            var url =
+                                                                'https://www.figma.com/file/Oty6jOcRnse0kBBgrMNTJa/flutter-project?type=design&node-id=197-154&mode=design&t=oN7tMuNo70tqRCrq-0';
+                                                          })
+                                              ]))
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(width: 20),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'Kode Lot',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 16,
+                                                ),
                                               ),
-                                            ),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                border: Border.all(),
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                ),
+                                                child: DropdownButton<String>(
+                                                  alignment: Alignment.center,
+                                                  hint: Text(
+                                                      '--Pilih Kode Lot--'),
+                                                  value: selectedValue,
+                                                  underline: SizedBox(),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  items: dropdownItems
+                                                      .map((String value) {
+                                                    return DropdownMenuItem<
+                                                        String>(
+                                                      value: value,
+                                                      child: Text(value),
+                                                    );
+                                                  }).toList(),
+                                                  onChanged: (newValue) {
+                                                    setState(() {
+                                                      selectedValue = newValue;
+                                                    });
+                                                  },
+                                                ),
                                               ),
-                                              child: DropdownButton<String>(
-                                                alignment: Alignment.center,
-                                                hint:
-                                                    Text('--Pilih Kode Lot--'),
-                                                value: selectedValue,
-                                                underline: SizedBox(),
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                items: dropdownItems
-                                                    .map((String value) {
-                                                  return DropdownMenuItem<
-                                                      String>(
-                                                    value: value,
-                                                    child: Text(value),
-                                                  );
-                                                }).toList(),
-                                                onChanged: (newValue) {
-                                                  setState(() {
-                                                    selectedValue = newValue;
-                                                  });
-                                                },
-                                              ),
-                                            ),
-                                            SizedBox(height: 340),
-                                            Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: [
-                                                  ElevatedButton(
-                                                    onPressed: () {
-                                                      _showFinishDialog();
-                                                    },
-                                                    style: ElevatedButton
-                                                        .styleFrom(
-                                                      primary:
-                                                          const Color.fromRGBO(
-                                                              43, 56, 86, 1),
-                                                    ),
-                                                    child: Text(
-                                                      'Simpan',
-                                                      style: TextStyle(
-                                                        color: Colors.white,
+                                              SizedBox(height: 340),
+                                              Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  children: [
+                                                    ElevatedButton(
+                                                      onPressed: () {
+                                                        _showFinishDialog();
+                                                      },
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        primary: const Color
+                                                            .fromRGBO(
+                                                            43, 56, 86, 1),
+                                                      ),
+                                                      child: Text(
+                                                        'Simpan',
+                                                        style: TextStyle(
+                                                          color: Colors.white,
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                  SizedBox(width: 30),
-                                                ]),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
+                                                    SizedBox(width: 30),
+                                                  ]),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
                             ),
                           ),
