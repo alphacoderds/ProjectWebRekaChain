@@ -20,25 +20,13 @@ class _PerencanaanState extends State<Perencanaan> {
   bool isViewVisible = false;
 
   int _selectedIndex = 0;
-  List<String> dropdownItems = [
-    '--Pilih Nama/Kode Project--',
-    'R22-PT. Nugraha Jasa',
-    'PT. INDAH JAYA'
-  ];
+  List<String> dropdownItems = [];
   String? selectedValue;
 
-  List<String> dropdownItemsAlurProses = [
-    '--Pilih Alur Proses--',
-    'PPC',
-    'Produksi'
-  ];
+  late List<String> dropdownItemsAlurProses;
   String? selectedValueAlurProses;
 
-  List<String> dropdownItemsKategori = [
-    '--Pilih Kategori--',
-    'Produk',
-    'Material'
-  ];
+  late List<String> dropdownItemsKategori;
   String? selectedValueKategori;
 
   TextEditingController tglMulaicontroller = TextEditingController();
@@ -305,6 +293,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                                           BorderRadius.circular(
                                                               20)),
                                                   child: TextField(
+                                                    textAlign: TextAlign.center,
                                                     controller:
                                                         tglMulaicontroller,
                                                     readOnly: true,
@@ -459,14 +448,6 @@ class _PerencanaanState extends State<Perencanaan> {
                                                               20)),
                                                   child: TextField(
                                                     textAlign: TextAlign.center,
-                                                    decoration: InputDecoration(
-                                                      border:
-                                                          OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20)),
-                                                    ),
                                                     controller:
                                                         tglSelesaicontroller,
                                                     readOnly: true,
@@ -490,17 +471,14 @@ class _PerencanaanState extends State<Perencanaan> {
 
                               SizedBox(width: 40),
                               Container(
-                                width: screenWidth * 0.6,
-                                padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                margin: EdgeInsets.all(50.0),
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black),
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                child: isViewVisible
-                                    ? _buildViewTable()
-                                    : _buildMainTable(),
-                              ),
+                                  width: screenWidth * 0.6,
+                                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                  margin: EdgeInsets.all(50.0),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black),
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  child: _buildMainTable()),
                               Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
@@ -893,6 +871,7 @@ class _PerencanaanState extends State<Perencanaan> {
                 builder: (context) => InputDokumen(),
               ),
             );
+            Navigator.pop(context);
           }
         }
       },
