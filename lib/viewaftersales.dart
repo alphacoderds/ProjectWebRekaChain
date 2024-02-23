@@ -103,7 +103,7 @@ class _ViewAfterSalesState extends State<ViewAfterSales> {
                     ),
                     actions: [
                       Padding(
-                        padding: EdgeInsets.only(right: screenHeight * 0.13),
+                        padding: EdgeInsets.only(right: screenHeight * 0.11),
                         child: Row(
                           children: [
                             SizedBox(
