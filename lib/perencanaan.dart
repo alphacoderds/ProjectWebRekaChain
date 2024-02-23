@@ -191,6 +191,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                                         style: TextStyle(
                                                             fontSize: 15)),
                                                     value: selectedValue,
+                                                    underline: SizedBox(),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             5),

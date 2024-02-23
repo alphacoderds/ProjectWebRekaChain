@@ -183,6 +183,7 @@ class _InputMaterialState extends State<InputMaterial> {
                                                 hint: Text(
                                                     '--Pilih Nama Project--'),
                                                 value: selectedValue,
+                                                underline: SizedBox(),
                                                 borderRadius:
                                                     BorderRadius.circular(5),
                                                 items: dropdownItems
@@ -291,6 +292,7 @@ class _InputMaterialState extends State<InputMaterial> {
                                                 hint:
                                                     Text('--Pilih Kode Lot--'),
                                                 value: selectedValue,
+                                                underline: SizedBox(),
                                                 borderRadius:
                                                     BorderRadius.circular(5),
                                                 items: dropdownItems
