@@ -1,11 +1,6 @@
 import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
-<<<<<<< HEAD
-import 'package:RekaChain/editprofile.dart';
 import 'package:RekaChain/inputkebutuhanmaterial.dart';
-=======
-import 'package:RekaChain/inputkebutuhan%20material.dart';
->>>>>>> e1a616574a7dbb5f08a627538fd9f8adfc773ff5
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/notification.dart';
 import 'package:RekaChain/perencanaan.dart';

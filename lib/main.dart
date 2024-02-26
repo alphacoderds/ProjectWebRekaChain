@@ -1,3 +1,4 @@
+import 'package:RekaChain/DetailviewPerencanaan.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/inputdokumen.dart';
 import 'package:RekaChain/inputkebutuhanmaterial.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: InputMaterial(),
+      home: DetailP(),
     );
   }
 }
