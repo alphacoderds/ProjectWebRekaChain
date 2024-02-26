@@ -29,20 +29,95 @@ class _PerencanaanState extends State<Perencanaan> {
   late List<String> dropdownItemsKategori;
   String? selectedValueKategori;
 
+  List<DataRow> rowsData = [];
+  late List<String?> selectedValuesAlurProses;
+  late List<String?> selectedValuesKategori;
+
+//===========================================================Widget Tambah Table Alur===========================================================//
+  void addRow() {
+    setState(() {
+      if (rowsData.isEmpty) {
+        rowsData = [];
+      }
+
+      rowsData.add(DataRow(cells: [
+        DataCell(DropdownButton<String>(
+          alignment: Alignment.center,
+          hint: Text('--Pilih Alur Proses--', style: TextStyle(fontSize: 15)),
+          value: null,
+          borderRadius: BorderRadius.circular(5),
+          focusColor: Colors.white,
+          items: dropdownItemsAlurProses.map((String value) {
+            return DropdownMenuItem<String>(value: value, child: Text(value));
+          }).toList(),
+          onChanged: (newValue) =>
+              onAlurProsesChanged(newValue, rowsData.length - 1),
+          dropdownColor: Colors.white,
+        )),
+        DataCell(DropdownButton<String>(
+          alignment: Alignment.center,
+          hint: Text('--Pilih Kategori--', style: TextStyle(fontSize: 15)),
+          value: null,
+          borderRadius: BorderRadius.circular(5),
+          focusColor: Colors.white,
+          items: dropdownItemsKategori.map((String value) {
+            return DropdownMenuItem<String>(value: value, child: Text(value));
+          }).toList(),
+          onChanged: (newValue) =>
+              onKategoriChanged(newValue, rowsData.length - 1),
+          dropdownColor: Colors.white,
+        )),
+        DataCell(Container(
+          height: 100,
+          width: 300,
+          child: TextField(
+            maxLines: 5,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.symmetric(
+                vertical: screenHeight * 0.005,
+                horizontal: screenWidth * 0.005,
+              ),
+            ),
+          ),
+        )),
+      ]));
+      selectedValuesAlurProses.add(null);
+      selectedValuesKategori.add(null);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    selectedValuesAlurProses = List.filled(rowsData.length, null);
+    selectedValuesKategori = List.filled(rowsData.length, null);
+  }
+
+  // Fungsi untuk memperbarui nilai dropdown Alur Proses
+  void onAlurProsesChanged(String? newValue, int index) {
+    setState(() {
+      selectedValuesAlurProses[index] = newValue;
+    });
+  }
+
+// Fungsi untuk memperbarui nilai dropdown Kategori
+  void onKategoriChanged(String? newValue, int index) {
+    setState(() {
+      selectedValuesKategori[index] = newValue;
+    });
+  }
+
   TextEditingController tglMulaicontroller = TextEditingController();
   TextEditingController tglSelesaicontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    dropdownItems = [
-      '--Pilih Nama/Kode Project--',
-      'R22-PT. Nugraha Jasa',
-      'PT. INDAH JAYA'
-    ];
+    dropdownItems = ['R22-PT. Nugraha Jasa', 'PT. INDAH JAYA'];
 
-    dropdownItemsAlurProses = ['--Pilih Alur Proses--', 'PPC', 'Produksi'];
+    dropdownItemsAlurProses = ['PPC', 'Produksi'];
 
-    dropdownItemsKategori = ['--Pilih Kategori--', 'Produk', 'Material'];
+    dropdownItemsKategori = ['Produk', 'Material'];
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -494,7 +569,9 @@ class _PerencanaanState extends State<Perencanaan> {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     ElevatedButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        addRow();
+                                      },
                                       child: Text(
                                         'Tambah Kolom',
                                       ),
@@ -594,48 +671,44 @@ class _PerencanaanState extends State<Perencanaan> {
                 ),
               ),
             ],
-            rows: [
-              DataRow(cells: [
-                DataCell(
-                  DropdownButton<String>(
-                    alignment: Alignment.center,
-                    hint: Text('--Pilih Alur Proses--',
-                        style: TextStyle(fontSize: 15)),
-                    value: selectedValueAlurProses,
-                    borderRadius: BorderRadius.circular(5),
-                    focusColor: Colors.white,
-                    items: dropdownItemsAlurProses.map((String value) {
-                      return DropdownMenuItem<String>(
-                          value: value, child: Text(value));
-                    }).toList(),
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedValueAlurProses = newValue;
-                      });
-                    },
-                    dropdownColor: Colors.white,
+            rows: List.generate(rowsData.length, (index) {
+              return DataRow(cells: [
+                DataCell(DropdownButton<String>(
+                  alignment: Alignment.center,
+                  hint: Text(
+                    '--Pilih Alur Proses--',
+                    style: TextStyle(fontSize: 15),
                   ),
-                ),
-                DataCell(
-                  DropdownButton<String>(
-                    alignment: Alignment.center,
-                    hint: Text('--Pilih Kategori--',
-                        style: TextStyle(fontSize: 15)),
-                    value: selectedValueKategori,
-                    borderRadius: BorderRadius.circular(5),
-                    focusColor: Colors.white,
-                    items: dropdownItemsKategori.map((String value) {
-                      return DropdownMenuItem<String>(
-                          value: value, child: Text(value));
-                    }).toList(),
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedValueKategori = newValue;
-                      });
-                    },
-                    dropdownColor: Colors.white,
+                  value: selectedValuesAlurProses[index],
+                  borderRadius: BorderRadius.circular(5),
+                  focusColor: Colors.white,
+                  items: dropdownItemsAlurProses.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (newValue) => onAlurProsesChanged(newValue, index),
+                  dropdownColor: Colors.white,
+                )),
+                DataCell(DropdownButton<String>(
+                  alignment: Alignment.center,
+                  hint: Text(
+                    '--Pilih Kategori--',
+                    style: TextStyle(fontSize: 15),
                   ),
-                ),
+                  value: selectedValuesKategori[index],
+                  borderRadius: BorderRadius.circular(5),
+                  focusColor: Colors.white,
+                  items: dropdownItemsKategori.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (newValue) => onKategoriChanged(newValue, index),
+                  dropdownColor: Colors.white,
+                )),
                 DataCell(Container(
                   height: 100,
                   width: 300,
@@ -644,77 +717,132 @@ class _PerencanaanState extends State<Perencanaan> {
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.symmetric(
-                          vertical: screenHeight * 0.005,
-                          horizontal: screenWidth * 0.005),
+                        vertical: screenHeight * 0.005,
+                        horizontal: screenWidth * 0.005,
+                      ),
                     ),
                   ),
                 )),
-              ]),
-              DataRow(cells: [
-                DataCell(
-                  DropdownButton<String>(
-                    alignment: Alignment.center,
-                    hint: Text('--Pilih Alur Proses--',
-                        style: TextStyle(fontSize: 15)),
-                    value: selectedValueAlurProses,
-                    borderRadius: BorderRadius.circular(5),
-                    focusColor: Colors.white,
-                    items: dropdownItemsAlurProses.map((String value) {
-                      return DropdownMenuItem<String>(
-                          value: value, child: Text(value));
-                    }).toList(),
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedValueAlurProses = newValue;
-                      });
-                    },
-                    dropdownColor: Colors.white,
-                  ),
-                ),
-                DataCell(
-                  DropdownButton<String>(
-                    alignment: Alignment.center,
-                    hint: Text('--Pilih Kategori--',
-                        style: TextStyle(fontSize: 15)),
-                    value: selectedValueKategori,
-                    borderRadius: BorderRadius.circular(5),
-                    focusColor: Colors.white,
-                    items: dropdownItemsKategori.map((String value) {
-                      return DropdownMenuItem<String>(
-                          value: value, child: Text(value));
-                    }).toList(),
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedValueKategori = newValue;
-                      });
-                    },
-                    dropdownColor: Colors.white,
-                  ),
-                ),
-                DataCell(Container(
-                  height: 100,
-                  width: 300,
-                  // decoration: BoxDecoration(
-                  //   border:
-                  //       Border.all(color: Color.fromARGB(255, 177, 177, 177)),
-                  // ),
-                  child: TextField(
-                    maxLines: 5,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.symmetric(
-                          vertical: screenHeight * 0.005,
-                          horizontal: screenWidth * 0.005),
-                    ),
-                  ),
-                )),
-              ]),
-            ],
+              ]);
+            }).toList(),
           ),
         ),
       ),
     );
   }
+
+  // [
+  //   DataRow(cells: [
+  //     DataCell(
+  //       DropdownButton<String>(
+  //         alignment: Alignment.center,
+  //         hint: Text('--Pilih Alur Proses--',
+  //             style: TextStyle(fontSize: 15)),
+  //         value: selectedValueAlurProses,
+  //         borderRadius: BorderRadius.circular(5),
+  //         focusColor: Colors.white,
+  //         items: dropdownItemsAlurProses.map((String value) {
+  //           return DropdownMenuItem<String>(
+  //               value: value, child: Text(value));
+  //         }).toList(),
+  //         onChanged: (newValue) {
+  //           onAlurProsesChanged;
+  //         },
+  //         dropdownColor: Colors.white,
+  //       ),
+  //     ),
+  //     DataCell(
+  //       DropdownButton<String>(
+  //         alignment: Alignment.center,
+  //         hint: Text('--Pilih Kategori--',
+  //             style: TextStyle(fontSize: 15)),
+  //         value: selectedValueKategori,
+  //         borderRadius: BorderRadius.circular(5),
+  //         focusColor: Colors.white,
+  //         items: dropdownItemsKategori.map((String value) {
+  //           return DropdownMenuItem<String>(
+  //               value: value, child: Text(value));
+  //         }).toList(),
+  //         onChanged: (newValue) {
+  //           onKategoriChanged;
+  //         },
+  //         dropdownColor: Colors.white,
+  //       ),
+  //     ),
+  //     DataCell(Container(
+  //       height: 100,
+  //       width: 300,
+  //       child: TextField(
+  //         maxLines: 5,
+  //         decoration: InputDecoration(
+  //           border: InputBorder.none,
+  //           contentPadding: EdgeInsets.symmetric(
+  //               vertical: screenHeight * 0.005,
+  //               horizontal: screenWidth * 0.005),
+  //         ),
+  //       ),
+  //     )),
+  //   ]),
+  //   DataRow(cells: [
+  //     DataCell(
+  //       DropdownButton<String>(
+  //         alignment: Alignment.center,
+  //         hint: Text('--Pilih Alur Proses--',
+  //             style: TextStyle(fontSize: 15)),
+  //         value: selectedValueAlurProses,
+  //         borderRadius: BorderRadius.circular(5),
+  //         focusColor: Colors.white,
+  //         items: dropdownItemsAlurProses.map((String value) {
+  //           return DropdownMenuItem<String>(
+  //               value: value, child: Text(value));
+  //         }).toList(),
+  //         onChanged: (newValue) {
+  //           setState(() {
+  //             selectedValueAlurProses = newValue;
+  //           });
+  //         },
+  //         dropdownColor: Colors.white,
+  //       ),
+  //     ),
+  //     DataCell(
+  //       DropdownButton<String>(
+  //         alignment: Alignment.center,
+  //         hint: Text('--Pilih Kategori--',
+  //             style: TextStyle(fontSize: 15)),
+  //         value: selectedValueKategori,
+  //         borderRadius: BorderRadius.circular(5),
+  //         focusColor: Colors.white,
+  //         items: dropdownItemsKategori.map((String value) {
+  //           return DropdownMenuItem<String>(
+  //               value: value, child: Text(value));
+  //         }).toList(),
+  //         onChanged: (newValue) {
+  //           setState(() {
+  //             selectedValueKategori = newValue;
+  //           });
+  //         },
+  //         dropdownColor: Colors.white,
+  //       ),
+  //     ),
+  //     DataCell(Container(
+  //       height: 100,
+  //       width: 300,
+  //       // decoration: BoxDecoration(
+  //       //   border:
+  //       //       Border.all(color: Color.fromARGB(255, 177, 177, 177)),
+  //       // ),
+  //       child: TextField(
+  //         maxLines: 5,
+  //         decoration: InputDecoration(
+  //           border: InputBorder.none,
+  //           contentPadding: EdgeInsets.symmetric(
+  //               vertical: screenHeight * 0.005,
+  //               horizontal: screenWidth * 0.005),
+  //         ),
+  //       ),
+  //     )),
+  //   ]),
+  // ],
 
   Widget _buildViewTable() {
     return DataTable(
