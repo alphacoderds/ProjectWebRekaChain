@@ -1,8 +1,10 @@
+import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/inputdokumen.dart';
 import 'package:RekaChain/inputkebutuhanmaterial.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/notification.dart';
+import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:RekaChain/reportsttpp.dart';
 import 'package:RekaChain/viewperencanaan.dart';
@@ -764,11 +766,11 @@ class _DetailPState extends State<DetailP> {
                 builder: (context) => Dashboard(),
               ),
             );
-          } else if (index == 3) {
+          } else if (index == 6) {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => DetailP(),
+                builder: (context) => AfterSales(),
               ),
             );
           } else {
@@ -831,7 +833,7 @@ class _DetailPState extends State<DetailP> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => DetailP(),
+                builder: (context) => Perencanaan(),
               ),
             );
           } else if (index == 4) {

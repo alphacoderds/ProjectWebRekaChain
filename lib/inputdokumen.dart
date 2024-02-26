@@ -183,7 +183,7 @@ class _InputDokumenState extends State<InputDokumen> {
             children: [
               Center(
                 child: Container(
-                  width: screenWidth * 0.7,
+                  width: screenWidth * 0.79,
                   height: screenHeight * 0.75,
                   decoration: BoxDecoration(
                       border: Border.all(),
