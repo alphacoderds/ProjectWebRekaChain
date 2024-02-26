@@ -113,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: screenHeight * 0.005),
                 _inputField("Username", nipController,
                     backgroundColor: Colors.white),
-                SizedBox(height: screenHeight * 0.01),
+                SizedBox(height: screenHeight * 0.005),
                 Text(
                   "Password :",
                   style: TextStyle(fontSize: screenHeight * 0.023),
@@ -122,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: screenHeight * 0.005),
                 _inputField("Password", passwordController,
                     isPassword: true, backgroundColor: Colors.white),
-                SizedBox(height: screenHeight * 0.025),
+                SizedBox(height: screenHeight * 0.005),
                 _loginBtn(),
                 Expanded(child: Container())
               ],

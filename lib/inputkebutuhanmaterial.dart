@@ -13,6 +13,7 @@ import 'package:RekaChain/viewikm.dart';
 import 'package:RekaChain/viewupload.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
 
 class InputMaterial extends StatefulWidget {
   const InputMaterial({super.key});
@@ -24,6 +25,17 @@ class InputMaterial extends StatefulWidget {
 class _InputMaterialState extends State<InputMaterial> {
   late double screenWidth = MediaQuery.of(context).size.width;
   late double screenHeight = MediaQuery.of(context).size.height;
+  List<File> uploadFiles = [];
+
+  Future<void> _uploadDocument() async {
+    FilePickerResult? result =
+        await FilePicker.platform.pickFiles(allowMultiple: true);
+    if (result != null) {
+      print('Path File: ${result.files.single.path}');
+    } else {
+      print('Pengguna membatalkan pemilih file');
+    }
+  }
 
   int _selectedIndex = 0;
   List<String> dropdownItems1 = [
@@ -267,7 +279,9 @@ class _InputMaterialState extends State<InputMaterial> {
                                             Icons.add,
                                             size: 35,
                                           ),
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            _uploadDocument();
+                                          },
                                         ),
                                       ],
                                     ),
