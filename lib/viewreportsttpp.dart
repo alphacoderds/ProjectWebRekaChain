@@ -67,7 +67,7 @@ class _ViewReportSTTPState extends State<ViewReportSTTPP> {
                   ),
                   actions: [
                     Padding(
-                      padding: EdgeInsets.only(right: screenHeight * 0.13),
+                      padding: EdgeInsets.only(right: screenHeight * 0.11),
                       child: Row(
                         children: [
                           SizedBox(

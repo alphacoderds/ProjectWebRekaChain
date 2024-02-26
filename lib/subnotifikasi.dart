@@ -75,7 +75,7 @@ class _SubnotifikasiState extends State<Subnotifikasi> {
                   ),
                   actions: [
                     Padding(
-                      padding: EdgeInsets.only(right: screenHeight * 0.13),
+                      padding: EdgeInsets.only(right: screenHeight * 0.11),
                       child: Row(
                         children: [
                           SizedBox(
