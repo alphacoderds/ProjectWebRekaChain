@@ -14,6 +14,7 @@ class _LoginPageState extends State<LoginPage> {
   late double screenWidth;
   late double screenHeight;
   double hintTextSize = 14;
+  bool obscureText = true;
 
   @override
   void initState() {
@@ -145,10 +146,11 @@ class _LoginPageState extends State<LoginPage> {
       {bool isPassword = false, Color? backgroundColor}) {
     return SizedBox(
       width: screenWidth * 0.35,
-      height: screenHeight * 0.04,
+      height: screenHeight * 0.06,
       child: Center(
         child: TextField(
-          style: const TextStyle(color: Color.fromARGB(255, 8, 8, 8)),
+          style: const TextStyle(
+              color: Color.fromARGB(255, 8, 8, 8), fontSize: 18),
           controller: controller,
           decoration: InputDecoration(
             hintText: hintText,
@@ -162,8 +164,21 @@ class _LoginPageState extends State<LoginPage> {
               borderRadius: BorderRadius.circular(5),
             ),
             contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+            suffixIcon: isPassword
+                ? IconButton(
+                    icon: Icon(
+                      obscureText ? Icons.visibility : Icons.visibility_off,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        obscureText = !obscureText;
+                      });
+                    },
+                  )
+                : null,
           ),
-          obscureText: isPassword,
+          obscureText: obscureText,
         ),
       ),
     );

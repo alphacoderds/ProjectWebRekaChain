@@ -76,7 +76,9 @@ class _InputDokumenState extends State<InputDokumen> {
                                 EdgeInsets.only(right: screenHeight * 0.11),
                             child: Row(
                               children: [
-                                SizedBox(width: 16),
+                                SizedBox(
+                                  width: screenWidth * 0.005,
+                                ),
                                 ElevatedButton(
                                   onPressed: () {
                                     Navigator.push(
@@ -87,9 +89,8 @@ class _InputDokumenState extends State<InputDokumen> {
                                   },
                                   child: Text(
                                     'Uploads',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold),
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                   style: ElevatedButton.styleFrom(
                                     foregroundColor: Colors.white,
@@ -102,14 +103,11 @@ class _InputDokumenState extends State<InputDokumen> {
                                         horizontal: 5, vertical: 3),
                                   ),
                                 ),
-                                SizedBox(
-                                  width: screenWidth * 0.005,
-                                ),
                                 IconButton(
                                   icon: Icon(
                                     Icons.notifications_active,
                                     size: 33,
-                                    color: Colors.white,
+                                    color: Color.fromARGB(255, 255, 255, 255),
                                   ),
                                   onPressed: () {
                                     Navigator.push(
@@ -138,227 +136,198 @@ class _InputDokumenState extends State<InputDokumen> {
                           )
                         ],
                       ),
-                      body: Container(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: screenHeight * 0.04),
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Center(
-                                child: Container(
-                                  width: screenWidth * 0.6,
-                                  height: screenHeight * 0.8,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(),
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: screenHeight * 0.09,
-                                        horizontal: screenWidth * 0.05),
-                                    child: Row(
-                                      children: [
-                                        SizedBox(width: screenWidth * 0.05),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    'Nama Project',
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 16,
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                    ),
-                                                    child:
-                                                        DropdownButton<String>(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      hint: Text(
-                                                          '--Pilih Nama Project--'),
-                                                      underline: SizedBox(),
-                                                      value: selectedValue,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                      items: dropdownItems
-                                                          .map((String value) {
-                                                        return DropdownMenuItem<
-                                                            String>(
-                                                          value: value,
-                                                          child: Text(value),
-                                                        );
-                                                      }).toList(),
-                                                      onChanged: (newValue) {
-                                                        setState(() {
-                                                          selectedValue =
-                                                              newValue;
-                                                        });
-                                                      },
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(height: 40),
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    'Upload',
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 16,
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 7),
-                                                    width: 2000,
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                    ),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        SizedBox(width: 8),
-                                                        IconButton(
-                                                          icon: Icon(
-                                                            Icons.add,
-                                                            size: 35,
-                                                          ),
-                                                          onPressed: () {},
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  SizedBox(height: 10),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(width: screenWidth * 0.05),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    'No Produk',
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 16,
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                    ),
-                                                    child:
-                                                        DropdownButton<String>(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      hint: Text(
-                                                          '--Pilih No Produk--'),
-                                                      value: selectedValue,
-                                                      underline: SizedBox(),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                      items: dropdownItems
-                                                          .map((String value) {
-                                                        return DropdownMenuItem<
-                                                            String>(
-                                                          value: value,
-                                                          child: Text(value),
-                                                        );
-                                                      }).toList(),
-                                                      onChanged: (newValue) {
-                                                        setState(() {
-                                                          selectedValue =
-                                                              newValue;
-                                                        });
-                                                      },
-                                                    ),
-                                                  ),
-                                                  SizedBox(height: 341),
-                                                  Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.end,
-                                                      children: [
-                                                        ElevatedButton(
-                                                          onPressed: () {
-                                                            _showFinishDialog();
-                                                          },
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                            primary: const Color
-                                                                .fromRGBO(
-                                                                43, 56, 86, 1),
-                                                          ),
-                                                          child: Text(
-                                                            'Simpan',
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        SizedBox(width: 10),
-                                                      ]),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                      body: Center(
+                        child: _buildMainTable(),
                       ),
                     ),
                   ),
                 ],
               ),
             ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.endDocked,
+            floatingActionButton: Padding(
+              padding: EdgeInsets.only(right: 0.01, bottom: 8),
+              child: SizedBox(
+                width: 100.0,
+                height: 40.0,
+                child: ElevatedButton(
+                  onPressed: () {
+                    _showFinishDialog();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color.fromRGBO(43, 56, 86, 1),
+                  ),
+                  child: Text(
+                    'Simpan',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
         );
       },
+    );
+  }
+
+  Widget _buildMainTable() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: screenHeight * 0.04),
+          child: Row(
+            children: [
+              Center(
+                child: Container(
+                  width: screenWidth * 0.79,
+                  height: screenHeight * 0.75,
+                  decoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        vertical: screenHeight * 0.09,
+                        horizontal: screenWidth * 0.05),
+                    child: Row(
+                      children: [
+                        SizedBox(width: screenWidth * 0.05),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Nama Project',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: DropdownButton<String>(
+                                      alignment: Alignment.center,
+                                      hint: Text('--Pilih Nama Project--'),
+                                      underline: SizedBox(),
+                                      value: selectedValue,
+                                      borderRadius: BorderRadius.circular(5),
+                                      items: dropdownItems.map((String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                      onChanged: (newValue) {
+                                        setState(() {
+                                          selectedValue = newValue;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 40),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Upload',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 7),
+                                    width: 2000,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        SizedBox(width: 8),
+                                        IconButton(
+                                          icon: Icon(
+                                            Icons.add,
+                                            size: 35,
+                                          ),
+                                          onPressed: () {},
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(width: screenWidth * 0.05),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'No Produk',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: DropdownButton<String>(
+                                      alignment: Alignment.center,
+                                      hint: Text('--Pilih No Produk--'),
+                                      value: selectedValue,
+                                      underline: SizedBox(),
+                                      borderRadius: BorderRadius.circular(5),
+                                      items: dropdownItems.map((String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                      onChanged: (newValue) {
+                                        setState(() {
+                                          selectedValue = newValue;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
