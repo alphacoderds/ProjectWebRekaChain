@@ -1,5 +1,4 @@
 import 'package:RekaChain/AfterSales/AfterSales.dart';
-import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/inputdokumen.dart';
 import 'package:RekaChain/inputkebutuhanmaterial.dart';
 import 'package:RekaChain/login.dart';
@@ -8,17 +7,34 @@ import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:RekaChain/reportsttpp.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class Dashboard extends StatefulWidget {
   @override
-  State<Dashboard> createState() => _AfterSalesState();
+  State<Dashboard> createState() => _DashboardState();
 }
 
-class _AfterSalesState extends State<Dashboard> {
+class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
+  late List<_ChartData> data;
+  late TooltipBehavior _tooltip;
+
   bool isViewVisible = false;
   late double screenWidth = MediaQuery.of(context).size.width;
   late double screenHeight = MediaQuery.of(context).size.height;
+
+  @override
+  void initState() {
+    data = [
+      _ChartData('Panel 1', 12),
+      _ChartData('Panel 2', 15),
+      _ChartData('Panel 3', 30),
+      _ChartData('Panel 4', 6.4),
+      _ChartData('Panel 5', 14),
+    ];
+    _tooltip = TooltipBehavior(enable: true);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +101,31 @@ class _AfterSalesState extends State<Dashboard> {
                         ],
                       ),
                     )
+                  ],
+                ),
+                body: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildChartContainer('Nama Pt 1 - Kode Lot'),
+                        SizedBox(width: 20),
+                        _buildChartContainer('Nama Pt 2 - Kode Lot'),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildChartContainer('Nama Pt 3 - Kode Lot'),
+                        SizedBox(width: 20),
+                        _buildChartContainer('Nama Pt 4 - Kode Lot'),
+                        SizedBox(
+                          width: 20,
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -271,4 +312,35 @@ class _AfterSalesState extends State<Dashboard> {
       },
     );
   }
+
+  Widget _buildChartContainer(String chartTitle) {
+    return Container(
+      width: 500.0,
+      height: 300.0,
+      child: SfCartesianChart(
+        primaryXAxis: CategoryAxis(),
+        primaryYAxis: NumericAxis(minimum: 0, maximum: 100, interval: 10),
+        tooltipBehavior: _tooltip,
+        series: <CartesianSeries<_ChartData, String>>[
+          BarSeries<_ChartData, String>(
+            dataSource: data,
+            xValueMapper: (_ChartData data, _) => data.x,
+            yValueMapper: (_ChartData data, _) => data.y,
+            name: chartTitle,
+            color: Color.fromRGBO(43, 56, 103, 1),
+          )
+        ],
+        title: ChartTitle(
+          text: chartTitle,
+          textStyle: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+  }
+}
+
+class _ChartData {
+  _ChartData(this.x, this.y);
+  final String x;
+  final double y;
 }

@@ -31,11 +31,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-<<<<<<< HEAD
-      home: Perencanaan(),
-=======
       home: LoginPage(),
->>>>>>> 7bc67fa05c38a11a678629bbeb5b03e5d8957368
     );
   }
 }
