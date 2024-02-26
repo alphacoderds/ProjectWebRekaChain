@@ -20,25 +20,13 @@ class _PerencanaanState extends State<Perencanaan> {
   bool isViewVisible = false;
 
   int _selectedIndex = 0;
-  List<String> dropdownItems = [
-    '--Pilih Nama/Kode Project--',
-    'R22-PT. Nugraha Jasa',
-    'PT. INDAH JAYA'
-  ];
+  late List<String> dropdownItems;
   String? selectedValue;
 
-  List<String> dropdownItemsAlurProses = [
-    '--Pilih Alur Proses--',
-    'PPC',
-    'Produksi'
-  ];
+  late List<String> dropdownItemsAlurProses;
   String? selectedValueAlurProses;
 
-  List<String> dropdownItemsKategori = [
-    '--Pilih Kategori--',
-    'Produk',
-    'Material'
-  ];
+  late List<String> dropdownItemsKategori;
   String? selectedValueKategori;
 
   TextEditingController tglMulaicontroller = TextEditingController();
@@ -46,6 +34,16 @@ class _PerencanaanState extends State<Perencanaan> {
 
   @override
   Widget build(BuildContext context) {
+    dropdownItems = [
+      '--Pilih Nama/Kode Project--',
+      'R22-PT. Nugraha Jasa',
+      'PT. INDAH JAYA'
+    ];
+
+    dropdownItemsAlurProses = ['--Pilih Alur Proses--', 'PPC', 'Produksi'];
+
+    dropdownItemsKategori = ['--Pilih Kategori--', 'Produk', 'Material'];
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: (settings) {
@@ -490,9 +488,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                   border: Border.all(color: Colors.black),
                                   borderRadius: BorderRadius.circular(5.0),
                                 ),
-                                child: isViewVisible
-                                    ? _buildViewTable()
-                                    : _buildMainTable(),
+                                child: _buildMainTable(),
                               ),
                               Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
@@ -643,10 +639,6 @@ class _PerencanaanState extends State<Perencanaan> {
                 DataCell(Container(
                   height: 100,
                   width: 300,
-                  // decoration: BoxDecoration(
-                  //   border:
-                  //       Border.all(color: Color.fromARGB(255, 177, 177, 177)),
-                  // ),
                   child: TextField(
                     maxLines: 5,
                     decoration: InputDecoration(
