@@ -75,8 +75,8 @@ class _ViewReportSTTPState extends State<ViewReportSTTPP> {
                           ),
                           IconButton(
                             icon: Icon(
-                              Icons.download,
-                              size: 39,
+                              Icons.file_download_outlined,
+                              size: 33,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
                             onPressed: () {},
@@ -84,7 +84,7 @@ class _ViewReportSTTPState extends State<ViewReportSTTPP> {
                           IconButton(
                             icon: Icon(
                               Icons.notifications_active,
-                              size: 35,
+                              size: 33,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
                             onPressed: () {
@@ -98,7 +98,7 @@ class _ViewReportSTTPState extends State<ViewReportSTTPP> {
                           IconButton(
                             icon: Icon(
                               Icons.account_circle_rounded,
-                              size: 38,
+                              size: 35,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
                             onPressed: () {

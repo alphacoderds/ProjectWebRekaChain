@@ -106,25 +106,31 @@ class _DashboardState extends State<Dashboard> {
                 body: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildChartContainer('Nama Pt 1 - Kode Lot'),
-                        SizedBox(width: 20),
-                        _buildChartContainer('Nama Pt 2 - Kode Lot'),
-                      ],
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildChartContainer('Nama Pt 1 - Kode Lot'),
+                          SizedBox(width: 20),
+                          _buildChartContainer('Nama Pt 2 - Kode Lot'),
+                        ],
+                      ),
                     ),
                     SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildChartContainer('Nama Pt 3 - Kode Lot'),
-                        SizedBox(width: 20),
-                        _buildChartContainer('Nama Pt 4 - Kode Lot'),
-                        SizedBox(
-                          width: 20,
-                        ),
-                      ],
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildChartContainer('Nama Pt 3 - Kode Lot'),
+                          SizedBox(width: 20),
+                          _buildChartContainer('Nama Pt 4 - Kode Lot'),
+                          SizedBox(
+                            width: 20,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

@@ -8,6 +8,7 @@ import 'package:RekaChain/login.dart';
 import 'package:RekaChain/notification.dart';
 import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
+import 'package:RekaChain/viewreportsttpp.dart';
 import 'package:flutter/material.dart';
 
 class ReportSTTPP extends StatefulWidget {
@@ -98,7 +99,7 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                           IconButton(
                             icon: Icon(
                               Icons.notifications_active,
-                              size: 35,
+                              size: 33,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
                             onPressed: () {
@@ -112,7 +113,7 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                           IconButton(
                             icon: Icon(
                               Icons.account_circle_rounded,
-                              size: 38,
+                              size: 35,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
                             onPressed: () {
@@ -136,8 +137,7 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                       border: Border.all(color: Colors.black),
                       borderRadius: BorderRadius.circular(5.0),
                     ),
-                    child:
-                        isViewVisible ? _buildViewTable() : _buildMainTable(),
+                    child: _buildMainTable(),
                   ),
                 ),
               ),
@@ -162,7 +162,7 @@ class _ReportSTTPState extends State<ReportSTTPP> {
             columnSpacing: 200.0,
             horizontalMargin: 50.0,
             columns: [
-              DataColumn(  
+              DataColumn(
                 label: Container(
                   padding: EdgeInsets.symmetric(horizontal: 10.0),
                   child: Text(
@@ -236,9 +236,11 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                     child: IconButton(
                       icon: Icon(Icons.visibility),
                       onPressed: () {
-                        setState(() {
-                          isViewVisible = !isViewVisible;
-                        });
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ViewReportSTTPP()),
+                        );
                       },
                     ),
                   ),
@@ -262,9 +264,11 @@ class _ReportSTTPState extends State<ReportSTTPP> {
                     child: IconButton(
                       icon: Icon(Icons.visibility),
                       onPressed: () {
-                        setState(() {
-                          isViewVisible = !isViewVisible;
-                        });
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ViewReportSTTPP()),
+                        );
                       },
                     ),
                   ),
@@ -274,33 +278,6 @@ class _ReportSTTPState extends State<ReportSTTPP> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildViewTable() {
-    return DataTable(
-      columnSpacing: 0,
-      horizontalMargin: 100,
-      columns: [
-        DataColumn(label: Text('No')),
-        DataColumn(label: Text('Nama Project')),
-        DataColumn(label: Text('Kode Lot')),
-        DataColumn(label: Text('View')),
-      ],
-      rows: [
-        DataRow(cells: [
-          DataCell(Text('1')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-        ]),
-        DataRow(cells: [
-          DataCell(Text('2')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-        ]),
-      ],
     );
   }
 
