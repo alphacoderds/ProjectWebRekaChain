@@ -26,12 +26,19 @@ class _InputMaterialState extends State<InputMaterial> {
   late double screenHeight = MediaQuery.of(context).size.height;
 
   int _selectedIndex = 0;
-  List<String> dropdownItems = [
+  List<String> dropdownItems1 = [
     '--Pilih Nama/Kode Project--',
     'R22-PT. Nugraha Jasa',
     'PT. INDAH JAYA'
   ];
-  String? selectedValue;
+  String? selectedValue1;
+
+  List<String> dropdownItems2 = [
+    '--Pilih Nama/Kode Project--',
+    'R22-PT. Nugraha Jasa',
+    'PT. INDAH JAYA'
+  ];
+  String? selectedValue2;
 
   @override
   Widget build(BuildContext context) {
@@ -137,16 +144,16 @@ class _InputMaterialState extends State<InputMaterial> {
                 body: Container(
                   child: Padding(
                     padding:
-                        EdgeInsets.symmetric(vertical: screenHeight * 0.09),
+                        EdgeInsets.symmetric(vertical: screenHeight * 0.05),
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 10,
+                          height: 15,
                         ),
                         Center(
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.03),
+                                horizontal: screenWidth * 0.04),
                             child: Container(
                               width: screenWidth * 0.75,
                               height: screenHeight * 0.71,
@@ -157,8 +164,8 @@ class _InputMaterialState extends State<InputMaterial> {
                                 scrollDirection: Axis.horizontal,
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
-                                      vertical: screenHeight * 0.05,
-                                      horizontal: screenWidth * 0.05),
+                                      vertical: screenHeight * 0.03,
+                                      horizontal: screenWidth * 0.03),
                                   child: Row(
                                     children: [
                                       Column(
@@ -186,11 +193,11 @@ class _InputMaterialState extends State<InputMaterial> {
                                                   alignment: Alignment.center,
                                                   hint: Text(
                                                       '--Pilih Nama Project--'),
-                                                  value: selectedValue,
+                                                  value: selectedValue1,
                                                   underline: SizedBox(),
                                                   borderRadius:
                                                       BorderRadius.circular(5),
-                                                  items: dropdownItems
+                                                  items: dropdownItems1
                                                       .map((String value) {
                                                     return DropdownMenuItem<
                                                         String>(
@@ -200,7 +207,7 @@ class _InputMaterialState extends State<InputMaterial> {
                                                   }).toList(),
                                                   onChanged: (newValue) {
                                                     setState(() {
-                                                      selectedValue = newValue;
+                                                      selectedValue1 = newValue;
                                                     });
                                                   },
                                                 ),
@@ -294,11 +301,11 @@ class _InputMaterialState extends State<InputMaterial> {
                                                   alignment: Alignment.center,
                                                   hint: Text(
                                                       '--Pilih Kode Lot--'),
-                                                  value: selectedValue,
+                                                  value: selectedValue2,
                                                   underline: SizedBox(),
                                                   borderRadius:
                                                       BorderRadius.circular(5),
-                                                  items: dropdownItems
+                                                  items: dropdownItems2
                                                       .map((String value) {
                                                     return DropdownMenuItem<
                                                         String>(
@@ -308,7 +315,7 @@ class _InputMaterialState extends State<InputMaterial> {
                                                   }).toList(),
                                                   onChanged: (newValue) {
                                                     setState(() {
-                                                      selectedValue = newValue;
+                                                      selectedValue2 = newValue;
                                                     });
                                                   },
                                                 ),

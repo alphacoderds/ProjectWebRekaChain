@@ -1,7 +1,9 @@
 import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/inputdokumen.dart';
+import 'package:RekaChain/inputkebutuhan%20material.dart';
 import 'package:RekaChain/login.dart';
+import 'package:RekaChain/notification.dart';
 import 'package:RekaChain/perencanaan.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:RekaChain/reportsttpp.dart';
@@ -127,16 +129,11 @@ class _ViewkmState extends State<Viewkm> {
                           ),
                           IconButton(
                             icon: Icon(
-                              Icons
-                                  .file_download_outlined, // Tambahkan ikon unduh di sini
-                              size:
-                                  33, // Sesuaikan ukuran ikon unduh dengan ikon lonceng
-                              color: Color.fromARGB(255, 255, 255,
-                                  255), // Sesuaikan warna ikon unduh
+                              Icons.file_download_outlined,
+                              size: 33,
+                              color: Color.fromARGB(255, 255, 255, 255),
                             ),
-                            onPressed: () {
-                              // Logika ketika ikon unduh ditekan
-                            },
+                            onPressed: () {},
                           ),
                           IconButton(
                             icon: Icon(
@@ -144,7 +141,13 @@ class _ViewkmState extends State<Viewkm> {
                               size: 33,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Notifikasi()),
+                              );
+                            },
                           ),
                           IconButton(
                             icon: Icon(
@@ -173,8 +176,7 @@ class _ViewkmState extends State<Viewkm> {
                       border: Border.all(color: Colors.black),
                       borderRadius: BorderRadius.circular(5.0),
                     ),
-                    child:
-                        isViewVisible ? _buildViewTable() : _buildMainTable(),
+                    child: _buildMainTable(),
                   ),
                 ),
               ),
@@ -191,7 +193,7 @@ class _ViewkmState extends State<Viewkm> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => InputDokumen()),
+                  MaterialPageRoute(builder: (context) => InputMaterial()),
                 );
               },
               style: ElevatedButton.styleFrom(
@@ -220,8 +222,8 @@ class _ViewkmState extends State<Viewkm> {
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: DataTable(
-            columnSpacing: 70.0, // Sesuaikan jarak antara kolom di sini
-            horizontalMargin: 70.0, // Sesuaikan jarak antara kolom di sini
+            columnSpacing: 70.0,
+            horizontalMargin: 70.0,
             columns: [
               DataColumn(
                 label: Container(
@@ -234,8 +236,7 @@ class _ViewkmState extends State<Viewkm> {
               ),
               DataColumn(
                 label: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 20.0), // Sesuaikan jarak antara kolom di sini
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
                     'Kode Material',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -244,8 +245,7 @@ class _ViewkmState extends State<Viewkm> {
               ),
               DataColumn(
                 label: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 20.0), // Sesuaikan jarak antara kolom di sini
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
                     'Deskripsi',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -254,8 +254,7 @@ class _ViewkmState extends State<Viewkm> {
               ),
               DataColumn(
                 label: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 20.0), // Sesuaikan jarak antara kolom di sini
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
                     'SpecTech/Material',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -264,8 +263,7 @@ class _ViewkmState extends State<Viewkm> {
               ),
               DataColumn(
                 label: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 20.0), // Sesuaikan jarak antara kolom di sini
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
                     'QTY',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -274,8 +272,7 @@ class _ViewkmState extends State<Viewkm> {
               ),
               DataColumn(
                 label: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 20.0), // Sesuaikan jarak antara kolom di sini
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
                     'Unit',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -305,18 +302,10 @@ class _ViewkmState extends State<Viewkm> {
                   alignment: Alignment.center,
                   child: Text('Pdf 2'),
                 )),
-                DataCell(
-                  Center(
-                    child: IconButton(
-                      icon: Icon(Icons.visibility),
-                      onPressed: () {
-                        setState(() {
-                          isViewVisible = !isViewVisible;
-                        });
-                      },
-                    ),
-                  ),
-                ),
+                DataCell(Container(
+                  alignment: Alignment.center,
+                  child: Text('Pdf 2'),
+                )),
               ]),
               DataRow(cells: [
                 DataCell(Container(
@@ -339,18 +328,10 @@ class _ViewkmState extends State<Viewkm> {
                   alignment: Alignment.center,
                   child: Text('Pdf 2'),
                 )),
-                DataCell(
-                  Center(
-                    child: IconButton(
-                      icon: Icon(Icons.visibility),
-                      onPressed: () {
-                        setState(() {
-                          isViewVisible = !isViewVisible;
-                        });
-                      },
-                    ),
-                  ),
-                ),
+                DataCell(Container(
+                  alignment: Alignment.center,
+                  child: Text('Pdf 2'),
+                )),
               ]),
             ],
           ),
@@ -359,38 +340,9 @@ class _ViewkmState extends State<Viewkm> {
     );
   }
 
-  Widget _buildViewTable() {
-    return DataTable(
-      columnSpacing: 0,
-      horizontalMargin: 100,
-      columns: [
-        DataColumn(label: Text('No')),
-        DataColumn(label: Text('Detail Kerusakan')),
-        DataColumn(label: Text('Item')),
-        DataColumn(label: Text('Keterangan')),
-        DataColumn(label: Text('Saran')),
-      ],
-      rows: [
-        DataRow(cells: [
-          DataCell(Text('1')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-        ]),
-        DataRow(cells: [
-          DataCell(Text('2')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-        ]),
-      ],
-    );
-  }
-
   Widget _buildDrawer() {
     return Drawer(
+      backgroundColor: Color.fromARGB(255, 244, 249, 255),
       child: ListView(
         children: [
           DrawerHeader(
