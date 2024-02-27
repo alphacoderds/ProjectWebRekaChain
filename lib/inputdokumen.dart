@@ -104,7 +104,7 @@ class _InputDokumenState extends State<InputDokumen> {
                                     );
                                   },
                                   child: Text(
-                                    'Uploads',
+                                    'View',
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold),
                                   ),
