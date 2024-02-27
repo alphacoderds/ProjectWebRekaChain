@@ -158,7 +158,7 @@ class _AfterSalesState extends State<AfterSales> {
                                   padding: EdgeInsets.fromLTRB(30, 30, 0, 10),
                                   alignment: Alignment.topLeft,
                                   child: SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
+                                    scrollDirection: Axis.vertical,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -172,7 +172,9 @@ class _AfterSalesState extends State<AfterSales> {
                                           height: 20,
                                         ),
                                         Text(
-                                            'Untuk membuat border container hanya ada pada bagian atas (top) saja, Anda dapat menggunakan properti border pada widget Container. Properti ini memungkinkan Anda untuk menentukan gaya, warna, dan ketebalan border. Dalam hal ini, Anda dapat menggunakan Border dengan mengatur top saja, sedangkan sisanya dibiarkan null atau tidak diatur.')
+                                          'Untuk membuat border container hanya ada pada bagian atas (top) saja, Anda dapat menggunakan properti border pada widget Container. Properti ini memungkinkan Anda untuk menentukan gaya, warna, dan ketebalan border. Dalam hal ini, Anda dapat menggunakan Border dengan mengatur top saja, sedangkan sisanya dibiarkan null atau tidak diatur.',
+                                          maxLines: 8,
+                                        )
                                       ],
                                     ),
                                   ),
