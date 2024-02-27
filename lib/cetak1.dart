@@ -11,12 +11,12 @@ import 'package:RekaChain/reportsttpp.dart';
 import 'package:RekaChain/viewaftersales.dart';
 import 'package:flutter/material.dart';
 
-class Cetak extends StatefulWidget {
+class Cetak1 extends StatefulWidget {
   @override
-  State<Cetak> createState() => _CetakState();
+  State<Cetak1> createState() => _Cetak1State();
 }
 
-class _CetakState extends State<Cetak> {
+class _Cetak1State extends State<Cetak1> {
   int _selectedIndex = 0;
 
   List<String> dropdownItems = [
@@ -41,7 +41,7 @@ class _CetakState extends State<Cetak> {
         switch (settings.name) {
           case '/':
             return MaterialPageRoute(
-              builder: (context) => Cetak(),
+              builder: (context) => Cetak1(),
             );
           default:
             return null;
@@ -460,5 +460,5 @@ class _CetakState extends State<Cetak> {
 }
 
 void main() {
-  runApp(Cetak());
+  runApp(Cetak1());
 }
