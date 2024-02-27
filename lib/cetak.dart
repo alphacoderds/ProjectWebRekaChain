@@ -1,4 +1,5 @@
 import 'package:RekaChain/AfterSales/AfterSales.dart';
+import 'package:RekaChain/cetak1.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/inputkebutuhanmaterial.dart';
 import 'package:RekaChain/login.dart';
@@ -104,19 +105,33 @@ class _CetakState extends State<Cetak> {
                         child: Column(
                           children: [
                             _buildMainTable(),
-                            ElevatedButton(
-                              onPressed: () {},
-                              child: Text(
-                                'Back',
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                foregroundColor: Colors.white,
-                                backgroundColor:
-                                    const Color.fromRGBO(43, 56, 86, 1),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Cetak1()),
+                                    );
+                                  },
+                                  child: Text(
+                                    'Back',
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    foregroundColor: Colors.white,
+                                    backgroundColor:
+                                        const Color.fromRGBO(43, 56, 86, 1),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                  ),
                                 ),
-                              ),
+                                SizedBox(
+                                  width: screenWidth * 0.04,
+                                )
+                              ],
                             ),
                           ],
                         ),
@@ -142,15 +157,15 @@ class _CetakState extends State<Cetak> {
             children: [
               Center(
                 child: Container(
-                  width: screenWidth * 0.7,
+                  width: screenWidth * 0.75,
                   height: screenHeight * 0.75,
                   decoration: BoxDecoration(
                       border: Border.all(),
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                        vertical: screenHeight * 0.09,
-                        horizontal: screenWidth * 0.05),
+                        vertical: screenHeight * 0.05,
+                        horizontal: screenWidth * 0.012),
                     child: Row(
                       children: [
                         SizedBox(width: screenWidth * 0.05),
@@ -171,22 +186,27 @@ class _CetakState extends State<Cetak> {
                                       // color of the box
                                       ),
                                   SizedBox(
-                                    height: 10,
+                                    height: 45,
                                   ),
-                                  ElevatedButton(
-                                    onPressed: () {},
-                                    child: Text(
-                                      'Print',
-                                    ),
-                                    style: ElevatedButton.styleFrom(
-                                      foregroundColor: Colors.white,
-                                      backgroundColor:
-                                          const Color.fromRGBO(43, 56, 86, 1),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      ElevatedButton(
+                                        onPressed: () {},
+                                        child: Text(
+                                          'Print',
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                          foregroundColor: Colors.white,
+                                          backgroundColor: const Color.fromRGBO(
+                                              43, 56, 86, 1),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                        ),
                                       ),
-                                    ),
+                                    ],
                                   ),
                                 ],
                               ),
