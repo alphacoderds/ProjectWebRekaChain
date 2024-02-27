@@ -127,20 +127,36 @@ class _Cetak1State extends State<Cetak1> {
                             EdgeInsets.symmetric(vertical: screenHeight * 0.01),
                         child: Column(
                           children: [
-                            SizedBox(
-                              height: 10,
-                            ),
                             Center(
                               child: Container(
                                 width: screenWidth * 0.63,
-                                height: screenHeight * 0.70,
+                                height: screenHeight * 0.80,
                                 padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
                                 margin: EdgeInsets.all(16.0),
                                 decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black),
                                   borderRadius: BorderRadius.circular(5.0),
                                 ),
-                                child: _buildMainTable(),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(30, 10, 30, 10),
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                              bottom: BorderSide(
+                                                  color: Colors.black45))),
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        'PT. Nugroho Jasa',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ),
+                                    Container(child: _buildMainTable()),
+                                  ],
+                                ),
                               ),
                             ),
                           ],

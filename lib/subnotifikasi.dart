@@ -5,24 +5,10 @@ import 'package:RekaChain/inputkebutuhanmaterial.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/notification.dart';
 import 'package:RekaChain/perencanaan.dart';
+import 'package:RekaChain/pesannotif.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:RekaChain/reportsttpp.dart';
 import 'package:flutter/material.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Responsive Sidebar',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Dashboard(),
-    );
-  }
-}
 
 class Subnotifikasi extends StatefulWidget {
   @override
@@ -84,7 +70,7 @@ class _SubnotifikasiState extends State<Subnotifikasi> {
                           IconButton(
                             icon: Icon(
                               Icons.notifications_active,
-                              size: 35,
+                              size: 33,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
                             onPressed: () {
@@ -98,7 +84,7 @@ class _SubnotifikasiState extends State<Subnotifikasi> {
                           IconButton(
                             icon: Icon(
                               Icons.account_circle_rounded,
-                              size: 38,
+                              size: 35,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
                             onPressed: () {
@@ -304,7 +290,7 @@ class _SubnotifikasiState extends State<Subnotifikasi> {
 Widget _ListView() {
   return ListView.separated(
     itemBuilder: (context, index) {
-      return ListViewItem(index);
+      return ListViewItem(context, index);
     },
     separatorBuilder: (context, index) {
       return Divider(height: 0);
@@ -313,25 +299,35 @@ Widget _ListView() {
   );
 }
 
-Widget ListViewItem(int index) {
-  return Container(
-    margin: EdgeInsets.symmetric(horizontal: 13, vertical: 10),
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        prefixIcon(),
-        Expanded(
-          child: Container(
-            margin: EdgeInsets.only(left: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                message(index),
-              ],
+Widget ListViewItem(BuildContext context, int index) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PesanNotifikasi(),
+        ),
+      );
+    },
+    child: Container(
+      margin: EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          prefixIcon(),
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.only(left: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  message(index),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }
