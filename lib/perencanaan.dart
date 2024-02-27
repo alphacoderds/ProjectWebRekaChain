@@ -78,6 +78,16 @@ class _PerencanaanState extends State<Perencanaan> {
     });
   }
 
+  void initState() {
+    super.initState();
+    // Tambahkan satu baris awal
+    rowsData.add(DataRow(cells: [
+      DataCell(Text('Alur Proses')),
+      DataCell(Text('Kategori')),
+      DataCell(Text('Detail/Keterangan')),
+    ]));
+  }
+
   // Fungsi untuk memperbarui nilai dropdown Alur Proses
   void onAlurProsesChanged(String? newValue) {
     setState(() {
@@ -645,7 +655,15 @@ class _PerencanaanState extends State<Perencanaan> {
                                     ),
                                     SizedBox(width: 20),
                                     ElevatedButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                Vperencanaan(),
+                                          ),
+                                        );
+                                      },
                                       child: Text(
                                         'Simpan',
                                       ),
