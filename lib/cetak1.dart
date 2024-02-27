@@ -61,34 +61,7 @@ class _Cetak1State extends State<Cetak1> {
                     padding: EdgeInsets.only(left: screenHeight * 0.02),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 300,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            borderRadius: BorderRadius.circular(5),
-                            color: Colors.white,
-                          ),
-                          child: DropdownButton<String>(
-                            alignment: Alignment.center,
-                            hint: Text('--Pilih Nama/Kode Project--'),
-                            value: selectedValue,
-                            borderRadius: BorderRadius.circular(5),
-                            items: dropdownItems.map((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            onChanged: (newValue) {
-                              setState(() {
-                                selectedValue = newValue;
-                              });
-                            },
-                          ),
-                        ),
-                      ],
+                      children: [],
                     ),
                   ),
                   actions: [
@@ -177,9 +150,14 @@ class _Cetak1State extends State<Cetak1> {
                       right: 150,
                       child: ElevatedButton(
                         onPressed: () {
-                          // Handle your back button action here
+                          // Handle your print QR code action her
                         },
-                        child: Text('Cetak QR Code'),
+                        style: ElevatedButton.styleFrom(
+                          primary:
+                              Color.fromARGB(255, 1, 46, 76), // Warna biru tua
+                        ),
+                        child: Text('Cetak QR Code',
+                            style: TextStyle(color: Colors.white)),
                       ),
                     ),
                     Positioned(
@@ -272,9 +250,12 @@ class _Cetak1State extends State<Cetak1> {
             ],
             rows: [
               DataRow(cells: [
-                DataCell(Text('')),
-                DataCell(Text('')),
-                DataCell(Text('')),
+                DataCell(Text('xxxxxx xxx xxxx')),
+                DataCell(Text('xxxxxxxxxxxxxx')),
+                DataCell(Icon(
+                  Icons.qr_code_2,
+                  size: 50,
+                )),
               ]),
             ],
           ),

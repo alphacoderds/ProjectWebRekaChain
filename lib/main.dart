@@ -1,5 +1,6 @@
 import 'package:RekaChain/DetailviewPerencanaan.dart';
 import 'package:RekaChain/cetak.dart';
+import 'package:RekaChain/cetak1.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/inputdokumen.dart';
 import 'package:RekaChain/inputkebutuhanmaterial.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Cetak(),
+      home: Cetak1(),
     );
   }
 }
