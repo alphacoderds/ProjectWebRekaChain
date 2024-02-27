@@ -105,29 +105,24 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.07),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Username :",
-                      style: TextStyle(fontSize: screenHeight * 0.023),
-                      textAlign: TextAlign.left,
-                    ),
-                    SizedBox(height: screenHeight * 0.005),
-                    _inputField("Username", nipController,
-                        backgroundColor: Colors.white),
-                    SizedBox(height: screenHeight * 0.01),
-                    Text(
-                      "Password :",
-                      style: TextStyle(fontSize: screenHeight * 0.023),
-                      textAlign: TextAlign.left,
-                    ),
-                    SizedBox(height: screenHeight * 0.005),
-                    _inputField("Password", passwordController,
-                        isPassword: true, backgroundColor: Colors.white),
-                  ],
+                Text(
+                  "Username :",
+                  style: TextStyle(fontSize: screenHeight * 0.023),
+                  textAlign: TextAlign.left,
                 ),
-                SizedBox(height: screenHeight * 0.025),
+                SizedBox(height: screenHeight * 0.005),
+                _inputField("Username", nipController,
+                    backgroundColor: Colors.white),
+                SizedBox(height: screenHeight * 0.005),
+                Text(
+                  "Password :",
+                  style: TextStyle(fontSize: screenHeight * 0.023),
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(height: screenHeight * 0.005),
+                _inputFieldPassword("Password", passwordController,
+                    isPassword: true, backgroundColor: Colors.white),
+                SizedBox(height: screenHeight * 0.005),
                 _loginBtn(),
                 Expanded(child: Container())
               ],
@@ -153,6 +148,33 @@ class _LoginPageState extends State<LoginPage> {
       width: screenWidth * 0.35,
       height: screenHeight * 0.06,
       child: Center(
+          child: TextField(
+        style:
+            const TextStyle(color: Color.fromARGB(255, 8, 8, 8), fontSize: 18),
+        controller: controller,
+        decoration: InputDecoration(
+          hintText: hintText,
+          hintStyle: TextStyle(
+            color: const Color.fromARGB(255, 73, 72, 72),
+            fontSize: hintTextSize * screenWidth / 1050,
+          ),
+          fillColor: backgroundColor,
+          filled: true,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+        ),
+      )),
+    );
+  }
+
+  Widget _inputFieldPassword(String hintText, TextEditingController controller,
+      {bool isPassword = false, Color? backgroundColor}) {
+    return SizedBox(
+      width: screenWidth * 0.35,
+      height: screenHeight * 0.06,
+      child: Center(
         child: TextField(
           style: const TextStyle(
               color: Color.fromARGB(255, 8, 8, 8), fontSize: 18),
@@ -161,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
             hintText: hintText,
             hintStyle: TextStyle(
               color: const Color.fromARGB(255, 73, 72, 72),
-              fontSize: hintTextSize * screenHeight / 650,
+              fontSize: hintTextSize * screenWidth / 1050,
             ),
             fillColor: backgroundColor,
             filled: true,
