@@ -3,6 +3,7 @@ import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/dasboard.dart';
 import 'package:RekaChain/editprofile.dart';
 import 'package:RekaChain/inputdokumen.dart';
+import 'package:RekaChain/inputkebutuhanmaterial.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/notification.dart';
 import 'package:RekaChain/perencanaan.dart';
@@ -309,7 +310,7 @@ class _PesanNotifikasiState extends State<PesanNotifikasi> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => PesanNotifikasi(),
+                builder: (context) => InputMaterial(),
               ),
             );
           } else if (index == 5) {

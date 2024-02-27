@@ -122,8 +122,7 @@ class _ViewReportSTTPState extends State<ViewReportSTTPP> {
                       border: Border.all(color: Colors.black),
                       borderRadius: BorderRadius.circular(5.0),
                     ),
-                    child:
-                        isViewVisible ? _buildViewTable() : _buildMainTable(),
+                    child: _buildMainTable(),
                   ),
                 ),
               ),
@@ -280,33 +279,6 @@ class _ViewReportSTTPState extends State<ViewReportSTTPP> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildViewTable() {
-    return DataTable(
-      columnSpacing: 0,
-      horizontalMargin: 100,
-      columns: [
-        DataColumn(label: Text('Nama Produk')),
-        DataColumn(label: Text('Kode QR')),
-        DataColumn(label: Text('Proses')),
-        DataColumn(label: Text('Tanggal Mulai')),
-        DataColumn(label: Text('Tanggal Selesai')),
-        DataColumn(label: Text('Personil')),
-        DataColumn(label: Text('Keterangan')),
-      ],
-      rows: [
-        DataRow(cells: [
-          DataCell(Text('1')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-          DataCell(Text('')),
-        ]),
-      ],
     );
   }
 
