@@ -5,6 +5,7 @@ import 'package:RekaChain/login.dart';
 import 'package:RekaChain/notification.dart';
 import 'package:RekaChain/profile.dart';
 import 'package:RekaChain/reportsttpp.dart';
+import 'package:RekaChain/viewperencanaan.dart';
 import 'package:flutter/material.dart';
 
 class Perencanaan extends StatefulWidget {
@@ -147,7 +148,14 @@ class _PerencanaanState extends State<Perencanaan> {
                             child: Row(
                               children: [
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Vperencanaan(),
+                                      ),
+                                    );
+                                  },
                                   child: Text(
                                     'View',
                                     style:
@@ -246,12 +254,15 @@ class _PerencanaanState extends State<Perencanaan> {
                                                       fontSize: 15),
                                                 ),
                                                 Container(
+                                                  width: 225,
                                                   height: 40,
                                                   decoration: BoxDecoration(
-                                                      border: Border.all(),
+                                                      border: Border.all(
+                                                          color:
+                                                              Colors.black54),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              5)),
+                                                              3)),
                                                   child: DropdownButton<String>(
                                                     alignment: Alignment.center,
                                                     hint: Text(
@@ -259,6 +270,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                                         style: TextStyle(
                                                             fontSize: 15)),
                                                     value: selectedValue,
+                                                    underline: SizedBox(),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             5),
@@ -378,7 +390,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                                       readOnly: true,
                                                       onTap: () {
                                                         _selectDate(
-                                                            tglSelesaicontroller);
+                                                            tglMulaicontroller);
                                                       },
                                                       decoration: InputDecoration(
                                                           contentPadding:
@@ -776,118 +788,6 @@ class _PerencanaanState extends State<Perencanaan> {
       ),
     );
   }
-  // [
-  //   DataRow(cells: [
-  //     DataCell(
-  //       DropdownButton<String>(
-  //         alignment: Alignment.center,
-  //         hint: Text('--Pilih Alur Proses--',
-  //             style: TextStyle(fontSize: 15)),
-  //         value: selectedValueAlurProses,
-  //         borderRadius: BorderRadius.circular(5),
-  //         focusColor: Colors.white,
-  //         items: dropdownItemsAlurProses.map((String value) {
-  //           return DropdownMenuItem<String>(
-  //               value: value, child: Text(value));
-  //         }).toList(),
-  //         onChanged: (newValue) {
-  //           onAlurProsesChanged;
-  //         },
-  //         dropdownColor: Colors.white,
-  //       ),
-  //     ),
-  //     DataCell(
-  //       DropdownButton<String>(
-  //         alignment: Alignment.center,
-  //         hint: Text('--Pilih Kategori--',
-  //             style: TextStyle(fontSize: 15)),
-  //         value: selectedValueKategori,
-  //         borderRadius: BorderRadius.circular(5),
-  //         focusColor: Colors.white,
-  //         items: dropdownItemsKategori.map((String value) {
-  //           return DropdownMenuItem<String>(
-  //               value: value, child: Text(value));
-  //         }).toList(),
-  //         onChanged: (newValue) {
-  //           onKategoriChanged;
-  //         },
-  //         dropdownColor: Colors.white,
-  //       ),
-  //     ),
-  //     DataCell(Container(
-  //       height: 100,
-  //       width: 300,
-  //       child: TextField(
-  //         maxLines: 5,
-  //         decoration: InputDecoration(
-  //           border: InputBorder.none,
-  //           contentPadding: EdgeInsets.symmetric(
-  //               vertical: screenHeight * 0.005,
-  //               horizontal: screenWidth * 0.005),
-  //         ),
-  //       ),
-  //     )),
-  //   ]),
-  //   DataRow(cells: [
-  //     DataCell(
-  //       DropdownButton<String>(
-  //         alignment: Alignment.center,
-  //         hint: Text('--Pilih Alur Proses--',
-  //             style: TextStyle(fontSize: 15)),
-  //         value: selectedValueAlurProses,
-  //         borderRadius: BorderRadius.circular(5),
-  //         focusColor: Colors.white,
-  //         items: dropdownItemsAlurProses.map((String value) {
-  //           return DropdownMenuItem<String>(
-  //               value: value, child: Text(value));
-  //         }).toList(),
-  //         onChanged: (newValue) {
-  //           setState(() {
-  //             selectedValueAlurProses = newValue;
-  //           });
-  //         },
-  //         dropdownColor: Colors.white,
-  //       ),
-  //     ),
-  //     DataCell(
-  //       DropdownButton<String>(
-  //         alignment: Alignment.center,
-  //         hint: Text('--Pilih Kategori--',
-  //             style: TextStyle(fontSize: 15)),
-  //         value: selectedValueKategori,
-  //         borderRadius: BorderRadius.circular(5),
-  //         focusColor: Colors.white,
-  //         items: dropdownItemsKategori.map((String value) {
-  //           return DropdownMenuItem<String>(
-  //               value: value, child: Text(value));
-  //         }).toList(),
-  //         onChanged: (newValue) {
-  //           setState(() {
-  //             selectedValueKategori = newValue;
-  //           });
-  //         },
-  //         dropdownColor: Colors.white,
-  //       ),
-  //     ),
-  //     DataCell(Container(
-  //       height: 100,
-  //       width: 300,
-  //       // decoration: BoxDecoration(
-  //       //   border:
-  //       //       Border.all(color: Color.fromARGB(255, 177, 177, 177)),
-  //       // ),
-  //       child: TextField(
-  //         maxLines: 5,
-  //         decoration: InputDecoration(
-  //           border: InputBorder.none,
-  //           contentPadding: EdgeInsets.symmetric(
-  //               vertical: screenHeight * 0.005,
-  //               horizontal: screenWidth * 0.005),
-  //         ),
-  //       ),
-  //     )),
-  //   ]),
-  // ],
 
   Widget _buildViewTable() {
     return DataTable(

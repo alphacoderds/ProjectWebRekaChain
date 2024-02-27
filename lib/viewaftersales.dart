@@ -84,6 +84,7 @@ class _ViewAfterSalesState extends State<ViewAfterSales> {
                               alignment: Alignment.center,
                               hint: Text('--Pilih Nama/Kode Project--'),
                               value: selectedValue,
+                              underline: SizedBox(),
                               borderRadius: BorderRadius.circular(5),
                               items: dropdownItems.map((String value) {
                                 return DropdownMenuItem<String>(
@@ -261,6 +262,7 @@ class _ViewAfterSalesState extends State<ViewAfterSales> {
 
   Widget _buildDrawer() {
     return Drawer(
+      backgroundColor: Color.fromARGB(255, 244, 249, 255),
       child: ListView(
         children: [
           DrawerHeader(
