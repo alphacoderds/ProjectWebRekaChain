@@ -1,6 +1,7 @@
 import 'package:RekaChain/AfterSales/AfterSales.dart';
 import 'package:RekaChain/cetak1.dart';
 import 'package:RekaChain/dasboard.dart';
+import 'package:RekaChain/inputdokumen.dart';
 import 'package:RekaChain/inputkebutuhanmaterial.dart';
 import 'package:RekaChain/login.dart';
 import 'package:RekaChain/notification.dart';
@@ -359,7 +360,7 @@ class _CetakState extends State<Cetak> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Cetak(),
+                builder: (context) => InputDokumen(),
               ),
             );
           }

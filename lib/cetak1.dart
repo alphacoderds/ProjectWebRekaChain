@@ -472,7 +472,3 @@ class _Cetak1State extends State<Cetak1> {
     );
   }
 }
-
-void main() {
-  runApp(Cetak1());
-}
