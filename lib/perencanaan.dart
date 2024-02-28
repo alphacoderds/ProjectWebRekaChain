@@ -30,62 +30,27 @@ class _PerencanaanState extends State<Perencanaan> {
   late List<String> dropdownItemsKategori;
   String? selectedValueKategori;
 
-  List<DataRow> rowsData = [];
+  List<TableRowData> rowsData = [];
 
 //===========================================================Widget Tambah Table Alur===========================================================//
   void addRow() {
     setState(() {
-      rowsData.add(DataRow(cells: [
-        DataCell(DropdownButton<String>(
-          alignment: Alignment.center,
-          hint: Text('--Pilih Alur Proses--', style: TextStyle(fontSize: 15)),
-          value: selectedValueAlurProses,
-          borderRadius: BorderRadius.circular(5),
-          focusColor: Colors.white,
-          items: dropdownItemsAlurProses.map((String value) {
-            return DropdownMenuItem<String>(value: value, child: Text(value));
-          }).toList(),
-          onChanged: onAlurProsesChanged,
-          dropdownColor: Colors.white,
-        )),
-        DataCell(DropdownButton<String>(
-          alignment: Alignment.center,
-          hint: Text('--Pilih Kategori--', style: TextStyle(fontSize: 15)),
-          value: selectedValueKategori,
-          borderRadius: BorderRadius.circular(5),
-          focusColor: Colors.white,
-          items: dropdownItemsKategori.map((String value) {
-            return DropdownMenuItem<String>(value: value, child: Text(value));
-          }).toList(),
-          onChanged: onKategoriChanged,
-          dropdownColor: Colors.white,
-        )),
-        DataCell(Container(
-          height: 100,
-          width: 300,
-          child: TextField(
-            maxLines: 5,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.symmetric(
-                vertical: screenHeight * 0.005,
-                horizontal: screenWidth * 0.005,
-              ),
-            ),
-          ),
-        )),
-      ]));
+      rowsData.add(TableRowData(
+        selectedAlurProses: null,
+        selectedKategori: null,
+        detail: '',
+      ));
     });
   }
 
   void initState() {
     super.initState();
     // Tambahkan satu baris awal
-    rowsData.add(DataRow(cells: [
-      DataCell(Text('Alur Proses')),
-      DataCell(Text('Kategori')),
-      DataCell(Text('Detail/Keterangan')),
-    ]));
+    rowsData.add(TableRowData(
+      selectedAlurProses: null,
+      selectedKategori: null,
+      detail: '',
+    ));
   }
 
   // Fungsi untuk memperbarui nilai dropdown Alur Proses
@@ -396,7 +361,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                                       textAlign: TextAlign
                                                           .center,
                                                       controller:
-                                                          tglSelesaicontroller,
+                                                          tglMulaicontroller,
                                                       readOnly: true,
                                                       onTap: () {
                                                         _selectDate(
@@ -747,56 +712,53 @@ class _PerencanaanState extends State<Perencanaan> {
                 ),
               ),
             ],
-            rows: rowsData.map((DataRow row) {
+            rows: rowsData.map((TableRowData rowData) {
               return DataRow(cells: [
                 DataCell(DropdownButton<String>(
-                  alignment: Alignment.center,
-                  hint: Text(
-                    '--Pilih Alur Proses--',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  value: selectedValueAlurProses,
-                  borderRadius: BorderRadius.circular(5),
-                  focusColor: Colors.white,
+                  value: rowData.selectedAlurProses,
+                  hint: Text('--Pilih Alur Proses--'),
                   items: dropdownItemsAlurProses.map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
                     );
                   }).toList(),
-                  onChanged: onAlurProsesChanged,
-                  dropdownColor: Colors.white,
+                  onChanged: (newValue) {
+                    setState(() {
+                      rowData.selectedAlurProses = newValue;
+                    });
+                  },
+                  focusColor: Colors.white,
                 )),
                 DataCell(DropdownButton<String>(
-                  alignment: Alignment.center,
-                  hint: Text(
-                    '--Pilih Kategori--',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  value: selectedValueKategori,
-                  borderRadius: BorderRadius.circular(5),
-                  focusColor: Colors.white,
+                  value: rowData.selectedKategori,
+                  hint: Text('--Pilih Kategori--'),
                   items: dropdownItemsKategori.map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
                     );
                   }).toList(),
-                  onChanged: onKategoriChanged,
-                  dropdownColor: Colors.white,
+                  onChanged: (newValue) {
+                    setState(() {
+                      rowData.selectedKategori = newValue;
+                    });
+                  },
+                  focusColor: Colors.white,
                 )),
                 DataCell(Container(
                   height: 100,
                   width: 300,
                   child: TextField(
-                    maxLines: 5,
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      contentPadding: EdgeInsets.symmetric(
-                        vertical: screenHeight * 0.005,
-                        horizontal: screenWidth * 0.005,
-                      ),
                     ),
+                    maxLines: 5,
+                    onChanged: (newValue) {
+                      setState(() {
+                        rowData.detail = newValue;
+                      });
+                    },
                   ),
                 )),
               ]);
@@ -1007,4 +969,13 @@ class _PerencanaanState extends State<Perencanaan> {
       },
     );
   }
+}
+
+class TableRowData {
+  String? selectedAlurProses;
+  String? selectedKategori;
+  String detail;
+
+  TableRowData(
+      {this.selectedAlurProses, this.selectedKategori, required this.detail});
 }

@@ -109,7 +109,7 @@ class _DashboardState extends State<Dashboard> {
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           _buildChartContainer('Nama Pt 1 - Kode Lot'),
                           SizedBox(width: 20),
@@ -121,7 +121,7 @@ class _DashboardState extends State<Dashboard> {
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           _buildChartContainer('Nama Pt 3 - Kode Lot'),
                           SizedBox(width: 20),
