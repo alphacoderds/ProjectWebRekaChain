@@ -195,7 +195,6 @@ class _ViewAfterSalesState extends State<ViewAfterSales> {
                                           ),
                                           Text(
                                             'Untuk membuat border container hanya ada pada bagian atas (top) saja, Anda dapat menggunakan properti border pada widget Container. Properti ini memungkinkan Anda untuk menentukan gaya, warna, dan ketebalan border. Dalam hal ini, Anda dapat menggunakan Border dengan mengatur top saja, sedangkan sisanya dibiarkan null atau tidak diatur.',
-                                            maxLines: 8,
                                           )
                                         ],
                                       ),

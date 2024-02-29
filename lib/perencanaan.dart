@@ -288,7 +288,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                                             EdgeInsets
                                                                 .symmetric(
                                                                     horizontal:
-                                                                        2,
+                                                                        10,
                                                                     vertical:
                                                                         2),
                                                         border: OutlineInputBorder(
@@ -414,7 +414,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                                             EdgeInsets
                                                                 .symmetric(
                                                                     horizontal:
-                                                                        2,
+                                                                        10,
                                                                     vertical:
                                                                         2),
                                                         border: OutlineInputBorder(
@@ -450,7 +450,7 @@ class _PerencanaanState extends State<Perencanaan> {
                                                             EdgeInsets
                                                                 .symmetric(
                                                                     horizontal:
-                                                                        2,
+                                                                        10,
                                                                     vertical:
                                                                         2),
                                                         border: OutlineInputBorder(
@@ -589,6 +589,7 @@ class _PerencanaanState extends State<Perencanaan> {
 
                               SizedBox(width: 40),
                               Container(
+                                alignment: Alignment.center,
                                 width: screenWidth * 0.6,
                                 padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
                                 margin: EdgeInsets.all(50.0),
@@ -681,7 +682,7 @@ class _PerencanaanState extends State<Perencanaan> {
           scrollDirection: Axis.horizontal,
           child: DataTable(
             columnSpacing: 100.0,
-            horizontalMargin: 60.0,
+            horizontalMargin: 30.0,
             columns: [
               DataColumn(
                 label: Padding(
@@ -689,6 +690,7 @@ class _PerencanaanState extends State<Perencanaan> {
                   child: Text(
                     'Alur Proses',
                     style: TextStyle(fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
@@ -708,6 +710,7 @@ class _PerencanaanState extends State<Perencanaan> {
                   child: Text(
                     'Detail/Keterangan',
                     style: TextStyle(fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
