@@ -18,6 +18,17 @@ class Perencanaan extends StatefulWidget {
 class _PerencanaanState extends State<Perencanaan> {
   late double screenWidth = MediaQuery.of(context).size.width;
   late double screenHeight = MediaQuery.of(context).size.height;
+
+  TextEditingController controllerNoIndukFinish = TextEditingController();
+  TextEditingController controllerNamaProduk = TextEditingController();
+  TextEditingController controllerJumlah1Lot = TextEditingController();
+  TextEditingController controllerKodeLot = TextEditingController();
+  TextEditingController controllerNoSeriAwal = TextEditingController();
+  TextEditingController controllerNoSeriAkhir = TextEditingController();
+  TextEditingController controllerTargetMulai = TextEditingController();
+  TextEditingController controllerTargetSElesai = TextEditingController();
+  TextEditingController controllerDetailKeterangan = TextEditingController();
+
   bool isViewVisible = false;
 
   int _selectedIndex = 0;
@@ -119,7 +130,7 @@ class _PerencanaanState extends State<Perencanaan> {
                         actions: [
                           Padding(
                             padding:
-                                EdgeInsets.only(right: screenHeight * 0.13),
+                                EdgeInsets.only(right: screenHeight * 0.11),
                             child: Row(
                               children: [
                                 ElevatedButton(
