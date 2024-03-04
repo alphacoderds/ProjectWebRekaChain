@@ -76,7 +76,7 @@ class _Cetak1State extends State<Cetak1> {
                           ),
                           IconButton(
                             icon: Icon(
-                              Icons.download,
+                              Icons.file_download_outlined,
                               size: 33,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
