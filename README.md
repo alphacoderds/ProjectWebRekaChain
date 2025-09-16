@@ -26,9 +26,12 @@ Fitur-fitur utama:
    ```bash
    git clone https://github.com/username/RekaChain.git
 3. Masuk ke folder proyek:
+   ```bash
    cd RekaChain
 5. Install dependensi:
+   ```bash
    flutter pub get
 7. Jalankan :
+   ```bash
    flutter run 
 
